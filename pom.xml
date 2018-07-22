@@ -6,14 +6,10 @@
     <groupId>com.jnucst2015</groupId>
     <artifactId>dropshopping</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
     <name>dropshopping</name>
     <description>Demo project for Spring Boot</description>
-
-    <modules>
-        <module>dropshopping_micro_demo</module>
-    </modules>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
