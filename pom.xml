@@ -19,9 +19,9 @@
     </parent>
 
     <modules>
-        <module>dropshopping_uam</module>
-        <module>dropshopping_mvo</module>
         <module>dropshopping_bvo</module>
+        <module>dropshopping_mvo</module>
+        <module>dropshopping_uam</module>
     </modules>
 
     <properties>
