@@ -5,15 +5,15 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity @Table(name = "Commodity")
-public class Commodity
+@Entity @Table(name = "MvoCommodity")
+public class MvoCommodity
 {
     @Getter @Setter
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Getter @Setter
-    @Column(columnDefinition = "VARCHAR(11) COMMENT '商品名称'")
+    @Column(columnDefinition = "VARCHAR(255) COMMENT '商品名称'")
     private String name;
 
     @Getter @Setter
@@ -25,7 +25,7 @@ public class Commodity
     private Integer classification;
 
     @Getter @Setter
-    @Column(columnDefinition = "VARCHAR(11) COMMENT '描述'")
+    @Column(columnDefinition = "VARCHAR(255) COMMENT '描述'")
     private String description;
 
     @Getter @Setter
@@ -41,6 +41,6 @@ public class Commodity
     private Integer quantity;
 
     @Getter @Setter
-    @Column(columnDefinition = "TINYINT(4) COMMENT '数量'")
+    @Column(columnDefinition = "TINYINT(4) COMMENT '状态'")
     private Integer state;
 }
