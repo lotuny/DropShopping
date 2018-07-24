@@ -1,5 +1,6 @@
 package com.jnucst2015.dropshopping.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -9,8 +10,11 @@ public class Admin {
 
     @Id
     @GeneratedValue
+    @Column(columnDefinition = "INT(11) COMMENT '管理员ID'")
     private Integer id;
+    @Column(columnDefinition = "VARCHAR(20) COMMENT '管理员账号'")
     private String name;
+    @Column(columnDefinition = "VARCHAR(20) COMMENT '管理员密码'")
     private String password;
 
     public Admin(){}

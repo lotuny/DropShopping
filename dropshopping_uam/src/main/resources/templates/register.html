@@ -64,32 +64,57 @@
     </div>
 </nav>
 
-<div class="container" style="margin-top: 100px;text-align: center">
-    <h3 style="font-weight: bold">用户注册</h3>
+<div class="container" style="margin-top: 100px;">
+    <h3 style="font-weight: bold;text-align: center" >用户注册</h3>
     <hr style="filter: alpha(opacity=100,finishopacity=0,style=3)" width="80%" color="#6f5499" size="3" />
 
     <div class="row">
         <div class="col-lg-offset-3 col-lg-6">
             <form class="form-horizontal" role="form" th:action="@{/user/register}" method="post">
                 <div class="form-group">
+                    <div class="col-sm-2"></div>
                     <label for="inputName" class="col-sm-2 control-label">用户名</label>
-                    <div class="col-sm-8">
-                        <input type="text" name="username" class="form-control" id="inputName" placeholder="用户名">
+                    <div class="col-sm-6">
+                        <input type="text" name="username" class="form-control" id="inputName" placeholder="设置用户名">
                     </div>
+                    <div class="col-sm-2"></div>
                 </div>
+
                 <div class="form-group">
+                    <div class="col-sm-2"></div>
                     <label for="inputPwd" class="col-sm-2 control-label">密码</label>
-                    <div class="col-sm-8">
-                        <input type="password" name="password" class="form-control" id="inputPwd" placeholder="密码">
+                    <div class="col-sm-6">
+                        <input type="password" name="password" class="form-control" id="inputPwd" placeholder="设置你的密码">
+                    </div>
+                    <div class="col-sm-2"></div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-2"></div>
+                    <label for="inputEmail" class="col-sm-2 control-label">邮箱</label>
+                    <div class="col-sm-6">
+                        <input type="text" name="email" class="form-control" id="inputEmail" placeholder="设置你的邮箱">
+                    </div>
+                    <div class="col-sm-2"></div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-8 checkbox ">
+                        <label>
+                            <input type="checkbox">创建网站账号的同时，我同意遵守：<br>《服务条款》及《隐私声明》
+                        </label>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-success">注册</button>
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-8">
+                        <button type="submit" class="btn btn-success">同意并注册</button>
                     </div>
                 </div>
             </form>
+
         </div>
     </div>
 

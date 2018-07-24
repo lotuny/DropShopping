@@ -1,23 +1,38 @@
 package com.jnucst2015.dropshopping.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 public class User {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
+
     private Integer id;
+
+    @Column(columnDefinition = "VARCHAR(20) COMMENT '用户账号'")
     private String username;
+
+    @Column(columnDefinition = "VARCHAR(40) COMMENT '用户密码'")
     private String password;
+
+    @Column(columnDefinition = "VARCHAR(20) COMMENT '用户邮件'")
     private String email;
+
+    @Column(columnDefinition = "VARCHAR(20) COMMENT '手机号码'")
     private String telephone;
+
+    @Column(columnDefinition = "VARCHAR(20) COMMENT '用户生日'")
     private Date birthday;
+
+    @Column(columnDefinition = "VARCHAR(2) COMMENT '性别'")
     private String gender;
+
+    @Column(columnDefinition = "VARCHAR(10) COMMENT '用户角色'")
     private String role;
+
+    @Column(columnDefinition = "INT(11) COMMENT '用户余额'")
     private Integer balance;
 
     public Integer getId() {

@@ -18,8 +18,6 @@ public class MyController {
     @Autowired
     private UserService userService;
 
-    private PasswordUtil passwordUtil;
-
     @GetMapping("/")
     public String getHome(Session session){
         return "index";
@@ -41,8 +39,6 @@ public class MyController {
 
     @PostMapping("user/register")
     public String register(User user){
-        String plainPwd = user.getPassword();
-        user.setPassword(passwordUtil.md5Password(plainPwd));
         String result = userService.userRegister(user);
         return "redirect:/";
     }
@@ -57,14 +53,8 @@ public class MyController {
 
     @PostMapping("/user/login")
     public String login(HttpSession session, @RequestParam("username") String username, @RequestParam("password") String password) {
-        if (userService.getOneByUsername(username).getPassword().equals(passwordUtil.md5Password(password))) {
-            session.setAttribute("username",username);
-            return "redirect:/";
-        }else {
-            session.setAttribute("username", null);
-            return "Error";
-        }
+        userService.userLogin(username,password, session);
+        return "redirect:/";
     }
-
 
 }

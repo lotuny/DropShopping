@@ -12,10 +12,12 @@
     <script th:inline="javascript">
         $(function () {
             var username = [[${session.username}]];
+            console.log(username);
             if(username==undefined||username==null||username==""){
-                // $("#infobar").hide();
+                $("#funbar").show();
+                $("#infobar").hide();
             }else {
-                $("#funbar").hidden;
+                $("#funbar").hide();
                 $("#infobar").show();
             }
         })
@@ -52,7 +54,7 @@
                         <li><a th:href="@{/user/login}"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
                     </ul>
 
-                    <a href="#" th:text="session.username" id="infobar" class="nav navbar-nav navbar-right" style="display: none"><span class="glyphicon glyphicon-user"></span></a>
+                    <a href="#" th:text="${session.username}" id="infobar" class="nav navbar-nav navbar-right" style="display: none"><span class="glyphicon glyphicon-user"></span></a>
 
                     <form class="navbar-form navbar-right">
                         <div class="form-group">
@@ -142,11 +144,14 @@
 
 
 
+
 <script>
     $(window).scroll(function () {
         if ($(".navbar").offset().top > 50) {$(".navbar-fixed-top").addClass("top-nav");
         }else {$(".navbar-fixed-top").removeClass("top-nav");}
-    })</script>
+    })
+</script>
+
 
 </body>
 </html>
