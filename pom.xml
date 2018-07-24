@@ -19,7 +19,7 @@
     </parent>
 
     <modules>
-        <module>dropshopping_cmdtmgmt</module>
+        <module>dropshopping_cmdtMgmt</module>
     </modules>
 
     <properties>

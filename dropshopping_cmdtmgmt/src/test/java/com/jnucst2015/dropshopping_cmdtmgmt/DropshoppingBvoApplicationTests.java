@@ -1,4 +1,4 @@
-package com.jnucst2015.dropshopping_mvo;
+package com.jnucst2015.dropshopping_cmdtmgmt;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class DropshoppingMvoApplicationTests
+public class DropshoppingBvoApplicationTests
 {
 
     @Test
