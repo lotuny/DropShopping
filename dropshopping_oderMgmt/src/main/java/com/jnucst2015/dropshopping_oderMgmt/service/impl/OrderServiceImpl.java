@@ -2,7 +2,7 @@ package com.jnucst2015.dropshopping_oderMgmt.service.impl;
 
 import com.jnucst2015.dropshopping.entity.Order;
 import com.jnucst2015.dropshopping.entity.OrderItem;
-import com.jnucst2015.dropshopping.repository.OrderRepository;
+import com.jnucst2015.dropshopping.repository.OrderItemRepository;
 import com.jnucst2015.dropshopping_oderMgmt.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,23 +13,23 @@ import java.util.List;
 public class OrderServiceImpl implements OrderService {
 
     @Autowired
-    private OrderRepository orderRepository;
+    private OrderItemRepository orderItemRepository;
 
     @Override
     public List<OrderItem> getAllOrder() {
-        return orderRepository.findAll();
+        return orderItemRepository.findAll();
     }
 
     @Override
-    public List<OrderItem> getAllByState(short state){ return orderRepository.selectByState(state); }
+    public List<OrderItem> getAllByState(short state){ return orderItemRepository.selectByState(state); }
 
     @Override
     public OrderItem getOrderByID(Integer id) {
-        return orderRepository.findById(id).get();
+        return orderItemRepository.findById(id).get();
     }
 
-    public Order getOrderByOrderID(Integer orderId) {
-        return orderRepository.selectByOrderId(orderId);
+    public OrderItem getOrderByOrderID(Integer orderId) {
+        return orderItemRepository.selectByOrderItemId(orderId);
     }
 
 //    @Override
@@ -39,7 +39,7 @@ public class OrderServiceImpl implements OrderService {
 //
 ////        for (OrderItem orderItem:order){
 ////            orderItem.setOrder_id(orderId);
-////            orderRepository.save(orderItem);
+////            orderItemRepository.save(orderItem);
 ////        }
 //
 //        return order;
@@ -48,15 +48,19 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void deleteByOrderID(Integer orderId) {
-        orderRepository.deleteById(orderId);
+        orderItemRepository.deleteById(orderId);
     }
 
+    @Override
+    public OrderItem showOrderItem (int orderItemId){
 
+        return orderItemRepository.selectByOrderItemId(orderItemId);
 
+    }
 //    @Override
 //    public List<OrderItem> updateOrderInfo(List<OrderItem> order) {
 //        for (OrderItem orderItem: order) {
-//            orderRepository.save(orderItem);
+//            orderItemRepository.save(orderItem);
 //        }
 //        return order;
 //    }

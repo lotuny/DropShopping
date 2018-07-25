@@ -13,7 +13,7 @@ public interface OrderService {
 
     OrderItem getOrderByID(Integer id);
 
-    Order getOrderByOrderID(Integer orderId);
+    OrderItem getOrderByOrderID(Integer orderId);
 
 //    Order addOrder(Order order);
 
@@ -21,7 +21,7 @@ public interface OrderService {
 
 //    Order updateOrderInfo(Order order);
 
-
+    OrderItem showOrderItem (int orderItemId);
 
 
 

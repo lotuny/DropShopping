@@ -8,12 +8,12 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface OrderRepository extends JpaRepository<OrderItem,Integer> {
+public interface OrderItemRepository extends JpaRepository<OrderItem,Integer> {
 
     @Query(value = "select * from order_item where state=?1", nativeQuery = true)
     public List<OrderItem> selectByState(@Param("state")short state);
 
-    @Query(value = "select * from order_item where order_id=?1", nativeQuery = true)
-    public Order selectByOrderId(@Param("order_id")int orderId);
+    @Query(value = "select * from order_item join sale_info on order_item.sale_info_id = sale_info.id where order_item.id=?1", nativeQuery = true)
+    public OrderItem selectByOrderItemId(@Param("order_item.id")int orderItemId);
 
 }

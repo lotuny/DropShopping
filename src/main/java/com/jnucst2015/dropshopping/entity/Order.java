@@ -28,8 +28,7 @@ public class Order {
     private Integer delivery_comany;
     @Column(columnDefinition = "varchar(255) COMMENT '附加信息'")
     private Integer notes;
-    @Column(columnDefinition = "varchar(255) COMMENT '状态'")
-    private Integer state;
+
 
 
 }
