@@ -39,10 +39,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public String userLogin(String username, String password, HttpSession session) {
         User user = userRepository.findUserByUsername(username);
-        int userId = user.getId();
         String pwd = user.getPassword();
         if (pwd.equals(PasswordUtil.md5Password(password))){
-            session.setAttribute("userId",userId);
+            session.setAttribute("userId",user.getId());
             session.setAttribute("username",username);
             return "successful";
         }else {

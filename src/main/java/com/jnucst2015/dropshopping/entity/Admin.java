@@ -10,11 +10,12 @@ public class Admin {
 
     @Id
     @GeneratedValue
-    @Column(columnDefinition = "INT(11) COMMENT '管理员ID'")
     private Integer id;
+
     @Column(columnDefinition = "VARCHAR(20) COMMENT '管理员账号'")
     private String name;
-    @Column(columnDefinition = "VARCHAR(20) COMMENT '管理员密码'")
+
+    @Column(columnDefinition = "VARCHAR(40) COMMENT '管理员密码'")
     private String password;
 
     public Admin(){}
@@ -51,4 +52,5 @@ public class Admin {
                 ", password='" + password + '\'' +
                 '}';
     }
+
 }

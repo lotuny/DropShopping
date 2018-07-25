@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.jnucst2015</groupId>
-    <artifactId>dropshopping_mvo</artifactId>
+    <artifactId>dropshopping_bvo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>dropshopping_mvo</name>
+    <name>dropshopping_bvo</name>
     <description>Demo project for Spring Boot</description>
 
     <parent>
