@@ -16,6 +16,7 @@ public class Shop {
     @Column(columnDefinition = "tinyint(11) COMMENT '商店分类'")
     private Integer owner_role;
     @Column(columnDefinition = "int(11) COMMENT '拥有者ID'")
+    @ManyToOne
     private Integer owner_id;
 
     public Integer getId() {
