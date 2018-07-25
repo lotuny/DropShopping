@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+
+    <meta charset="UTF-8"/>
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="row">
+                <div class="col-lg-offset-1 col-lg-10">
+                    <div class="panel panel-primary">
+                        <!-- Default panel contents -->
+                        <div class="panel-heading">订单信息管理界面</div>
+                        <div class="panel-body">
+                            <p>
+                            <div class="alert alert-success">
+                          在这里，你可以对订单信息进行查看/修改/删除/查询操作，如果需要添加订单信息请点击
+                                <a th:href="@{add}" class="alert-link">添加订单信息</a>
+                            </div>
+                            </p>
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>订单编号</th>
+                                    <th>发送方姓名</th>
+                                    <th>发送方地址</th>
+                                    <th>发送方电话</th>
+                                    <th>接收方姓名</th>
+                                    <th>接收方地址</th>
+                                    <th>接收方电话</th>
+                                    <th>备注</th>
+                                    <th>状态</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="OrderForm:${orders}">
+                                    <td th:text="${OrderForm.getOrder_id()}" ></td>
+                                    <td th:text="${OrderForm.getSender_name()}" ></td>
+                                    <td th:text="${OrderForm.getSender_address()}" ></td>
+                                    <td th:text="${OrderForm.getSender_phone()}" ></td>
+                                    <td th:text="${OrderForm.getReceiver_name()}" ></td>
+                                    <td th:text="${OrderForm.getReceiver_address()}" ></td>
+                                    <td th:text="${OrderForm.getReceiver_phone()}" ></td>
+                                    <td th:text="${OrderForm.getNotes()}" ></td>
+                                    <td th:text="${OrderForm.getState()}" ></td>
+                                    <td>
+                                        <a th:href="@{'update/'+${OrderForm.getOrder_id()}}" title="修改">修改<i class="fa fa-edit text-navy"></i></a>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a th:href="@{'delete/'+${OrderForm.getOrder_id()}}" title="删除">删除<i class="fa fa-trash-o text-navy"></i></a>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+                </div>
+        </div>
+
+
+    </div>
+
+</body>
+</html>
