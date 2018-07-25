@@ -1,16 +1,16 @@
-package com.jnucst2015.dropshopping_bvo;
+package com.jnucst2015.dropshopping_roleMgmt;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.jnucst2015.dropshopping", "com.jnucst2015.dropshopping_bvo"})
-public class DropshoppingBvoApplication
+@ComponentScan(basePackages = {"com.jnucst2015.dropshopping", "com.jnucst2015.dropshopping_roleMgmt"})
+public class DropshoppingUamApplication
 {
 
     public static void main(String[] args)
     {
-        SpringApplication.run(DropshoppingBvoApplication.class, args);
+        SpringApplication.run(DropshoppingUamApplication.class, args);
     }
 }
