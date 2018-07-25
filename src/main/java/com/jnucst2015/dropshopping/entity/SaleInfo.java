@@ -37,6 +37,17 @@ public class SaleInfo {
     @Column(columnDefinition = "TINYINT(2) COMMENT '商品状态'")
     private Integer state;
 
+    @Column(columnDefinition = "INT(11) COMMENT '公司ID'")
+    private Integer companyId;
+
+    public Integer getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(Integer companyId) {
+        this.companyId = companyId;
+    }
+
     public Integer getId() {
         return id;
     }
