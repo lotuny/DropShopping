@@ -4,26 +4,19 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.jnucst2015</groupId>
-    <artifactId>dropshopping</artifactId>
+    <artifactId>dropshopping_oderMgmt</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>dropshopping</name>
+    <name>dropshopping_oderMgmt</name>
     <description>Demo project for Spring Boot</description>
 
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.0.3.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <groupId>com.jnucst2015</groupId>
+        <artifactId>dropshopping</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath> <!-- lookup parent from repository -->
     </parent>
-
-    <modules>
-        <module>dropshopping_cmdtmgmt</module>
-        <module>dropshopping_mvo</module>
-        <module>dropshopping_uam</module>
-        <module>dropshopping_oderMgmt</module>
-    </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -54,6 +47,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.jnucst2015</groupId>
+            <artifactId>dropshopping</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 
