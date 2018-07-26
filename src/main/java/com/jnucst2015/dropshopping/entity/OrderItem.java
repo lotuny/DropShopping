@@ -1,14 +1,16 @@
 package com.jnucst2015.dropshopping.entity;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class OrderItem {//订单中的单项
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(columnDefinition = "int(11) COMMENT '订单id'")
-    private Integer order_id;
+    @ManyToOne
+    @JoinColumn(name = "order_id", columnDefinition = "int(11) COMMENT '订单id'")
+    private Order order;
     @ManyToOne
     @JoinColumn(name = "sale_info_id", columnDefinition = "int(11) COMMENT '商品id'")
     private SaleInfo sale_info;
@@ -18,6 +20,8 @@ public class OrderItem {//订单中的单项
     private String notes;
     @Column(columnDefinition = "tinyint COMMENT '状态: 0-待支付, 1-待发货,2-已发货,3-已完成,4-已取消'")
     private Integer state;
+    @Column(columnDefinition = "timestamp COMMENT '创建时间'")
+
 
     public Integer getId() {
         return id;
@@ -27,12 +31,12 @@ public class OrderItem {//订单中的单项
         this.id = id;
     }
 
-    public Integer getOrder_id() {
-        return order_id;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setOrder_id(Integer order_id) {
-        this.order_id = order_id;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     public SaleInfo getSale_info() {

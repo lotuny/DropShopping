@@ -18,40 +18,45 @@
                         <div class="panel-body">
                             <p>
                             <div class="alert alert-success">
-                          在这里，你可以对订单信息进行查看/修改/删除/查询操作，如果需要添加订单信息请点击
-                                <a th:href="@{add}" class="alert-link">添加订单信息</a>
+                          在这里，你可以对订单信息进行查看/修改/删除/查询操作
                             </div>
                             </p>
                             <table class="table">
                                 <thead>
                                 <tr>
+                                    <th>id</th>
+                                    <th>数量</th>
                                     <th>订单编号</th>
-                                    <th>发送方姓名</th>
-                                    <th>发送方地址</th>
-                                    <th>发送方电话</th>
-                                    <th>接收方姓名</th>
-                                    <th>接收方地址</th>
-                                    <th>接收方电话</th>
-                                    <th>备注</th>
+                                    <th>创建时间</th>
                                     <th>状态</th>
-                                    <th>操作</th>
+                                    <th>品牌商id</th>
+                                    <th>借卖方商品id</th>
+                                    <th>商品名字</th>
+                                    <th>商品单价</th>
+                                    <th>借卖方id</th>
+                                    <th>店铺id</th>
+                                    <th>附加信息</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="OrderForm:${orders}">
-                                    <td th:text="${OrderForm.getOrder_id()}" ></td>
-                                    <td th:text="${OrderForm.getSender_name()}" ></td>
-                                    <td th:text="${OrderForm.getSender_address()}" ></td>
-                                    <td th:text="${OrderForm.getSender_phone()}" ></td>
-                                    <td th:text="${OrderForm.getReceiver_name()}" ></td>
-                                    <td th:text="${OrderForm.getReceiver_address()}" ></td>
-                                    <td th:text="${OrderForm.getReceiver_phone()}" ></td>
-                                    <td th:text="${OrderForm.getNotes()}" ></td>
-                                    <td th:text="${OrderForm.getState()}" ></td>
+                                <tr th:each="oderItem:${oderItems}">
+                                    <td th:text="${oderItem.getId()}" ></td>
+                                    <td th:text="${oderItem.getCount()}" ></td>
+                                    <td th:text="${oderItem.getOrder().getId()}" ></td>
+                                    <td th:text="${oderItem.getOrder().getCreation_time()}" ></td>
+                                    <td th:text="${oderItem.getState()}" ></td>
+                                    <td th:text="${oderItem.getSale_info().getCompanyId()}" ></td>
+                                    <td th:text="${oderItem.getSale_info().getMvoCmdtId()}" ></td>
+                                    <td th:text="${oderItem.getSale_info().getName()}" ></td>
+                                    <td th:text="${oderItem.getSale_info().getPrice()}" ></td>
+                                    <td th:text="${oderItem.getSale_info().getSellerId()}" ></td>
+                                    <td th:text="${oderItem.getSale_info().getShopId()}" ></td>
+                                    <td th:text="${oderItem.getNotes()}" ></td>
+
                                     <td>
-                                        <a th:href="@{'update/'+${OrderForm.getOrder_id()}}" title="修改">修改<i class="fa fa-edit text-navy"></i></a>
+                                        <a th:href="@{'orderPage/update/'+${oderItem.getId()}}" title="修改">修改<i class="fa fa-edit text-navy"></i></a>
                                         &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <a th:href="@{'delete/'+${OrderForm.getOrder_id()}}" title="删除">删除<i class="fa fa-trash-o text-navy"></i></a>
+                                        <a th:href="@{'orderPage/delete/'+${oderItem.getId()}}" title="删除">删除<i class="fa fa-trash-o text-navy"></i></a>
                                     </td>
                                 </tr>
 
