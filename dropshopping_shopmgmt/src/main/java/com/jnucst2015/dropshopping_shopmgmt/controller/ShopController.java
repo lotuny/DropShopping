@@ -1,8 +1,7 @@
-package com.jnucst2015.shop_mgmt.controller;
+package com.jnucst2015.dropshopping_shopmgmt.controller;
 
-
-import com.jnucst2015.shop_mgmt.entity.Shop;
-import com.jnucst2015.shop_mgmt.service.Impl.ShopServiceImpl;
+import com.jnucst2015.dropshopping.entity.Shop;
+import com.jnucst2015.dropshopping.service.impl.ShopServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

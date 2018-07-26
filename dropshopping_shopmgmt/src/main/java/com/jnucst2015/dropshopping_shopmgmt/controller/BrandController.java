@@ -1,4 +1,4 @@
-package com.jnucst2015.shop_mgmt.controller;
+package com.jnucst2015.dropshopping_shopmgmt.controller;
 
 import org.springframework.stereotype.Controller;
 

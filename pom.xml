@@ -23,6 +23,7 @@
         <module>dropshopping_oderMgmt</module>
         <module>dropshopping_roleMgmt</module>
         <module>dropshopping_digiwlet</module>
+        <module>dropshopping_shopmgmt</module>
     </modules>
 
     <properties>

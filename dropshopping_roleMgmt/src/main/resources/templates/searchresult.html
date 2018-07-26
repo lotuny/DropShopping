@@ -8,8 +8,8 @@
     <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
     <script th:inline="javascript">
         var keyName = [[${keyName}]];
-        $.getJSON("http://localhost:8081/cm/get/"+keyName,function(json){
-            for (var i=0;i<json.length;i++){
+        $.getJSON("http://localhost:8081/cm/get/" + keyName, function (json) {
+            for (var i = 0; i < json.length; i++) {
                 console.log("a");
                 var cmList = document.getElementById("commodityView");
                 cmList.innerHTML += " <div class='col-lg-3 col-md-4 col-sm-6 col-xs-6'><!-- 大屏幕放3张略缩图，pc端放4张，平板和手机放6张-->\n" +

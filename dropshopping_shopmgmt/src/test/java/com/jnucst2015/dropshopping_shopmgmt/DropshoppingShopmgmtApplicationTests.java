@@ -1,4 +1,4 @@
-package com.jnucst2015.dropshopping_roleMgmt;
+package com.jnucst2015.dropshopping_shopmgmt;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class DropshoppingUamApplicationTests {
+public class DropshoppingShopmgmtApplicationTests {
 
     @Test
     public void contextLoads() {

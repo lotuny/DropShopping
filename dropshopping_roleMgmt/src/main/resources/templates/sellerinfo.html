@@ -54,7 +54,7 @@
                                 <div class="input-group-addon">
                                     <i class="glyphicon glyphicon-search"></i>
                                 </div>
-                                <input type="text" class="form-control" placeholder="请输入想搜索的商品" />
+                                <input type="text" class="form-control" placeholder="请输入想搜索的商品"/>
                             </div>
 
                         </div>
@@ -72,12 +72,13 @@
 </nav>
 
 <div>
-    <div class="container" style="margin-top: 100px;" >
+    <div class="container" style="margin-top: 100px;">
         <!--<hr style="filter: alpha(opacity=100,finishopacity=0,style=3)" width="80%" color="#6f5499" size="3" />-->
         <div style="margin-top: 20px"><br><br></div>
-        <div class="row" >
+        <div class="row">
             <div class="col-lg-offset-3 col-lg-6">
-                <form class="form-horizontal" role="form" th:action="@{/user/seller/info}" method="post" style="background-color:white;border: 1px solid #dedede">
+                <form class="form-horizontal" role="form" th:action="@{/user/seller/info}" method="post"
+                      style="background-color:white;border: 1px solid #dedede">
                     <div class="form-group">
                         <div class="col-sm-1"></div>
                         <h3 class="col-sm-4" style="font-weight: bolder">我的信息</h3>
@@ -97,7 +98,8 @@
                         <div class="col-sm-2"></div>
                         <label for="inputPwd" class="col-sm-2 control-label">重置密码</label>
                         <div class="col-sm-6">
-                            <input type="password" name="password" class="form-control" id="inputPwd" placeholder="设置你的密码">
+                            <input type="password" name="password" class="form-control" id="inputPwd"
+                                   placeholder="设置你的密码">
                         </div>
                         <div class="col-sm-2"></div>
                     </div>
@@ -115,7 +117,8 @@
                         <div class="col-sm-2"></div>
                         <label for="inputPaypwd" class="col-sm-2 control-label">支付密码</label>
                         <div class="col-sm-6">
-                            <input type="text" name="payPwd" class="form-control" id="inputPaypwd" placeholder="设置你的支付密码">
+                            <input type="text" name="payPwd" class="form-control" id="inputPaypwd"
+                                   placeholder="设置你的支付密码">
                         </div>
                         <div class="col-sm-2"></div>
                     </div>
@@ -124,7 +127,8 @@
                         <div class="col-sm-2"></div>
                         <label for="inputPhone" class="col-sm-2 control-label">手机</label>
                         <div class="col-sm-6">
-                            <input type="text" name="telephone" class="form-control" id="inputPhone" placeholder="设置你的手机号码">
+                            <input type="text" name="telephone" class="form-control" id="inputPhone"
+                                   placeholder="设置你的手机号码">
                         </div>
                         <div class="col-sm-2"></div>
                     </div>
@@ -146,8 +150,11 @@
 
 <script>
     $(window).scroll(function () {
-        if ($(".navbar").offset().top > 50) {$(".navbar-fixed-top").addClass("top-nav");
-        }else {$(".navbar-fixed-top").removeClass("top-nav");}
+        if ($(".navbar").offset().top > 50) {
+            $(".navbar-fixed-top").addClass("top-nav");
+        } else {
+            $(".navbar-fixed-top").removeClass("top-nav");
+        }
     })
 </script>
 

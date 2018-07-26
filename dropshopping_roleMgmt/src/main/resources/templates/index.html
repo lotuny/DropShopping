@@ -18,14 +18,14 @@
             var username = [[${session.username}]];
             var role = [[${session.role}]];
 
-            if(username==undefined||username==null||username==""){
+            if (username == undefined || username == null || username == "") {
                 $("#funbar").show();
-            }else {
+            } else {
                 $("#infobar").show();
             }
 
-            $.getJSON("http://localhost:8081/cm/gets",function(json){
-                for (var i=0;i<json.length;i++){
+            $.getJSON("http://localhost:8081/cm/gets", function (json) {
+                for (var i = 0; i < json.length; i++) {
                     var cmList = document.getElementById("commodityView");
                     cmList.innerHTML +=
                         " <div class='col-lg-3 col-md-4 col-sm-6 col-xs-6'>" +
@@ -34,13 +34,13 @@
                         "    <div class='caption'>" +
                         "        <h4>" + json[i].name + "</h4>" +
                         "        <p style='color:red;'>" + json[i].description + "</p>" +
-                            "<p>当前剩余" + json[i].quantity +"件</p>" +
-                            "<p>价格" + json[i].price + "</p>" +
+                        "<p>当前剩余" + json[i].quantity + "件</p>" +
+                        "<p>价格" + json[i].price + "</p>" +
                         "        <button class='btn btn-primary' onclick='showDia(this)'>上架</button>" +
-                        "<p style='display: none'>"+json[i].id+"</p>" +
-                        "<p style='display: none'>"+json[i].classification+"</p>" +
-                        "<p style='display: none'>"+json[i].shop_id+"</p>" +
-                        "<p style='display: none'>"+json[i].state+"</p>" +
+                        "<p style='display: none'>" + json[i].id + "</p>" +
+                        "<p style='display: none'>" + json[i].classification + "</p>" +
+                        "<p style='display: none'>" + json[i].shop_id + "</p>" +
+                        "<p style='display: none'>" + json[i].state + "</p>" +
                         "        </div>" +
                         "    </div>" +
                         " </div>";
@@ -104,11 +104,13 @@
                     </ul>
 
                     <ul id="funbar" class="nav navbar-nav navbar-right" style="display:none;">
-                        <li><a th:href="@{/user/register}"><span class="glyphicon glyphicon-user"></span>&nbsp;注册</a></li>
-                        <li><a th:href="@{/user/login}"><span class="glyphicon glyphicon-log-in"></span>&nbsp;登录</a></li>
+                        <li><a th:href="@{/user/register}"><span class="glyphicon glyphicon-user"></span>&nbsp;注册</a>
+                        </li>
+                        <li><a th:href="@{/user/login}"><span class="glyphicon glyphicon-log-in"></span>&nbsp;登录</a>
+                        </li>
                     </ul>
 
-                    <ul id="infobar"  class="nav navbar-nav navbar-right" style="display: none">
+                    <ul id="infobar" class="nav navbar-nav navbar-right" style="display: none">
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 我的商城
@@ -118,7 +120,7 @@
                                 <li th:case="'seller'"><a href="user/seller/info">我的信息</a></li>
                                 <li th:case="'company'"><a href="user/company/info">公司信息</a></li>
                                 <li class="divider">
-                                    <li><a href="/user/exit">退出</a></li>
+                                <li><a href="/user/exit">退出</a></li>
                                 </li>
                             </ul>
                         </li>
@@ -130,7 +132,7 @@
                                 <div class="input-group-addon">
                                     <i class="glyphicon glyphicon-search"></i>
                                 </div>
-                                <input id="searchKeyName" type="text" class="form-control" placeholder="请输入想搜索的商品" />
+                                <input id="searchKeyName" type="text" class="form-control" placeholder="请输入想搜索的商品"/>
                             </div>
                         </div>
                         <button type="button" class="btn btn-danger" id="searchBtn">搜索</button>
@@ -156,7 +158,8 @@
 
 <div id="dialog-form" title="商品上架">
     <p class="validateTips">所有的表单字段都是必填的。</p>
-    <form class="form-horizontal" role="form" action="http://localhost:8081/commodity/onsale" method="post" autocomplete="off">
+    <form class="form-horizontal" role="form" action="http://localhost:8081/commodity/onsale" method="post"
+          autocomplete="off">
         <div class="form-group">
             <div class="col-sm-1"></div>
             <h3 class="col-sm-4" style="font-weight: bolder">商品上架</h3>
@@ -213,8 +216,11 @@
 
 <script>
     $(window).scroll(function () {
-        if ($(".navbar").offset().top > 50) {$(".navbar-fixed-top").addClass("top-nav");
-        }else {$(".navbar-fixed-top").removeClass("top-nav");}
+        if ($(".navbar").offset().top > 50) {
+            $(".navbar-fixed-top").addClass("top-nav");
+        } else {
+            $(".navbar-fixed-top").removeClass("top-nav");
+        }
     });
 
 </script>

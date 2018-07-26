@@ -1,6 +1,4 @@
-package com.jnucst2015.shop_mgmt.entity;
-
-import org.hibernate.annotations.GeneratorType;
+package com.jnucst2015.dropshopping.entity;
 
 import javax.persistence.*;
 

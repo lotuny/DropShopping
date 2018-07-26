@@ -1,7 +1,6 @@
-package com.jnucst2015.shop_mgmt.repository;
+package com.jnucst2015.dropshopping.repository;
 
-
-import com.jnucst2015.shop_mgmt.entity.Shop;
+import com.jnucst2015.dropshopping.entity.Shop;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

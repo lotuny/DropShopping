@@ -6,11 +6,9 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan(basePackages = {"com.jnucst2015.dropshopping", "com.jnucst2015.dropshopping_roleMgmt"})
-public class DropshoppingUamApplication
-{
+public class DropshoppingUamApplication {
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         SpringApplication.run(DropshoppingUamApplication.class, args);
     }
 }

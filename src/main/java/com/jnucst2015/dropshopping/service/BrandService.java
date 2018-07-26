@@ -1,4 +1,4 @@
-package com.jnucst2015.shop_mgmt.service;
+package com.jnucst2015.dropshopping.service;
 
 import org.springframework.stereotype.Service;
 

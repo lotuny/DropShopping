@@ -31,7 +31,7 @@ public class UserController {
     private SaleInfoService saleInfoService;
 
     @GetMapping("/")
-    public String getHome(Session session){
+    public String getHome(Session session) {
         return "index";
     }
 
@@ -45,7 +45,7 @@ public class UserController {
 //    }
 
     @GetMapping("user/register")
-    public String getUserRegister(){
+    public String getUserRegister() {
         return "register";
     }
 
@@ -54,9 +54,9 @@ public class UserController {
                            @RequestParam("password") String password,
                            @RequestParam("email") String email,
                            @RequestParam("telephone") String telephone,
-                           @RequestParam("role") String role){
+                           @RequestParam("role") String role) {
         User user = new User(username, password, email, telephone);
-        switch (role){
+        switch (role) {
             case "借卖商":
                 Seller seller = new Seller(user);
                 sellerService.sellerRegister(seller);
@@ -71,8 +71,8 @@ public class UserController {
     }
 
     @GetMapping("/user/login")
-    public String getUserLogin(Session session){
-        if (session==null){
+    public String getUserLogin(Session session) {
+        if (session == null) {
             return "index";
         }
         return "login";
@@ -83,9 +83,9 @@ public class UserController {
                         @RequestParam("username") String username,
                         @RequestParam("password") String password,
                         @RequestParam("role") String role) {
-        switch (role){
+        switch (role) {
             case "借卖商":
-                sellerService.sellerLogin(username,password,session);
+                sellerService.sellerLogin(username, password, session);
                 break;
             case "品牌商":
                 companyService.companyLogin(username, password, session);
@@ -95,24 +95,24 @@ public class UserController {
     }
 
     @GetMapping("/search/{keyName}")
-    public String search(@PathVariable(value = "keyName") String keyName, Model model){
+    public String search(@PathVariable(value = "keyName") String keyName, Model model) {
         model.addAttribute(keyName);
         return "searchresult";
     }
 
     @GetMapping("/user/exit")
-    public String exit(HttpSession session){
+    public String exit(HttpSession session) {
         session.invalidate();
         return "redirect:/";
     }
 
     @GetMapping("/user/seller/info")
-    public String sellerInfor(){
+    public String sellerInfor() {
         return "sellerinfo";
     }
 
     @PostMapping("/user/seller/info")
-    public String updateInfo(Seller seller){
+    public String updateInfo(Seller seller) {
         sellerService.updateSellerInfo(seller);
         return "redirect:/";
     }

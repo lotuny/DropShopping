@@ -1,7 +1,7 @@
-package com.jnucst2015.shop_mgmt.service;
+package com.jnucst2015.dropshopping.service;
 
 
-import com.jnucst2015.shop_mgmt.entity.Shop;
+import com.jnucst2015.dropshopping.entity.Shop;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

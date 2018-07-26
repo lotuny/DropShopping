@@ -47,7 +47,7 @@
                                 <div class="input-group-addon">
                                     <i class="glyphicon glyphicon-search"></i>
                                 </div>
-                                <input type="text" class="form-control" placeholder="请输入想搜索的商品" />
+                                <input type="text" class="form-control" placeholder="请输入想搜索的商品"/>
                             </div>
 
                         </div>
@@ -65,68 +65,72 @@
 </nav>
 
 <div style="background: url('/images/loginbanner.jpg'); background-repeat:no-repeat; background-size:100% 100%;">
-<div class="container" style="margin-top: 100px;" >
-    <!--<hr style="filter: alpha(opacity=100,finishopacity=0,style=3)" width="80%" color="#6f5499" size="3" />-->
-    <div style="margin-top: 20px"><br><br></div>
-    <div class="row" >
-        <div class="col-lg-offset-6 col-lg-4">
-            <form class="form-horizontal" role="form" th:action="@{/user/login}" method="post" style="background-color:white;border: 1px solid #dedede" autocomplete="off">
-                <div class="form-group">
-                    <div class="col-sm-1"></div>
-                    <h3 class="col-sm-4" style="font-weight: bolder">用户登陆</h3>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-10">
-                        <input type="text" name="username" class="form-control" id="inputName" placeholder="输入用户名">
+    <div class="container" style="margin-top: 100px;">
+        <!--<hr style="filter: alpha(opacity=100,finishopacity=0,style=3)" width="80%" color="#6f5499" size="3" />-->
+        <div style="margin-top: 20px"><br><br></div>
+        <div class="row">
+            <div class="col-lg-offset-6 col-lg-4">
+                <form class="form-horizontal" role="form" th:action="@{/user/login}" method="post"
+                      style="background-color:white;border: 1px solid #dedede" autocomplete="off">
+                    <div class="form-group">
+                        <div class="col-sm-1"></div>
+                        <h3 class="col-sm-4" style="font-weight: bolder">用户登陆</h3>
                     </div>
-                    <div class="col-sm-1"></div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-10">
-                        <input type="text" name="password" class="form-control" id="inputPwd" placeholder="输入密码">
-                    </div>
-                    <div class="col-sm-1"></div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-10">
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="role" id="inlineRadio1" value="品牌商">
-                            <label class="form-check-label" for="inlineRadio1">品牌商</label>
+                    <div class="form-group">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-10">
+                            <input type="text" name="username" class="form-control" id="inputName" placeholder="输入用户名">
                         </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="role" id="inlineRadio2" value="借卖商">
-                            <label class="form-check-label" for="inlineRadio2">借卖商</label>
+                        <div class="col-sm-1"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-10">
+                            <input type="text" name="password" class="form-control" id="inputPwd" placeholder="输入密码">
                         </div>
+                        <div class="col-sm-1"></div>
                     </div>
-                    <div class="col-sm-1"></div>
-                </div>
 
-                <div class="form-group">
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-10">
-                        <button type="submit" class="btn btn-success btn-block">登 录</button>
+                    <div class="form-group">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-10">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="role" id="inlineRadio1" value="品牌商">
+                                <label class="form-check-label" for="inlineRadio1">品牌商</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="role" id="inlineRadio2" value="借卖商">
+                                <label class="form-check-label" for="inlineRadio2">借卖商</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-1"></div>
                     </div>
-                    <div class="col-sm-1"></div>
-                </div>
-                <div class="form-group">
-                    <br>
-                </div>
-            </form>
 
+                    <div class="form-group">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-10">
+                            <button type="submit" class="btn btn-success btn-block">登 录</button>
+                        </div>
+                        <div class="col-sm-1"></div>
+                    </div>
+                    <div class="form-group">
+                        <br>
+                    </div>
+                </form>
+
+            </div>
         </div>
     </div>
-</div>
     <div style="height: 120px"><br><br></div>
 </div>
 <script>
     $(window).scroll(function () {
-        if ($(".navbar").offset().top > 50) {$(".navbar-fixed-top").addClass("top-nav");
-        }else {$(".navbar-fixed-top").removeClass("top-nav");}
+        if ($(".navbar").offset().top > 50) {
+            $(".navbar-fixed-top").addClass("top-nav");
+        } else {
+            $(".navbar-fixed-top").removeClass("top-nav");
+        }
     })
 </script>
 

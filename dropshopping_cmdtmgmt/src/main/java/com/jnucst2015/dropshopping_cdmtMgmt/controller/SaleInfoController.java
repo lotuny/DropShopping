@@ -1,7 +1,6 @@
 package com.jnucst2015.dropshopping_cdmtMgmt.controller;
 
 import com.jnucst2015.dropshopping.entity.SaleInfo;
-import com.jnucst2015.dropshopping.repository.SaleInfoRepository;
 import com.jnucst2015.dropshopping.service.SaleInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
