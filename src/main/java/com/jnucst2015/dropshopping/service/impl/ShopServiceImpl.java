@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ShopServiceImpl implements ShopService {
@@ -29,8 +30,8 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
-    public List<Shop> getShopBySellerID(Integer ID) {
-        return shopRepository.findBySeller_id(ID);
+    public Optional<Shop> getShopBySellerID(Integer ID) {
+        return shopRepository.findById(ID);
     }
 
 

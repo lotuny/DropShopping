@@ -5,9 +5,11 @@ import com.jnucst2015.dropshopping.entity.User_Commodity_id;
 import com.jnucst2015.dropshopping.repository.CartRepository;
 import com.jnucst2015.dropshopping.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class CartServiceImpl implements CartService {
 
     @Autowired
