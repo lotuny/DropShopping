@@ -51,4 +51,6 @@ public interface MvoCommodityService
      * @param ids of the commodities to be deleted.
      */
     void deleteByIds(String ids);
+
+    List<MvoCommodity> getRecent(Integer count);
 }

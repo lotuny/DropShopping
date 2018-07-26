@@ -1,46 +1,50 @@
 package com.jnucst2015.dropshopping.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.lang.NonNull;
+import org.springframework.lang.NonNullApi;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
+@Data @NoArgsConstructor @AllArgsConstructor
 @Entity @Table(name = "MvoCommodity")
 public class MvoCommodity
 {
-    @Getter @Setter
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Getter @Setter
-    @Column(columnDefinition = "VARCHAR(255) COMMENT '商品名称'")
-    private String name;
+    @NonNull
+    @Column(columnDefinition = "INT(11) COMMENT '分类'", nullable = false)
+    private Integer class_id;
 
-    @Getter @Setter
-    @Column(columnDefinition = "VARCHAR(255) COMMENT '图片路径'")
-    private String image;
-
-    @Getter @Setter
-    @Column(columnDefinition = "INT(11) COMMENT '分类, 31 - 30 位保留, 29 - 20 位第一级分类, 19 - 10 位第二级分类, 9 - 0 位第三级分类'")
-    private Integer classification;
-
-    @Getter @Setter
-    @Column(columnDefinition = "VARCHAR(255) COMMENT '描述'")
-    private String description;
-
-    @Getter @Setter
-    @Column(columnDefinition = "INT(11) COMMENT '所属店铺 ID'")
+    @Column(columnDefinition = "INT(11) COMMENT '商店 ID'", nullable = false)
     private Integer shop_id;
 
-    @Getter @Setter
-    @Column(columnDefinition = "INT(11) COMMENT '价格（分）'")
+    @Column(columnDefinition = "VARCHAR(255) COMMENT '名称'", nullable = false)
+    private String name;
+
+    @Column(columnDefinition = "VARCHAR(255) COMMENT '图片路径'", nullable = false)
+    private String image;
+
+    @Column(columnDefinition = "VARCHAR(255) COMMENT '描述'", nullable = false)
+    private String description;
+
+    @Column(columnDefinition = "INT(11) COMMENT '定价（分）'", nullable = false)
     private Integer price;
 
-    @Getter @Setter
-    @Column(columnDefinition = "INT(11) COMMENT '数量'")
+    @Column(columnDefinition = "INT(11) COMMENT '库存'", nullable = false)
     private Integer quantity;
 
-    @Getter @Setter
-    @Column(columnDefinition = "TINYINT(4) COMMENT '状态'")
+    @Column(columnDefinition = "TINYINT(4) COMMENT '状态'", nullable = false)
     private Integer state;
+
+    @Column(columnDefinition = "TIMESTAMP COMMENT '创建时间'", nullable = false)
+    private Timestamp creation_time;
+
+    @Column(columnDefinition = "INT(11) COMMENT '库存预警设置'", nullable = false)
+    private Integer warn_num;
 }

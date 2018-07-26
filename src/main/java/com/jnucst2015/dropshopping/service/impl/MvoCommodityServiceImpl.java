@@ -95,4 +95,10 @@ public class MvoCommodityServiceImpl implements MvoCommodityService
     {
         Arrays.asList(ids.split(",")).forEach(s -> deleteById(Integer.parseInt(s)));
     }
+
+    @Override
+    public List<MvoCommodity> getRecent(Integer count)
+    {
+        return re.getMvoCommoditiesRecently(count);
+    }
 }

@@ -10,4 +10,7 @@ public interface MvoCommodityRepository extends JpaRepository<MvoCommodity, Inte
 {
     @Query("SELECT c FROM MvoCommodity c WHERE c.shop_id = ?1")
     List<MvoCommodity> getCommoditiesByShop_idIs(Integer shop_id);
+
+    @Query("SELECT c FROM MvoCommodity c ORDER BY c.creation_time DESC")
+    List<MvoCommodity> getMvoCommoditiesRecently(Integer count);
 }
