@@ -1,31 +1,31 @@
 package com.jnucst2015.dropshopping.service;
 
-import com.jnucst2015.dropshopping.entity.User;
+import com.jnucst2015.dropshopping.entity.Seller;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-public interface UserService {
+public interface SellerService {
 
     /**
      * 用户注册
-     * @param user
+     * @param seller
      * @return
      */
-    String userRegister(User user);
+    String sellerRegister(Seller seller);
 
     /**
      * 得到所有用户
      * @return
      */
-    List<User> listUser();
+    List<Seller> listSeller();
 
     /**
      * 通过username查找用户
      * @param username
      * @return
      */
-    User getOneByUsername(String username);
+    Seller getOneByUsername(String username);
 
     /**
      * 用户登录
@@ -34,5 +34,8 @@ public interface UserService {
      * @param session
      * @return
      */
-    String userLogin(String username, String password, HttpSession session);
+    String sellerLogin(String username, String password, HttpSession session);
+
+
+    void updateSellerInfo(Seller seller);
 }

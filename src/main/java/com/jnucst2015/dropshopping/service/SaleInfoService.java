@@ -24,4 +24,6 @@ public interface SaleInfoService {
      * @return
      */
     void deleteSaleInfo(int id);
+
+    void updateSaleInfo(SaleInfo saleInfo);
 }

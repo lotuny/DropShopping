@@ -16,12 +16,14 @@ public class SaleInfoServiceImpl implements SaleInfoService {
 
     @Override
     public String addSaleInfo(SaleInfo saleInfo) {
-        SaleInfo result = saleInfoRepository.getOne(saleInfo.getId());
-        if (result!=null){
-            saleInfoRepository.saveAndFlush(saleInfo);
-            return "successfully";
-        }
-        return "error";
+//        SaleInfo result = saleInfoRepository.getOne(saleInfo.getId());
+//        if (result!=null){
+//            saleInfoRepository.saveAndFlush(saleInfo);
+//            return "successfully";
+//        }
+//        return "error";
+        saleInfoRepository.saveAndFlush(saleInfo);
+        return "";
     }
 
     @Override
@@ -32,5 +34,10 @@ public class SaleInfoServiceImpl implements SaleInfoService {
     @Override
     public void deleteSaleInfo(int id) {
         saleInfoRepository.deleteById(id);
+    }
+
+    @Override
+    public void updateSaleInfo(SaleInfo saleInfo) {
+        saleInfoRepository.saveAndFlush(saleInfo);
     }
 }
