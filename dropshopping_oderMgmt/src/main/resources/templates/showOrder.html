@@ -49,14 +49,14 @@
                                     <td th:text="${oderItem.getSale_info().getMvoCmdtId()}" ></td>
                                     <td th:text="${oderItem.getSale_info().getName()}" ></td>
                                     <td th:text="${oderItem.getSale_info().getPrice()}" ></td>
-                                    <td th:text="${oderItem.getSale_info().getSeller_id()}" ></td>
+                                    <td th:text="${oderItem.getSale_info().getSellerId()}" ></td>
                                     <td th:text="${oderItem.getSale_info().getShopId()}" ></td>
                                     <td th:text="${oderItem.getNotes()}" ></td>
 
                                     <td>
-                                        <a th:href="@{'update/'+${oderItem.getId()}}" title="修改">修改<i class="fa fa-edit text-navy"></i></a>
+                                        <a th:href="@{'orderPage/update/'+${oderItem.getId()}}" title="修改">修改<i class="fa fa-edit text-navy"></i></a>
                                         &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <a th:href="@{'delete/'+${oderItem.getId()}}" title="删除">删除<i class="fa fa-trash-o text-navy"></i></a>
+                                        <a th:href="@{'orderPage/delete/'+${oderItem.getId()}}" title="删除">删除<i class="fa fa-trash-o text-navy"></i></a>
                                     </td>
                                 </tr>
 
