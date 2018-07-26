@@ -1,13 +1,14 @@
-package com.jnucst2015.dropshopping.service;
+package com.jnucst2015.dropshopping.service.impl;
 
 import com.jnucst2015.dropshopping.entity.Cart;
 import com.jnucst2015.dropshopping.entity.User_Commodity_id;
 import com.jnucst2015.dropshopping.repository.CartRepository;
+import com.jnucst2015.dropshopping.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-public class CartServiceImpl implements CartService{
+public class CartServiceImpl implements CartService {
 
     @Autowired
     private CartRepository cartRepository;

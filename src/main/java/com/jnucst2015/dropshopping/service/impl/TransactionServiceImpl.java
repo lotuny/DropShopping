@@ -1,7 +1,8 @@
-package com.jnucst2015.dropshopping.service;
+package com.jnucst2015.dropshopping.service.impl;
 
 import com.jnucst2015.dropshopping.entity.Transaction;
 import com.jnucst2015.dropshopping.repository.TransactionRepository;
+import com.jnucst2015.dropshopping.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>管理员-分类管理</title>
+
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap-responsive.min.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/ace.min.css">
+    <link rel="stylesheet" href="../css/ace-skins.min.css">
+    <link rel="stylesheet" href="../css/ace-responsive.min.css">
+
+    <style>
+
+        #addform{
+            position: center;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="alert alert-success">
+                在这里，你可以对商品分类进行查看/修改/删除/查询操作，如果需要添加商品分类请点击
+                <button onclick="(function(){$.getElementById('addform').style.setProperty('display', 'block');})();">添加商品分类</button>
+            </div>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>一级分类</th>
+                    <th>二级分类</th>
+                    <th>三级分类</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="class:${session.classes}">
+                    <td th:text="${class.getId()}"></td>
+                    <td th:text="${class.getFirst_class()}"></td>
+                    <td th:text="${class.getSecond_class()}"></td>
+                    <td th:text="${class.getThird_class()}"></td>
+                    <td><a th:href="@{'/updateClass/'+${class.getId()}}">修改</a>&nbsp;&nbsp;<a th:href="@{'/deleteClass/'+${class.getId()}}">删除</a></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <form id="addform" class="form-horizontal" role="form" method="post" th:action="@{/addClass}">
+                <input name="id" type="text" value="0" style="display: none;">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">一级分类：</label>
+                    <div class="col-sm-5">
+                        <input type="text" name="date" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">二级分类：</label>
+                    <div class="col-sm-5">
+                        <input type="text" name="payer_id" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">三级分类：</label>
+                    <div class="col-sm-5">
+                        <input type="text" name="recipient_id" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="col-sm-offset-2">添加</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
