@@ -3,6 +3,7 @@ package com.jnucst2015.dropshopping_oderMgmt.service.impl;
 import com.jnucst2015.dropshopping.entity.Order;
 import com.jnucst2015.dropshopping.entity.OrderItem;
 import com.jnucst2015.dropshopping.repository.OrderItemRepository;
+import com.jnucst2015.dropshopping.repository.OrderRepository;
 import com.jnucst2015.dropshopping_oderMgmt.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,10 +15,12 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private OrderItemRepository orderItemRepository;
+    @Autowired
+    private OrderRepository orderRepository;
 
     @Override
-    public List<OrderItem> getAllOrder() {
-        return orderItemRepository.findAll();
+    public List<Order> getAllOrder() {
+        return orderRepository.findAll();
     }
 
     @Override
@@ -57,6 +60,13 @@ public class OrderServiceImpl implements OrderService {
         return orderItemRepository.selectByOrderItemId(orderItemId);
 
     }
+
+    @Override
+    public List<OrderItem> showOrderItems () {
+        List<OrderItem> orderItems = orderItemRepository.findAll();
+        return orderItems;
+
+    }
 //    @Override
 //    public List<OrderItem> updateOrderInfo(List<OrderItem> order) {
 //        for (OrderItem orderItem: order) {
@@ -64,6 +74,13 @@ public class OrderServiceImpl implements OrderService {
 //        }
 //        return order;
 //    }
+    @Override
+    public OrderItem updateOrderItemInfo(OrderItem orderItem) {
+
+            orderItemRepository.save(orderItem);
+
+        return orderItem;
+    }
 
 
 }

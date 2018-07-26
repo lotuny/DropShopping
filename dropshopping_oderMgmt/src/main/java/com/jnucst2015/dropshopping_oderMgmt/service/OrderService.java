@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface OrderService {
 
-    List<OrderItem> getAllOrder();
+    List<Order> getAllOrder();
 
     List<OrderItem> getAllByState(short state);
 
@@ -19,9 +19,12 @@ public interface OrderService {
 
     void deleteByOrderID(Integer orderId);
 
-//    Order updateOrderInfo(Order order);
+    OrderItem updateOrderItemInfo(OrderItem orderItem);
 
     OrderItem showOrderItem (int orderItemId);
+
+    List<OrderItem> showOrderItems ();
+
 
 
 
