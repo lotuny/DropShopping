@@ -70,7 +70,7 @@
 
     <div class="row">
         <div class="col-lg-offset-3 col-lg-6">
-            <form class="form-horizontal" role="form" th:action="@{/user/register}" method="post">
+            <form class="form-horizontal" role="form" th:action="@{/user/register}" method="post" autocomplete="off">
                 <div class="form-group">
                     <div class="col-sm-2"></div>
                     <label for="inputName" class="col-sm-2 control-label">用户名</label>
@@ -94,6 +94,15 @@
                     <label for="inputEmail" class="col-sm-2 control-label">邮箱</label>
                     <div class="col-sm-6">
                         <input type="text" name="email" class="form-control" id="inputEmail" placeholder="设置你的邮箱">
+                    </div>
+                    <div class="col-sm-2"></div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-2"></div>
+                    <label for="inputPhone" class="col-sm-2 control-label">手机</label>
+                    <div class="col-sm-6">
+                        <input type="text" name="telephone" class="form-control" id="inputPhone" placeholder="设置你的手机号码">
                     </div>
                     <div class="col-sm-2"></div>
                 </div>
