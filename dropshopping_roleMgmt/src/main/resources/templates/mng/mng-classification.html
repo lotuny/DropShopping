@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <title>管理员-分类管理</title>
 
-    <script src="../js/jquery-1.9.1.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/bootstrap-responsive.min.css">
-    <link rel="stylesheet" href="../css/font-awesome.min.css">
-    <link rel="stylesheet" href="../css/ace.min.css">
-    <link rel="stylesheet" href="../css/ace-skins.min.css">
-    <link rel="stylesheet" href="../css/ace-responsive.min.css">
+    <script src="/js/jquery-1.9.1.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-responsive.min.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/ace.min.css">
+    <link rel="stylesheet" href="/css/ace-skins.min.css">
+    <link rel="stylesheet" href="/css/ace-responsive.min.css">
 
     <script>
         var classid;
@@ -80,7 +80,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="class:${classes}">
+                <tr th:each="class:${session.classes}">
                     <td th:text="${class.getId()}"></td>
                     <td th:text="${class.getFirst_class()}"></td>
                     <td th:text="${class.getSecond_class()}"></td>
@@ -98,7 +98,7 @@
                                     </div>
 
                                     <div class="modal-body">
-                                        <form id="updateform" class="form-horizontal" role="form" method="post" th:action="@{/background/addClass}">
+                                        <form id="updateform" class="form-horizontal" role="form" method="post" th:action="@{/addClass}">
                                             <input name="id" type="text" th:value="${class.id}" style="display: none;">
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label">一级分类：</label>

@@ -24,7 +24,7 @@
                 $("#infobar").show();
             }
 
-            $.getJSON("http://localhost:8081/cm/gets", function (json) {
+            $.getJSON("http://localhost:8080/cmdt/getAll", function (json) {
                 for (var i = 0; i < json.length; i++) {
                     var cmList = document.getElementById("commodityView");
                     cmList.innerHTML +=
@@ -117,8 +117,8 @@
                                 <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu" th:switch="${session.role}">
-                                <li th:case="'seller'"><a href="user/seller/info">我的信息</a></li>
-                                <li th:case="'company'"><a href="user/company/info">公司信息</a></li>
+                                <li th:case="'seller'"><a href="/background/index/1">我的信息</a></li>
+                                <li th:case="'company'"><a href="/background/index/0">公司信息</a></li>
                                 <li class="divider">
                                 <li><a href="/user/exit">退出</a></li>
                                 </li>
@@ -158,7 +158,7 @@
 
 <div id="dialog-form" title="商品上架">
     <p class="validateTips">所有的表单字段都是必填的。</p>
-    <form class="form-horizontal" role="form" action="http://localhost:8081/commodity/onsale" method="post"
+    <form class="form-horizontal" role="form" action="http://localhost:8080/commodity/onsale" method="post"
           autocomplete="off">
         <div class="form-group">
             <div class="col-sm-1"></div>

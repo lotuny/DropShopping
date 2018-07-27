@@ -5,12 +5,12 @@
     <title>Title</title>
 </head>
 
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/bootstrap-responsive.min.css">
-    <link rel="stylesheet" href="../css/font-awesome.min.css">
-    <link rel="stylesheet" href="../css/ace.min.css">
-    <link rel="stylesheet" href="../css/ace-skins.min.css">
-    <link rel="stylesheet" href="../css/ace-responsive.min.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-responsive.min.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/ace.min.css">
+    <link rel="stylesheet" href="/css/ace-skins.min.css">
+    <link rel="stylesheet" href="/css/ace-responsive.min.css">
 
     <style>
         #logo{
@@ -53,11 +53,11 @@
     <div class="row clearfix">
         <div class="col-md-12 column">
 
-            <div id="sidebar" th:switch="${session.role}" style="width: 250px; position: relative; top: 0;">
+            <div id="sidebar" th:switch="${session.role}" style="position: relative; float: left;">
 
                 <ul class="nav nav-list" th:case="0"><!--品牌商菜单-->
                     <li>
-                        <a href="mvo-company.html" target="menuFrame">
+                        <a href="mvo/mvo-company.html" target="menuFrame">
                             <i class="icon-dashboard"></i>
                             <span>公司信息</span>
                         </a>
@@ -71,7 +71,7 @@
                     </li>
 
                     <li>
-                        <a href="mvo-commodity.html" target="menuFrame">
+                        <a href="mvo/mvo-commodity.html" target="menuFrame">
                             <i class="icon-text-width"></i>
                             <span>商品管理</span>
                         </a>
@@ -94,7 +94,7 @@
 
                 <ul class="nav nav-list" th:case="1"><!--借卖方菜单-->
                     <li>
-                        <a href="bvo-myInfo.html" target="menuFrame">
+                        <a href="bvo/bvo-myInfo.html" target="menuFrame">
                             <i class="icon-dashboard"></i>
                             <span>个人信息</span>
                         </a>
@@ -108,7 +108,7 @@
                     </li>
 
                     <li>
-                        <a href="bvo-sale.html" target="menuFrame">
+                        <a href="bvo/bvo-sale.html" target="menuFrame">
                             <i class="icon-text-width"></i>
                             <span>商品管理</span>
                         </a>
@@ -131,35 +131,35 @@
 
                 <ul class="nav nav-list" th:case="2"><!--管理员菜单-->
                     <li>
-                        <a href="mng-companies.html" target="menuFrame">
+                        <a href="../mng/mng-companies.html" target="menuFrame">
                             <i class="icon-dashboard"></i>
                             <span>公司管理</span>
                         </a>
                     </li>
 
                     <li>
-                        <a href="mng-seller.html" target="menuFrame">
+                        <a href="../mng/mng-seller.html" target="menuFrame">
                             <i class="icon-text-width"></i>
                             <span>借卖方管理</span>
                         </a>
                     </li>
 
                     <li>
-                        <a href="mng-commodity-sale.html" class="dropdown-toggle" target="menuFrame">
+                        <a href="../mng/mng/mng-commodity-sale.html" class="dropdown-toggle" target="menuFrame">
                             <i class="icon-file"></i>
                             <span>商品管理</span>
                         </a>
                     </li>
 
                     <li>
-                        <a href="mng-orderlist.html" class="dropdown-toggle" target="menuFrame">
+                        <a href="../mng/mng-orderlist.html" class="dropdown-toggle" target="menuFrame">
                             <i class="icon-desktop"></i>
                             <span>订单管理</span>
                         </a>
                     </li>
 
                     <li>
-                        <a href="mng-classification.html" class="dropdown-toggle" target="menuFrame">
+                        <a href="../mng/mng-classification.html" class="dropdown-toggle" target="menuFrame">
                             <i class="icon-desktop"></i>
                             <span>分类管理</span>
                         </a>
@@ -169,17 +169,17 @@
             </div>
 
             <div th:switch="${session.role}" class="col-md-offset-2">
-                <iframe th:case="0" name="menuFrame" src="mvo-company.html" frameborder="no" width="100%" height="800px"></iframe>
-                <iframe th:case="1" name="menuFrame" src="bvo-myInfo.html" frameborder="no" width="100%" height="200%"></iframe>
-                <iframe th:case="2" name="menuFrame" src="mng-companies.html" frameborder="no" width="100%" height="800px"></iframe>
+                <iframe th:case="0" name="menuFrame" src="../mvo/mvo-company.html" frameborder="no" width="100%" height="800px"></iframe>
+                <iframe th:case="1" name="menuFrame" src="../bvo/bvo-myInfo.html" frameborder="no" width="100%" height="800px"></iframe>
+                <iframe th:case="2" name="menuFrame" src="../mng/mng-companies.html" frameborder="no" width="100%" height="800px"></iframe>
             </div>
         </div>
     </div>
 </div>
 
 </body>
-<script src="../js/jquery-1.9.1.js"></script>
-<script src="../js/bootstrap.min.js"></script>
+<script src="/js/jquery-1.9.1.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 <script>
     $('.nav-list li ').click(function () {
         $(this).addClass('green').siblings().removeClass('green');

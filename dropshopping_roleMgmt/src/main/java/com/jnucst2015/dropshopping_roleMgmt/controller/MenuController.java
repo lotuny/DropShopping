@@ -28,13 +28,6 @@ public class MenuController {
         return "index_background";
     }
 
-    @GetMapping("index")
-    public String showBackgroundMenu(HttpSession session) {
-        session.setAttribute("role", 2);
-        session.setAttribute("classes", classificationService.getAllClassification());
-        return "index_background";
-    }
-
     @GetMapping("**")
     public String forceRoute(HttpSession session, HttpServletRequest request) {
         session.setAttribute("role", 2);
@@ -43,22 +36,25 @@ public class MenuController {
         return url;
     }
 
+    //************************************************************************************
+    //*********************************管理员-分类管理************************************
     @GetMapping("updateClass/{classid}")
     public String updateClass(@PathVariable("classid") Integer classid, Model model) {
         Classification temp = classificationService.getClassificationByID(classid);
         model.addAttribute("theclass", temp);
-        return "mng-classification";
+        return "redirect:/background/mng/mng-classification";
     }
 
     @GetMapping("deleteClass/{classid}")
     public String deleteClass(@PathVariable("classid") Integer classid) {
         classificationService.deleteByID(classid);
-        return "redirect:/background/test";
+        return "redirect:/background/mng/mng-classification";
     }
 
     @PostMapping("addClass")
     public String addClass(Classification newClass) {
         classificationService.addClassification(newClass);
-        return "redirect:/background/test";
+        return "redirect:/background/mng/mng-classification";
     }
+    //************************************************************************************
 }

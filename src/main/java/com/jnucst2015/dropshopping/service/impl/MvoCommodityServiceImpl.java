@@ -68,11 +68,11 @@ public class MvoCommodityServiceImpl implements MvoCommodityService
      * @param company_id to be get.
      * @return all commodities from the company_id.
      */
-    @Override
+    /*@Override
     public List<MvoCommodity> getCommoditiesByCompanyId(Integer company_id)
     {
         return re.getMvoCommoditiesByCompany_idIs(company_id);
-    }
+    }*/
 
     /**
      * Delete a commodity by id.

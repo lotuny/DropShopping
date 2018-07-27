@@ -35,7 +35,7 @@ public class MvoCommodity
     @Column(columnDefinition = "TINYINT(4) COMMENT '状态'", nullable = false)
     private Integer state;
 
-    @ManyToOne(targetEntity = Classification.class)
+//    @ManyToOne(targetEntity = Classification.class)
     @JoinColumn(name = "classification_id", columnDefinition = "INT(11) COMMENT '分类'", nullable = false)
     private Integer class_id;
 
@@ -46,13 +46,12 @@ public class MvoCommodity
     private Integer warn_num;
 
 //    @Column(columnDefinition = "INT(11) COMMENT '品牌 ID'", nullable = false)
-    @ManyToOne(targetEntity = Brand.class)
+   /* @ManyToOne(targetEntity = Brand.class)
     @JoinColumn(name = "brand_id", columnDefinition = "INT(11) COMMENT '品牌 ID'", nullable = false)
     private Integer brand_id;
 
 //    @Column(columnDefinition = "INT(11) COMMENT '公司 ID'", nullable = false)
     @ManyToOne(targetEntity = Company.class)
     @JoinColumn(columnDefinition = "INT(11) COMMENT '公司 ID'", nullable = false)
-    private Integer company_id;
-
+    private Integer company_id;*/
 }
