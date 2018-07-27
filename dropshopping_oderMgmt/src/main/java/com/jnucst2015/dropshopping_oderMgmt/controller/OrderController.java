@@ -2,6 +2,7 @@ package com.jnucst2015.dropshopping_oderMgmt.controller;
 
 
 import com.jnucst2015.dropshopping.entity.OrderItem;
+import com.jnucst2015.dropshopping_oderMgmt.vo.OrderItemVo;
 import com.jnucst2015.dropshopping_oderMgmt.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,8 +20,8 @@ public class OrderController {
 
     @GetMapping("delete/{id}")
     public String deleteOrder(@PathVariable("id") Integer orderId){
-        orderService.deleteByOrderID(orderId);
-        return "redirect:/order";
+        orderService.deleteOrderItem(orderId);
+        return "redirect:/orderPage";
     }
 
     @GetMapping("update/{orderItemId}")
@@ -32,9 +33,22 @@ public class OrderController {
 
     }
 
+    @GetMapping("add")
+    public String addfOrder(Model model){
+
+        return "addOrder";
+
+    }
+
     @PostMapping("update")
-    public String modifOrder(OrderItem orderItem){
-        orderService.updateOrderItemInfo(orderItem);
+    public String modifOrder(OrderItemVo orderItemVo){
+        orderService.updateOrderItemInfo(orderItemVo);
+        return "redirect:/orderPage";
+    }
+
+    @PostMapping("add")
+    public String addOrder(OrderItemVo orderItemVo){
+        orderService.updateOrderItemInfo(orderItemVo);
         return "redirect:/orderPage";
     }
 
@@ -50,9 +64,9 @@ public class OrderController {
 //    }
     @GetMapping
     public String getOrderItemInfos(Model model) {
-        List<OrderItem> orderItems = orderService.showOrderItems();
-        model.addAttribute("oderItems", orderItems);
+        List<OrderItemVo> orderItemVos = orderService.showOrderItems();
 
+        model.addAttribute("oderItemsVos", orderItemVos);
         return "showOrder";
     }
 //

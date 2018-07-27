@@ -2,6 +2,7 @@ package com.jnucst2015.dropshopping_oderMgmt.service;
 
 import com.jnucst2015.dropshopping.entity.Order;
 import com.jnucst2015.dropshopping.entity.OrderItem;
+import com.jnucst2015.dropshopping_oderMgmt.vo.OrderItemVo;
 
 import java.util.List;
 
@@ -19,11 +20,13 @@ public interface OrderService {
 
     void deleteByOrderID(Integer orderId);
 
-    OrderItem updateOrderItemInfo(OrderItem orderItem);
+    OrderItemVo updateOrderItemInfo(OrderItemVo orderItemVo);
 
     OrderItem showOrderItem (int orderItemId);
 
-    List<OrderItem> showOrderItems ();
+    void deleteOrderItem(int orderItemId);
+
+    List<OrderItemVo> showOrderItems ();
 
 
 

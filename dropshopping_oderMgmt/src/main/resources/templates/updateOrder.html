@@ -21,7 +21,7 @@
         </div>
         <div class="row">
                 <form class="form-horizontal" role="form" th:action="@{/orderPage/update}" method="post">
-                    <input type="text" name="orderItemId" th:value="${orderItemId}" >
+                    <input type="text" name="id" th:value="${orderItemId}" >
                     <div class="form-group">
                         <label for="count" class="col-sm-2 control-label">数量</label>
                         <div class="col-sm-8">
@@ -53,6 +53,12 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="saleInfoId" class="col-sm-2 control-label">上架商品id</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="saleInfoId" class="form-control" id="saleInfoId" placeholder="上架商品id">
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="name" class="col-sm-2 control-label">商品名字</label>
                         <div class="col-sm-8">
                             <input type="text" name="name" class="form-control" id="name" placeholder="商品名字">
@@ -65,15 +71,21 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="MvoCmdtId" class="col-sm-2 control-label">借卖方id</label>
+                        <label for="sellerId" class="col-sm-2 control-label">借卖方id</label>
                         <div class="col-sm-8">
-                            <input type="number" name="MvoCmdtId" class="form-control" id="MvoCmdtId" placeholder="借卖方id">
+                            <input type="number" name="sellerId" class="form-control" id="sellerId" placeholder="借卖方id">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="ShopId" class="col-sm-2 control-label">店铺id</label>
                         <div class="col-sm-8">
                             <input type="number" name="ShopId" class="form-control" id="ShopId" placeholder="店铺id">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="col-sm-2 control-label">商品描述</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="description" class="form-control" id="description" placeholder="附加信息">
                         </div>
                     </div>
                     <div class="form-group">
