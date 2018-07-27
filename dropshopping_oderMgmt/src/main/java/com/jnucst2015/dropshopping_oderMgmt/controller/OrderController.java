@@ -23,21 +23,21 @@ public class OrderController {
         return "redirect:/order";
     }
 
-    @GetMapping("update/{orderId}")
-    public String modifOrder(@PathVariable("orderId") Integer orderId,
+    @GetMapping("update/{orderItemId}")
+    public String modifOrder(@PathVariable("orderItemId") Integer orderItemId,
                            Model model){
 
-        model.addAttribute("orderId", orderId);
+        model.addAttribute("orderItemId", orderItemId);
         return "updateOrder";
 
     }
 
-//    @PostMapping("update")
-//    public String modifOrder(Order order){
-//        orderService.updateOrderInfo(order);
-//        return "redirect:/order/";
-//    }
-//
+    @PostMapping("update")
+    public String modifOrder(OrderItem orderItem){
+        orderService.updateOrderItemInfo(orderItem);
+        return "redirect:/orderPage";
+    }
+
 //    @GetMapping("add")
 //    public String addPage(){
 //        return "addOrder";

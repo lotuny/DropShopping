@@ -20,72 +20,66 @@
 
         </div>
         <div class="row">
-                <form class="form-horizontal" role="form" th:action="@{/update}" method="post">
-                    <input type="hidden" name="orderId" th:value="${orderId}" >
+                <form class="form-horizontal" role="form" th:action="@{/orderPage/update}" method="post">
+                    <input type="text" name="orderItemId" th:value="${orderItemId}" >
                     <div class="form-group">
                         <label for="count" class="col-sm-2 control-label">数量</label>
                         <div class="col-sm-8">
-                            <input type="text" name="count" class="form-control" id="count" placeholder="发送方姓名">
+                            <input type="text" name="count" class="form-control" id="count" placeholder="数量">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="orderId" class="col-sm-2 control-label">订单编号</label>
                         <div class="col-sm-8">
-                            <input type="text" name="orderId" class="form-control" id="orderId" placeholder="发送方地址">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="createTime" class="col-sm-2 control-label">创建时间</label>
-                        <div class="col-sm-8">
-                            <input type="text" name="screateTime" class="form-control" id="createTime" placeholder="发送方电话">
+                            <input type="text" name="orderId" class="form-control" id="orderId" placeholder="订单编号">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="state" class="col-sm-2 control-label">状态</label>
                         <div class="col-sm-8">
-                            <input type="text" name="state" class="form-control" id="state" placeholder="接收方姓名">
+                            <input type="text" name="state" class="form-control" id="state" placeholder="状态">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="CompanyId" class="col-sm-2 control-label">品牌商id</label>
                         <div class="col-sm-8">
-                            <input type="text" name="CompanyId" class="form-control" id="CompanyId" placeholder="接收方地址">
+                            <input type="text" name="CompanyId" class="form-control" id="CompanyId" placeholder="品牌商id">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="MvoCmdtId" class="col-sm-2 control-label">借卖方商品id</label>
                         <div class="col-sm-8">
-                            <input type="text" name="MvoCmdtId" class="form-control" id="MvoCmdtId" placeholder="接收方电话">
+                            <input type="text" name="MvoCmdtId" class="form-control" id="MvoCmdtId" placeholder="借卖方商品id">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="name" class="col-sm-2 control-label">商品名字</label>
                         <div class="col-sm-8">
-                            <input type="password" name="name" class="form-control" id="name" placeholder="备注">
+                            <input type="text" name="name" class="form-control" id="name" placeholder="商品名字">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="Price" class="col-sm-2 control-label">商品单价</label>
                         <div class="col-sm-8">
-                            <input type="number" name="Price" class="form-control" id="Price" placeholder="状态">
+                            <input type="number" name="Price" class="form-control" id="Price" placeholder="商品单价">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="MvoCmdtId" class="col-sm-2 control-label">借卖方id</label>
                         <div class="col-sm-8">
-                            <input type="number" name="MvoCmdtId" class="form-control" id="MvoCmdtId" placeholder="状态">
+                            <input type="number" name="MvoCmdtId" class="form-control" id="MvoCmdtId" placeholder="借卖方id">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="ShopId" class="col-sm-2 control-label">店铺id</label>
                         <div class="col-sm-8">
-                            <input type="number" name="ShopId" class="form-control" id="ShopId" placeholder="状态">
+                            <input type="number" name="ShopId" class="form-control" id="ShopId" placeholder="店铺id">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="Notes" class="col-sm-2 control-label">附加信息</label>
                         <div class="col-sm-8">
-                            <input type="number" name="Notes" class="form-control" id="Notes" placeholder="状态">
+                            <input type="text" name="Notes" class="form-control" id="Notes" placeholder="附加信息">
                         </div>
                     </div>
 

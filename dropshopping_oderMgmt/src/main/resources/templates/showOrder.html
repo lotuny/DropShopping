@@ -21,7 +21,7 @@
                           在这里，你可以对订单信息进行查看/修改/删除/查询操作
                             </div>
                             </p>
-                            <table class="table">
+                            <table class="table" th:each="oderItemList:${oderItems}">
                                 <thead>
                                 <tr>
                                     <th>id</th>
@@ -39,7 +39,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="oderItem:${oderItems}">
+                                <tr th:each="oderItem:${oderItemList}">
                                     <td th:text="${oderItem.getId()}" ></td>
                                     <td th:text="${oderItem.getCount()}" ></td>
                                     <td th:text="${oderItem.getOrder().getId()}" ></td>
