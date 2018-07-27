@@ -1,4 +1,4 @@
-package com.jnucst2015.dropshopping_roleMgmt.controller;
+package com.jnucst2015.dropshopping_test.controller;
 
 import com.jnucst2015.dropshopping.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;

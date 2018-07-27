@@ -2,7 +2,6 @@ package com.jnucst2015.dropshopping.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.List;
 
 @Entity
 @Table(name = "order_form")

@@ -12,6 +12,8 @@ import java.util.Map;
 
 public interface SaleInfoRepository extends JpaRepository<SaleInfo, Integer> {
 
+    SaleInfo findSaleInfoById(Integer id);
+
     @Query(value = "SELECT s.id,s.name FROM shop as s WHERE s.seller_id = ?1",nativeQuery = true)
     List<Map<String, Object>> query(int sellerId);
 
