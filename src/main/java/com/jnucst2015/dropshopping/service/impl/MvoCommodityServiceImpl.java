@@ -36,7 +36,7 @@ public class MvoCommodityServiceImpl implements MvoCommodityService
     @Override
     public MvoCommodity getById(Integer id)
     {
-        return re.getOne(id);
+        return re.findById(id).get();
     }
 
     /**
@@ -68,11 +68,11 @@ public class MvoCommodityServiceImpl implements MvoCommodityService
      * @param company_id to be get.
      * @return all commodities from the company_id.
      */
-    @Override
+    /*@Override
     public List<MvoCommodity> getCommoditiesByCompanyId(Integer company_id)
     {
-        return re.getMvoCommoditiesByCompany_idIs(company_id);
-    }
+        return re(company_id);
+    }*/
 
     /**
      * Delete a commodity by id.
@@ -94,6 +94,22 @@ public class MvoCommodityServiceImpl implements MvoCommodityService
     public void deleteByIds(String ids)
     {
         Arrays.asList(ids.split(",")).forEach(s -> deleteById(Integer.parseInt(s)));
+    }
+
+    @Override
+    public void up(Integer id)
+    {
+        MvoCommodity commodity = re.findById(id).get();
+        commodity.setState(1);
+        re.save(commodity);
+    }
+
+    @Override
+    public void down(Integer id)
+    {
+        MvoCommodity commodity = re.findById(id).get();
+        commodity.setState(0);
+        re.save(commodity);
     }
 
     @Override

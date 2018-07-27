@@ -1,6 +1,7 @@
 package com.jnucst2015.dropshopping.service;
 
 import com.jnucst2015.dropshopping.entity.Seller;
+import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;

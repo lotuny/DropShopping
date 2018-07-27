@@ -3,9 +3,6 @@ package com.jnucst2015.dropshopping.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import org.springframework.lang.NonNull;
-import org.springframework.lang.NonNullApi;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -35,8 +32,7 @@ public class MvoCommodity
     @Column(columnDefinition = "TINYINT(4) COMMENT '状态'", nullable = false)
     private Integer state;
 
-    @ManyToOne(targetEntity = Classification.class)
-    @JoinColumn(name = "classification_id", columnDefinition = "INT(11) COMMENT '分类'", nullable = false)
+    @Column(columnDefinition = "INT(11) COMMENT '分类'", nullable = false)
     private Integer class_id;
 
     @Column(columnDefinition = "TIMESTAMP COMMENT '创建时间'", nullable = false)
@@ -45,14 +41,10 @@ public class MvoCommodity
     @Column(columnDefinition = "INT(11) COMMENT '库存预警设置'")
     private Integer warn_num;
 
-//    @Column(columnDefinition = "INT(11) COMMENT '品牌 ID'", nullable = false)
-    @ManyToOne(targetEntity = Brand.class)
-    @JoinColumn(name = "brand_id", columnDefinition = "INT(11) COMMENT '品牌 ID'", nullable = false)
+    @Column(columnDefinition = "INT(11) COMMENT '品牌 ID'", nullable = false)
     private Integer brand_id;
 
-//    @Column(columnDefinition = "INT(11) COMMENT '公司 ID'", nullable = false)
-    @ManyToOne(targetEntity = Company.class)
-    @JoinColumn(columnDefinition = "INT(11) COMMENT '公司 ID'", nullable = false)
+    @Column(columnDefinition = "INT(11) COMMENT '公司 ID'", nullable = false)
     private Integer company_id;
 
 }
