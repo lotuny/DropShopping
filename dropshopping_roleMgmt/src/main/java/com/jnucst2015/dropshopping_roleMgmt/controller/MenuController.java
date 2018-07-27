@@ -1,4 +1,4 @@
-package com.jnucst2015.dropshopping_digiwlet;
+package com.jnucst2015.dropshopping_roleMgmt.controller;
 
 import com.jnucst2015.dropshopping.entity.Classification;
 import com.jnucst2015.dropshopping.service.ClassificationService;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.HandlerMapping;
 
-import javax.jws.WebParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -22,10 +21,11 @@ public class MenuController {
     @Autowired
     private ClassificationService classificationService;
 
-    @GetMapping("test")
-    public String test(Model model) {
-        model.addAttribute("classes", classificationService.getAllClassification());
-        return "mng-classification";
+    @GetMapping("index/{role}")
+    public String showBackgroundMenu(HttpSession session, @PathVariable("role") Integer role) {
+        session.setAttribute("role", role);
+        session.setAttribute("classes", classificationService.getAllClassification());
+        return "index_background";
     }
 
     @GetMapping("index")

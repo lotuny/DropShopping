@@ -108,7 +108,7 @@ public class UserController {
 
     @GetMapping("/user/seller/info")
     public String sellerInfor() {
-        return "sellerinfo";
+        return "redirect:/background/index/1";
     }
 
     @PostMapping("/user/seller/info")

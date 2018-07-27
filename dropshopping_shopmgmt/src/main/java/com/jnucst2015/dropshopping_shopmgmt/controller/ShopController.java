@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping
@@ -31,7 +32,7 @@ public class ShopController {
             model.addAttribute("shops",list);
         }
         else if(type==3){
-            List<Shop> list = shopService.getShopBySellerID(Integer.valueOf(text));
+            Optional<Shop> list = shopService.getShopBySellerID(Integer.valueOf(text));
             model.addAttribute("shops",list);
         }
         return "findByDifferentType";
