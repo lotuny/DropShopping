@@ -38,7 +38,7 @@ public interface MvoCommodityService
      * @param shopId to be get.
      * @return all commodities from the shopId.
      */
-    List<MvoCommodity> getCommoditiesByShopId(Integer shopId);
+    List<MvoCommodity> getCommoditiesByCompanyId(Integer shopId);
 
     /**
      * Delete a commodity by id.

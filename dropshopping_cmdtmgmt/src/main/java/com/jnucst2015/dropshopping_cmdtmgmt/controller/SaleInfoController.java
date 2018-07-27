@@ -1,4 +1,4 @@
-package com.jnucst2015.dropshopping_cdmtMgmt.controller;
+package com.jnucst2015.dropshopping_cmdtmgmt.controller;
 
 import com.jnucst2015.dropshopping.entity.SaleInfo;
 import com.jnucst2015.dropshopping.service.SaleInfoService;
@@ -12,7 +12,7 @@ public class SaleInfoController {
     @Autowired
     private SaleInfoService saleInfoService;
 
-    @PostMapping("/add")
+    @PostMapping("/addSaleInfo")
     public String add(SaleInfo saleInfo){
         saleInfoService.addSaleInfo(saleInfo);
         return "test";

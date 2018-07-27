@@ -65,13 +65,13 @@ public class MvoCommodityServiceImpl implements MvoCommodityService
     /**
      * Get the commodities from the shop.
      *
-     * @param shopId to be get.
-     * @return all commodities from the shopId.
+     * @param company_id to be get.
+     * @return all commodities from the company_id.
      */
     @Override
-    public List<MvoCommodity> getCommoditiesByShopId(Integer shopId)
+    public List<MvoCommodity> getCommoditiesByCompanyId(Integer company_id)
     {
-        return re.getCommoditiesByShop_idIs(shopId);
+        return re.getMvoCommoditiesByCompany_idIs(company_id);
     }
 
     /**
