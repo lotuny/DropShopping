@@ -27,17 +27,32 @@ public class SaleInfoServiceImpl implements SaleInfoService {
     }
 
     @Override
-    public List<SaleInfo> listSaleInfo() {
-        return saleInfoRepository.findAll();
+    public List<SaleInfo> listSaleInfo(Integer sellerId) {
+        return saleInfoRepository.findSaleInfosBySellerIdEquals(sellerId);
     }
 
     @Override
-    public void deleteSaleInfo(int id) {
-        saleInfoRepository.deleteById(id);
+    public List<SaleInfo> listSaleInfoWithStateOnSale(Integer sellerId) {
+        return saleInfoRepository.findSaleInfosByStateEqualsAndSellerIdEquals(1, sellerId);
+    }
+
+    @Override
+    public void desaleSaleInfo(int id) {
+        saleInfoRepository.daSale(id);
     }
 
     @Override
     public void updateSaleInfo(SaleInfo saleInfo) {
         saleInfoRepository.saveAndFlush(saleInfo);
+    }
+
+    @Override
+    public void updateSaleInfo(String name, String descrpition, Integer price, Integer id) {
+        saleInfoRepository.updateSaleInfo(name,descrpition,price,id);
+    }
+
+    @Override
+    public void onsaleSaleInfoAgain(int id) {
+        saleInfoRepository.onSale(id);
     }
 }

@@ -38,4 +38,14 @@ public class TransactionServiceImpl implements TransactionService {
     public Transaction addTransaction(Transaction transaction) {
         return transactionRepository.save(transaction);
     }
+
+    @Override
+    public String addTransaction(Integer payer_id, Integer recipient_id, Integer price) {
+        return null;
+    }
+
+    @Override
+    public String addTransaction() {
+        return null;
+    }
 }

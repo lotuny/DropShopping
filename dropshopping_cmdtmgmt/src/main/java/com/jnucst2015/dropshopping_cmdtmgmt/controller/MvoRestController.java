@@ -85,5 +85,4 @@ public class MvoRestController
         return service.update(mvoCommodity);
     }
 
-
 }
