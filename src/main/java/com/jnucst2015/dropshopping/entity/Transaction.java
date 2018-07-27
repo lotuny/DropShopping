@@ -12,14 +12,42 @@ public class Transaction {
     private Integer id;
     @Column(columnDefinition = "DATE COMMENT '交易时间'")
     private Date date;
-    @Column(columnDefinition = "INT(11) COMMENT '支付方用户名'")
+    @Column(columnDefinition = "INT(11) COMMENT '支付方ID'")
     private Integer payer_id;
-    @Column(columnDefinition = "INT(11) COMMENT '收款方用户名'")
+    @Column(columnDefinition = "TINYINT(3) COMMENT '支付方角色'")
+    private Integer payer_role;
+    @Column(columnDefinition = "TINYINT(3) COMMENT '收款方角色'")
+    private Integer recipient_role;
+    @Column(columnDefinition = "INT(11) COMMENT '收款方ID'")
     private Integer recipient_id;
     @Column(columnDefinition = "VARCHAR(255) COMMENT '描述'")
     private String description;
     @Column(columnDefinition = "INT(11) COMMENT '交易金额'")
     private int price;
+
+    public Integer getPayer_role() {
+        return payer_role;
+    }
+
+    public void setPayer_role(Integer payer_role) {
+        this.payer_role = payer_role;
+    }
+
+    public Integer getRecipient_role() {
+        return recipient_role;
+    }
+
+    public void setRecipient_role(Integer recipient_role) {
+        this.recipient_role = recipient_role;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
 
     public Integer getId() {
         return id;

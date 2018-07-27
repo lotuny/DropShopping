@@ -11,6 +11,10 @@ import java.util.List;
 @Service
 public class TransactionServiceImpl implements TransactionService {
 
+    public static final Integer COMPANY = 0;
+    public static final Integer SELLER = 1;
+    public static final Integer CONSUMER = 2;
+
     @Autowired
     private TransactionRepository transactionRepository;
 
@@ -37,5 +41,15 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public Transaction addTransaction(Transaction transaction) {
         return transactionRepository.save(transaction);
+    }
+
+    @Override
+    public Transaction addTransaction(Integer payer_id, Integer recipient_id, Integer price) {
+        return null;
+    }
+
+    @Override
+    public Transaction addTransaction() {
+        return null;
     }
 }

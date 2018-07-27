@@ -5,7 +5,7 @@ import com.jnucst2015.dropshopping.entity.Transaction;
 import java.util.List;
 
 public interface TransactionService {
-    
+
     List<Transaction> getAllTransaction();
 
     Transaction getTransactionByID(Integer id);
@@ -16,7 +16,7 @@ public interface TransactionService {
 
     Transaction addTransaction(Transaction transaction);
 
-    String addTransaction(Integer payer_id, Integer recipient_id, Integer price);
+    Transaction addTransaction(Integer payer_id, Integer recipient_id, Integer price);
 
-    String addTransaction();
+    Transaction addTransaction();
 }
