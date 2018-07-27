@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/ace.min.css">
+    <link rel="stylesheet" href="css/ace-skins.min.css">
+    <link rel="stylesheet" href="css/ace-responsive.min.css">
+
+    <style>
+        #logo:hover{
+            cursor: pointer;
+        }
+        #sidebar{
+            left: 0;
+            margin-top: 0;
+        }
+        #sidebar span{
+            font-size: 0.8cm;
+        }
+        body,html{
+            width: 100%;
+            height: 100%;
+        }
+        .green{
+            color: #00818b;
+        }
+
+    </style>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner" style="background:#00818b;">
+        <div class="container-fluid" id="logo">
+            <a class="brand">
+                <h1><i class="icon-shopping-cart"></i> JNUCST借卖平台</h1>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="container" style="margin-top: 100px;">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div id="sidebar" th:switch="${session.role}">
+
+                <ul class="nav nav-list" th:case="0"><!--品牌商菜单-->
+                    <li>
+                        <a href="mvo-company.html" target="menuFrame">
+                            <i class="icon-dashboard"></i>
+                            <span>公司信息</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="mvo-brand.html" target="menuFrame">
+                            <i class="icon-dashboard"></i>
+                            <span>品牌管理</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="mvo-commodity.html" target="menuFrame">
+                            <i class="icon-text-width"></i>
+                            <span>商品管理</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="mvo-orderlist.html" class="dropdown-toggle" target="menuFrame">
+                            <i class="icon-file"></i>
+                            <span>订单管理</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="mvo-wallet.html" class="dropdown-toggle" target="menuFrame">
+                            <i class="icon-desktop"></i>
+                            <span>我的钱包</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="nav nav-list" th:case="1"><!--借卖方菜单-->
+                    <li>
+                        <a href="bvo-myInfo.html" target="menuFrame">
+                            <i class="icon-dashboard"></i>
+                            <span>个人信息</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="bvo-shops.html" target="menuFrame">
+                            <i class="icon-dashboard"></i>
+                            <span>商店管理</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="bvo-sale.html" target="menuFrame">
+                            <i class="icon-text-width"></i>
+                            <span>商品管理</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="bvo-orderlist.html" class="dropdown-toggle" target="menuFrame">
+                            <i class="icon-file"></i>
+                            <span>订单管理</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="bvo-wallet.html" class="dropdown-toggle" target="menuFrame">
+                            <i class="icon-desktop"></i>
+                            <span>我的钱包</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="nav nav-list" th:case="2"><!--管理员菜单-->
+                    <li>
+                        <a href="mng-companies.html" target="menuFrame">
+                            <i class="icon-dashboard"></i>
+                            <span>公司管理</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="mng-seller.html" target="menuFrame">
+                            <i class="icon-text-width"></i>
+                            <span>借卖方管理</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="mng-commodity-sale.html" class="dropdown-toggle" target="menuFrame">
+                            <i class="icon-file"></i>
+                            <span>商品管理</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="mng-orderlist.html" class="dropdown-toggle" target="menuFrame">
+                            <i class="icon-desktop"></i>
+                            <span>订单管理</span>
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+
+            <div th:switch="${session.role}">
+                <iframe th:case="0" name="menuFrame" src="mvo-company.html" frameborder="no" width="100%" height="100%"></iframe>
+                <iframe th:case="1" name="menuFrame" src="bvo-myInfo.html" frameborder="no" width="100%" height="100%"></iframe>
+                <iframe th:case="2" name="menuFrame" src="mng-companies.html" frameborder="no" width="100%" height="100%"></iframe>
+            </div>
+            </div>
+    </div>
+</div>
+
+</body>
+<script src="js/jquery-1.9.1.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script>
+    $('.nav-list li ').click(function () {
+        $(this).addClass('green').siblings().removeClass('green');
+    })
+</script>
+</html>
