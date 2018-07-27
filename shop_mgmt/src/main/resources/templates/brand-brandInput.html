@@ -70,9 +70,10 @@
           <th class="center">
              <label><input type="checkbox" class="ace-checkbox-2"><span class="lbl"></span></label>
           </th>
-          <th>品牌名称Brand Name</th>
-          <th>品牌描述Brand Description</th>
-          <th>操作</th>
+            <th>品牌编号Brand ID</th>
+            <th>品牌名称Brand Name</th>
+            <th>品牌描述Brand Description</th>
+            <th>操作</th>
         </tr>
       </thead>
 
@@ -82,17 +83,16 @@
           <th class="center">
              <label><input type="checkbox" class="input"><span class="lbl"></span></label>
           </th>
+            <td th:text="${Brand.getId()}"></td>
             <td th:text="${Brand.getName()}">leo</td>
 
             <td th:text="${Brand.getDescription()}">@aehyok</td>
           <td>
             <div class="inline position-relative">
-
-              <button class="btn btn-mini btn-info" data-toggle="modal"
-                      data-target="#updateModal" th:href="@{'brand/delete/'+${Brand.getId()}}">
-
+                <a th:href="@{'brand/update/'+${Brand.getId()}}">
+              <button class="btn btn-mini btn-info" >
                   <i class="icon-edit"></i>
-              </button>
+              </button></a>
                 <a th:href="@{'brand/delete/'+${Brand.getId()}}">
                     <button class="btn btn-mini btn-danger"><i class="icon-trash"></i></button>
                 </a>
@@ -141,177 +141,5 @@
   </div>
     </div>
 
-    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="updateModalLabel">品牌信息</h4>
-                </div>
-                <div class="modal-body" >
-                    <form class="form-horizontal" role="form" th:action="@{/brand/update}" method="post">
-
-                        <div class="control-group">
-                            <label class="control-label" for="updateName" >品牌名称<br>Brand Name</label>
-                            <div class="controls">
-                                <input type="text"id="updateName" namupdatee="name" >
-                            </div>
-                        </div>
-
-                        <div class="control-group">
-                            <label class="control-label" for="updateDescription">品牌描述<br>Brand Description</label>
-                            <div class="controls">
-                                <input type="text" id = "updateDescription" name="description" >
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                            <button type="submit" class="btn btn-primary" >保存</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-    </div>
-    <script>
-
-        function editInfo(obj) {
-            var id = $(obj).attr("id");
-            //获取表格中的一行数据
-            var stuno = document.getElementById("table").rows[id].cells[0].innerText;
-            var pass = document.getElementById("table").rows[id].cells[1].innerText;
-            var name = document.getElementById("table").rows[id].cells[2].innerText;
-            var sex = document.getElementById("table").rows[id].cells[3].innerText;
-            //向模态框中传值
-            $('#stuno').val(stuno);
-            $('#pass').val(pass);
-            $('#stuname').val(name);
-            if (sex == '女') {
-                document.getElementById('women').checked = true;
-            } else {
-                document.getElementById('man').checked = true;
-            }
-            $('#update').modal('show');
-        }
-        $(function(){
-   /*init webuploader*/
-   var $list=$("#thelist");   //这几个初始化全局的百度文档上没说明，好蛋疼。
-   var $btn =$("#ctlBtn");   //开始上传
-   var thumbnailWidth = 100;   //缩略图高度和宽度 （单位是像素），当宽高度是0~1的时候，是按照百分比计算，具体可以看api文档
-   var thumbnailHeight = 100;
-
-   var uploader = WebUploader.create({
-       // 选完文件后，是否自动上传。
-       auto: false,
-
-       // swf文件路径
-       swf: '${ctxStatic }/webupload/Uploader.swf',
-
-       // 文件接收服务端。
-       server: '/apm-web/a/test/',
-
-       // 选择文件的按钮。可选。
-       // 内部根据当前运行是创建，可能是input元素，也可能是flash.
-       pick: '#filePicker',
-
-       // 只允许选择图片文件。
-       accept: {
-           title: 'Images',
-           extensions: 'gif,jpg,jpeg,bmp,png',
-           mimeTypes: 'image/*'
-       },
-       method:'POST',
-   });
-   // 当有文件添加进来的时候
-   uploader.on( 'fileQueued', function( file ) {  // webuploader事件.当选择文件后，文件被加载到文件队列中，触发该事件。等效于 uploader.onFileueued = function(file){...} ，类似js的事件定义。
-       var $li = $(
-               '<div id="' + file.id + '" class="file-item thumbnail">' +
-                   '<img>' +
-                   '<div class="info">' + file.name + '</div>' +
-               '</div>'
-               ),
-           $img = $li.find('img');
-
-
-       // $list为容器jQuery实例
-       $list.append( $li );
-
-       // 创建缩略图
-       // 如果为非图片文件，可以不用调用此方法。
-       // thumbnailWidth x thumbnailHeight 为 100 x 100
-       uploader.makeThumb( file, function( error, src ) {   //webuploader方法
-           if ( error ) {
-               $img.replaceWith('<span>不能预览</span>');
-               return;
-           }
-
-           $img.attr( 'src', src );
-       }, thumbnailWidth, thumbnailHeight );
-   });
-   // 文件上传过程中创建进度条实时显示。
-   uploader.on( 'uploadProgress', function( file, percentage ) {
-       var $li = $( '#'+file.id ),
-           $percent = $li.find('.progress span');
-
-       // 避免重复创建
-       if ( !$percent.length ) {
-           $percent = $('<p class="progress"><span></span></p>')
-                   .appendTo( $li )
-                   .find('span');
-       }
-
-       $percent.css( 'width', percentage * 100 + '%' );
-   });
-
-   // 文件上传成功，给item添加成功class, 用样式标记上传成功。
-   uploader.on( 'uploadSuccess', function( file ) {
-       $( '#'+file.id ).addClass('upload-state-done');
-   });
-
-   // 文件上传失败，显示上传出错。
-   uploader.on( 'uploadError', function( file ) {
-       var $li = $( '#'+file.id ),
-           $error = $li.find('div.error');
-
-       // 避免重复创建
-       if ( !$error.length ) {
-           $error = $('<div class="error"></div>').appendTo( $li );
-       }
-
-       $error.text('上传失败');
-   });
-
-   // 完成上传完了，成功或者失败，先删除进度条。
-   uploader.on( 'uploadComplete', function( file ) {
-       $( '#'+file.id ).find('.progress').remove();
-   });
-      $btn.on( 'click', function() {
-        console.log("上传...");
-        uploader.upload();
-        console.log("上传成功");
-      });
-
-
-
-      $('.btn-danger').click(function(){
-        bootbox.alert("删除成功")
-      })
-      $('.ace-checkbox-2').change(function(){
-          if($('.ace-checkbox-2').prop('checked')){
-            $('.input').prop('checked',true);
-          }else{
-            $('.input').prop('checked',false);
-          }
-       })
-
-
-  });
-
-    function goEdit(){
-        window.location.href = "brand-addbrand.html";
-      }
-    </script>
     </body>
 </html>

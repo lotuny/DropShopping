@@ -16,7 +16,7 @@ public class BrandController {
     private BrandServiceImpl brandService;
     @GetMapping("")
     public String getAllByCompanyId(Model model){
-        List<Brand> list = brandService.getAllBrand();
+        List<Brand>list = brandService.getAllBrand();
         model.addAttribute("brand",list);
         return "brand-brandInput";
     }
@@ -32,10 +32,15 @@ public class BrandController {
         return "redirect:/brand";
     }
 
-    @PostMapping("/update")
-    public String updateBrandByCompanyId(@RequestParam("updateId") Integer id, Model model){
+    @GetMapping("/update/{id}")
+    public String updateBrandByBrandId(@PathVariable("id") Integer id,Model model){
         Brand brand = brandService.getBrandById(id);
         model.addAttribute("brand",brand);
+        return "brand-updateBrand";
+    }
+    @PostMapping("/update")
+    public String modifyBrand(Brand brand){
+        brandService.updateBrandInfo(brand);
         return "redirect:/brand";
     }
 
