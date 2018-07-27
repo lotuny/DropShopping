@@ -1,4 +1,4 @@
-package com.jnucst2015.dropshopping.entity;
+package com.jnucst2015.dropshopping_test.entity;
 
 import javax.persistence.*;
 
@@ -14,7 +14,7 @@ public class Shop {
     @Column(columnDefinition = "varchar(255) COMMENT '店铺描述'")
     private String description;
     @Column(columnDefinition = "int(11) COMMENT '借卖方ID'")
-    private Integer seller_id;
+    private Integer sellerId;
 
     public Integer getId() {
         return id;
@@ -40,11 +40,11 @@ public class Shop {
         this.description = description;
     }
 
-    public Integer getSeller_id() {
-        return seller_id;
+    public Integer getSellerId() {
+        return sellerId;
     }
 
-    public void setSeller_id(Integer seller_id) {
-        this.seller_id = seller_id;
+    public void setSellerId(Integer seller_id) {
+        this.sellerId = seller_id;
     }
 }

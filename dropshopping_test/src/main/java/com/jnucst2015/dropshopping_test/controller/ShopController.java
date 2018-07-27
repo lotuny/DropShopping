@@ -1,11 +1,14 @@
-package com.jnucst2015.dropshopping_shopmgmt.controller;
+package com.jnucst2015.dropshopping_test.controller;
 
-import com.jnucst2015.dropshopping_shopmgmt.entity.Shop;
-import com.jnucst2015.dropshopping_shopmgmt.service.impl.ShopServiceImpl;
+import com.jnucst2015.dropshopping_test.entity.Shop;
+import com.jnucst2015.dropshopping_test.service.impl.ShopServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 

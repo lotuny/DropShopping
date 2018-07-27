@@ -1,7 +1,6 @@
 package com.jnucst2015.dropshopping.repository;
 
 import com.jnucst2015.dropshopping.entity.SaleInfo;
-import com.jnucst2015.dropshopping.entity.Shop;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

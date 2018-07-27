@@ -1,14 +1,12 @@
-package com.jnucst2015.dropshopping.service.impl;
+package com.jnucst2015.dropshopping_test.service.impl;
 
-
-import com.jnucst2015.dropshopping.entity.Shop;
-import com.jnucst2015.dropshopping.repository.ShopRepository;
-import com.jnucst2015.dropshopping.service.ShopService;
+import com.jnucst2015.dropshopping_test.entity.Shop;
+import com.jnucst2015.dropshopping_test.repository.ShopRepository;
+import com.jnucst2015.dropshopping_test.service.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ShopServiceImpl implements ShopService {
@@ -30,8 +28,13 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
-    public Optional<Shop> getShopBySellerID(Integer ID) {
-        return shopRepository.findById(ID);
+    public List<Shop> getShopBySellerID(Integer ID) {
+        return shopRepository.findBySellerId(ID);
+    }
+
+    @Override
+    public List<Shop> getShopByDescription(String description) {
+        return shopRepository.findByDescriptionLike("%" + description + "%");
     }
 
 

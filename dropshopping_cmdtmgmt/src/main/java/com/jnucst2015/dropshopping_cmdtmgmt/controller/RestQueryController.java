@@ -1,7 +1,6 @@
 package com.jnucst2015.dropshopping_cmdtmgmt.controller;
 
 import com.jnucst2015.dropshopping.entity.MvoCommodity;
-import com.jnucst2015.dropshopping.entity.Shop;
 import com.jnucst2015.dropshopping.repository.MvoCommodityRepository;
 import com.jnucst2015.dropshopping.repository.SaleInfoRepository;
 import com.jnucst2015.dropshopping.service.CompanyService;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
