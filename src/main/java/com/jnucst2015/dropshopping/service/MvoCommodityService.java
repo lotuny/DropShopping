@@ -52,5 +52,8 @@ public interface MvoCommodityService
      */
     void deleteByIds(String ids);
 
+    void up(Integer id);
+    void down(Integer id);
+
     List<MvoCommodity> getRecent(Integer count);
 }
