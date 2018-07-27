@@ -12,6 +12,7 @@ public interface ShopService {
     Shop getShopByID(Integer ID);
     List<Shop> getShopByName(String name);
     List<Shop> getShopBySellerID(Integer ID);
+    List<Shop> getShopByDescription(String description);
     Shop addShopInfo(Shop shop);
     void deleteByShopID(Integer ID);
     Shop updateShopInfo(Shop shop);

@@ -1,6 +1,6 @@
 package com.jnucst2015.shop_mgmt.entity;
 
-import org.hibernate.annotations.GeneratorType;
+
 
 import javax.persistence.*;
 
@@ -15,7 +15,7 @@ public class Brand {
     @Column(columnDefinition = "varchar(255) COMMENT '品牌描述'")
     private String description;
     @Column(columnDefinition = "int(11) COMMENT '品牌商ID'")
-    private Integer company_id;
+    private Integer companyId;
 
     public Integer getId() {
         return id;
@@ -41,11 +41,11 @@ public class Brand {
         this.description = description;
     }
 
-    public Integer getCompany_id() {
-        return company_id;
+    public Integer getCompanyId() {
+        return companyId;
     }
 
-    public void setCompany_id(Integer company_id) {
-        this.company_id = company_id;
+    public void setCompanyId(Integer company_id) {
+        this.companyId = company_id;
     }
 }

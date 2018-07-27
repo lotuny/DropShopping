@@ -46,41 +46,28 @@
                         <thead>
                         <tr>
                             <th>ID</th>
-                            <th>商店名</th>
-                            <th>拥有者角色</th>
-                            <th>商店描述</th>
-                            <th>持有者ID</th>
+                            <th>店铺名</th>
+                            <th>店铺描述</th>
+                            <th>借卖方ID</th>
                             <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr th:each="Shop:${shops}">
-                            <td th:text="${Shop.getShopID()}">aehyok</td>
-                            <td th:text="${Shop.getShopName()}">leo</td>
-                            <td th:text="${Shop.getShopOwnerRole()}" id="role"></td>
-                            <td th:text="${Shop.getShopDesc()}">@aehyok</td>
-                            <td th:text="${Shop.getShopOwnerID()}">@aehyok</td>
+                            <td th:text="${Shop.getId()}">aehyok</td>
+                            <td th:text="${Shop.getName()}">leo</td>
+                            <td th:text="${Shop.getDescription()}">@aehyok</td>
+                            <td th:text="${Shop.getSellerId()}">@aehyok</td>
                             <td>
-                                <a th:href="@{'update/'+${Shop.getShopID()}}">修改</a>
+                                <a th:href="@{'update/'+${Shop.getId()}}">修改</a>
                                 &nbsp;&nbsp;&nbsp;&nbsp;
-                                <a th:href="@{'delete/'+${Shop.getShopID()}}">删除</a>
+                                <a th:href="@{'delete/'+${Shop.getId()}}">删除</a>
                             </td>
                         </tr>
 
                         </tbody>
                     </table>
-                    <script>
-                        var s = document.getElementById("table");
-                        for (var i = 0;i<s.rows.length;i++) {
-                            if (s.rows[i].cells[2].innerHTML == "0") {
-                                s.rows[i].cells[2].innerHTML = "品牌商";
-                            }
-                            else if (s.rows[i].cells[2].innerHTML == "1") {
-                                s.rows[i].cells[2].innerHTML = "借卖方";
-                            }
-                        }
 
-                    </script>
                 </div>
             </div>
         </div>

@@ -30,7 +30,12 @@ public class ShopServiceImpl implements ShopService {
 
     @Override
     public List<Shop> getShopBySellerID(Integer ID) {
-        return shopRepository.findBySeller_id(ID);
+        return shopRepository.findBySellerId(ID);
+    }
+
+    @Override
+    public List<Shop> getShopByDescription(String description) {
+        return shopRepository.findByDescriptionLike("%" + description + "%");
     }
 
 
