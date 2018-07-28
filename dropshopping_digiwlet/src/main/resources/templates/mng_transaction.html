@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <link  th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+
+    <meta charset="UTF-8"/>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-offset-1 col-lg-10">
+            <div class="panel panel-primary">
+                <!-- Default panel contents -->
+                <div class="panel-heading">交易记录查看界面</div>
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>编号</th>
+                            <th>交易时间</th>
+                            <th>支付方ID</th>
+                            <th>收款方ID</th>
+                            <th>描述</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="tran:${trans}">
+                            <td th:text="${tran.getId()}"></td>
+                            <td th:text="${tran.getDate()}"></td>
+                            <td th:text="${tran.getPayer_id()}"></td>
+                            <td th:text="${tran.getRecipient_id()}"></td>
+                            <td th:text="${tran.getDescription()}"></td>
+                            <td><a th:href="@{'/updateTran/'+${tran.getId()}}">修改</a>&nbsp;&nbsp;<a th:href="@{'/deleteTran/'+${tran.getId()}}">删除</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+</div>
+
+</body>
+</html>

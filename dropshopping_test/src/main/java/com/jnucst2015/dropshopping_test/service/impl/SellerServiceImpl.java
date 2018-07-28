@@ -6,6 +6,7 @@ import com.jnucst2015.dropshopping.util.PasswordUtil;
 import com.jnucst2015.dropshopping_test.service.SellerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import redis.clients.jedis.Jedis;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -38,6 +39,7 @@ public class SellerServiceImpl implements SellerService {
     @Override
     public String sellerLogin(String username, String password, HttpSession session) {
         Seller seller = sellerRepository.findSellerByUsername(username);
+
         String pwd = seller.getPassword();
         if (pwd.equals(PasswordUtil.md5Password(password))){
             session.setAttribute("userId",seller.getId());
