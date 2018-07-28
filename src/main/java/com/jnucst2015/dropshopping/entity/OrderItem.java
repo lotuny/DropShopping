@@ -8,12 +8,10 @@ public class OrderItem {//订单中的单项
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @ManyToOne
-    @JoinColumn(name = "order_id", columnDefinition = "int(11) COMMENT '订单id'")
-    private Order order;
-    @ManyToOne
-    @JoinColumn(name = "sale_info_id", columnDefinition = "int(11) COMMENT '商品id'")
-    private SaleInfo sale_info;
+    @Column(columnDefinition = "int(11) COMMENT '订单id'")
+    private Integer order_id;
+    @Column(columnDefinition = "int(11) COMMENT '商品id'")
+    private Integer sale_info_id;
     @Column(columnDefinition = "int(11) COMMENT '数量'")
     private Integer count;
     @Column(columnDefinition = "varchar(255) COMMENT '附加信息'")
@@ -31,20 +29,20 @@ public class OrderItem {//订单中的单项
         this.id = id;
     }
 
-    public Order getOrder() {
-        return order;
+    public Integer getOrder_id() {
+        return order_id;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setOrder_id(Integer order_id) {
+        this.order_id = order_id;
     }
 
-    public SaleInfo getSale_info() {
-        return sale_info;
+    public Integer getSale_info_id() {
+        return sale_info_id;
     }
 
-    public void setSale_info(SaleInfo sale_info) {
-        this.sale_info = sale_info;
+    public void setSale_info_id(Integer sale_info_id) {
+        this.sale_info_id = sale_info_id;
     }
 
     public Integer getCount() {

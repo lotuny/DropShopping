@@ -2,10 +2,9 @@ package com.jnucst2015.dropshopping_oderMgmt.controller;
 
 
 import com.jnucst2015.dropshopping.entity.OrderItem;
+import com.jnucst2015.dropshopping_oderMgmt.vo.OrderItemVo;
 import com.jnucst2015.dropshopping_oderMgmt.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,12 +28,12 @@ public class OrderRestController {
     }
 
     @GetMapping
-    public List<OrderItem> getOrderItemInfos() {
-        List<OrderItem> orderItems = orderService.showOrderItems();
+    public List<OrderItemVo> getOrderItemInfos() {
+        List<OrderItemVo> orderItemVos = orderService.showOrderItems();
 
 
 
-        return orderItems;
+        return orderItemVos;
     }
 
 

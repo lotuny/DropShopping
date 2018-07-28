@@ -1,76 +1,58 @@
 package com.jnucst2015.dropshopping_shopmgmt.controller;
 
-import com.jnucst2015.dropshopping.entity.Shop;
-import com.jnucst2015.dropshopping.service.impl.ShopServiceImpl;
+import com.jnucst2015.dropshopping_shopmgmt.entity.Shop;
+import com.jnucst2015.dropshopping_shopmgmt.service.impl.ShopServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
-@RequestMapping
+@RequestMapping("/shop")
 public class ShopController {
 
     @Autowired
     private ShopServiceImpl shopService;
 
+
+
     @GetMapping("")
-    public String getAllShop(Model model){
+    public String getAllShop( Model model){
         List<Shop> list = shopService.getAllShop();
         model.addAttribute("shops",list);
-
-        return "index";
-    }
-
-    @PostMapping("/findByDifferentType")
-    public String findPage(@RequestParam("searchText") String text,@RequestParam("type")Integer type,Model model){
-        if(type==1){
-            List<Shop> list = shopService.getShopByName(text);
-            model.addAttribute("shops",list);
-        }
-        else if(type==3){
-            Optional<Shop> list = shopService.getShopBySellerID(Integer.valueOf(text));
-            model.addAttribute("shops",list);
-        }
-        return "findByDifferentType";
-    }
-
-
-    @PostMapping("/back")
-    public String back(){
-        return "redirect:/";
-    }
-    @GetMapping("addShop")
-    public String addPage(){
-        return "addShop";
+        return "shop-shopInput";
     }
 
     @PostMapping("/addShop")
-    public String addShop(Shop shop){
-        shopService.addShopInfo(shop);
-        return "redirect:/";
+    public String addBrandByCompanyId(Integer companyId,Shop brand){
+        brand.setSellerId(1);
+        shopService.addShopInfo(brand);
+        return "redirect:/shop";
     }
-
     @GetMapping("/delete/{id}")
-    public String deleteShop(@PathVariable("id")Integer ID){
+    public String deleteByBrandID(@PathVariable("id")Integer ID){
         shopService.deleteByShopID(ID);
-        return "redirect:/";
+        return "redirect:/shop";
     }
 
     @GetMapping("/update/{id}")
-    public String updateShop(@PathVariable("id")Integer ID,Model model){
-        Shop shop=shopService.getShopByID(ID);
+    public String updateBrandByBrandId(@PathVariable("id") Integer id,Model model){
+        Shop shop = shopService.getShopByID(id);
         model.addAttribute("shop",shop);
-        return "updateShop";
+        return "shop-updateShop";
     }
-
     @PostMapping("/update")
-    public String modifyShop(Shop shop){
+    public String modifyBrand(Shop shop){
         shopService.updateShopInfo(shop);
-        return "redirect:/";
+        return "redirect:/shop";
+    }
+    @GetMapping("Mg")
+    public String getAllShopBySellerId(Integer Id,Model model){
+        List<Shop> list = shopService.getShopBySellerID(Id);
+        model.addAttribute("shops",list);
+        return "brand-brandMg";
     }
 
 }

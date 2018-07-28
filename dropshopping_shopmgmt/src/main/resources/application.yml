@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://ns2.geno1024.com:3306/jnucst2015?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: jnucst2015
+    password: jnucst2015
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+server:
+  port: 8080

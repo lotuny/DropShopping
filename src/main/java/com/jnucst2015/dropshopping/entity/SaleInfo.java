@@ -42,6 +42,19 @@ public class SaleInfo {
 
     public SaleInfo(){}
 
+    public SaleInfo(Integer mvoCmdtId, Integer shopId, Integer sellerId, String name, String image, Integer price, Integer quantity, String description, Integer state, Integer companyId) {
+        this.mvoCmdtId = mvoCmdtId;
+        this.shopId = shopId;
+        this.sellerId = sellerId;
+        this.name = name;
+        this.image = image;
+        this.price = price;
+        this.quantity = quantity;
+        this.description = description;
+        this.state = state;
+        this.companyId = companyId;
+    }
+
     public Integer getCompanyId() {
         return companyId;
     }

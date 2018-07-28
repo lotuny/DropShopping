@@ -24,7 +24,7 @@
                 $("#infobar").show();
             }
 
-            $.getJSON("http://localhost:8080/cmdt/getAll", function (json) {
+            $.getJSON("http://localhost:8081/commodity/getAll", function (json) {
                 for (var i = 0; i < json.length; i++) {
                     var cmList = document.getElementById("commodityView");
                     cmList.innerHTML +=
@@ -34,18 +34,21 @@
                         "    <div class='caption'>" +
                         "        <h4>" + json[i].name + "</h4>" +
                         "        <p style='color:red;'>" + json[i].description + "</p>" +
-                        "<p>当前剩余" + json[i].quantity + "件</p>" +
-                        "<p>价格" + json[i].price + "</p>" +
+                        "<p>当前剩余 " + json[i].quantity + " 件</p>" +
+                        "<p>价格 " + json[i].price + " 元</p>" +
                         "        <button class='btn btn-primary' onclick='showDia(this)'>上架</button>" +
                         "<p style='display: none'>" + json[i].id + "</p>" +
                         "<p style='display: none'>" + json[i].classification + "</p>" +
                         "<p style='display: none'>" + json[i].shop_id + "</p>" +
                         "<p style='display: none'>" + json[i].state + "</p>" +
+                        "<p style='display: none'>" + json[i].companyId + "</p>" +
                         "        </div>" +
                         "    </div>" +
                         " </div>";
                 }
             });
+
+            $.getJSON("http://loaclhost:8082/")
 
             $("#dialog-form").dialog({
                 resizable: false,
@@ -71,6 +74,7 @@
             $("#diName").val(nodes[1].innerHTML.toString());
             $("#diDesc").val(nodes[3].innerHTML.toString());
             $("#diCmdtId").val(nodes[8].innerHTML.toString());
+            $("#diCompanyId").val(nodes[10].innerHTML.toString());
             $("#dialog-form").dialog("open");
         };
     </script>
@@ -111,18 +115,21 @@
                     </ul>
 
                     <ul id="infobar" class="nav navbar-nav navbar-right" style="display: none">
-                        <li class="dropdown">
+                        <li class="dropdown" >
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 我的商城
                                 <b class="caret"></b>
                             </a>
+
                             <ul class="dropdown-menu" th:switch="${session.role}">
-                                <li th:case="'seller'"><a href="/background/index/1">我的信息</a></li>
-                                <li th:case="'company'"><a href="/background/index/0">公司信息</a></li>
+                                <li th:case="'seller'"><a href="user/seller/info">我的信息</a>
+                                <a th:href="@{'http://localhost:8081/saleinfo/list/' + ${session.userId}}">店铺信息</a> </li>
+                                <li th:case="'company'"><a href="user/company/info">公司信息</a></li>
                                 <li class="divider">
                                 <li><a href="/user/exit">退出</a></li>
                                 </li>
                             </ul>
+
                         </li>
                     </ul>
 
@@ -158,16 +165,27 @@
 
 <div id="dialog-form" title="商品上架">
     <p class="validateTips">所有的表单字段都是必填的。</p>
-    <form class="form-horizontal" role="form" action="http://localhost:8080/commodity/onsale" method="post"
-          autocomplete="off">
+    <form class="form-horizontal" role="form" action="http://localhost:8081/commodity/onsale" method="post"
+          autocomplete="off" enctype="multipart/form-data">
         <div class="form-group">
             <div class="col-sm-1"></div>
             <h3 class="col-sm-4" style="font-weight: bolder">商品上架</h3>
             <input type="text" name="mvoCmdtId" id="diCmdtId" style="display: none" value="">
             <input type="text" name="shopId" style="display: none" value="">
             <input type="text" name="sellerId" style="display: none" th:value="${session.userId}">
-            <input type="text" nama="companyId" style="display: none" value="">
+            <input type="text" nama="companyId" id="diCompanyId" style="display: none" value="">
+            <input type="text" name="state" style="display: none" value="1">
         </div>
+
+        <div class="form-group">
+            <div class="col-sm-1"></div>
+            <label for="diImage" class="col-sm-3 control-label">商品图片</label>
+            <div class="col-sm-6">
+                <input type="file" name="image" class="form-control" id="diImage" placeholder="设置商品名称">
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
+
         <div class="form-group">
             <div class="col-sm-1"></div>
             <label for="diName" class="col-sm-3 control-label">商品名称</label>
