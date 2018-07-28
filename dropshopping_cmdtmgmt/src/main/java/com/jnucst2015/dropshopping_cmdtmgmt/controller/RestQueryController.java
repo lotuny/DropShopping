@@ -3,7 +3,7 @@ package com.jnucst2015.dropshopping_cmdtmgmt.controller;
 import com.jnucst2015.dropshopping.entity.MvoCommodity;
 import com.jnucst2015.dropshopping.repository.MvoCommodityRepository;
 import com.jnucst2015.dropshopping.repository.SaleInfoRepository;
-import com.jnucst2015.dropshopping.service.CompanyService;
+import com.jnucst2015.dropshopping_cmdtmgmt.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

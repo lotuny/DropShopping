@@ -2,8 +2,8 @@ package com.jnucst2015.dropshopping_test.controller;
 
 
 import com.jnucst2015.dropshopping.entity.OrderItem;
-import com.jnucst2015.dropshopping.service.OrderService;
-import com.jnucst2015.dropshopping.vo.OrderItemVo;
+import com.jnucst2015.dropshopping_test.service.OrderService;
+import com.jnucst2015.dropshopping_test.vo.OrderItemVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

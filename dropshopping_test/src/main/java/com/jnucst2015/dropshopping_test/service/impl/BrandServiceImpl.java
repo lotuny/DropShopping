@@ -1,7 +1,7 @@
 package com.jnucst2015.dropshopping_test.service.impl;
 
-import com.jnucst2015.dropshopping_test.entity.Brand;
-import com.jnucst2015.dropshopping_test.repository.BrandRepository;
+import com.jnucst2015.dropshopping.entity.Brand;
+import com.jnucst2015.dropshopping.repository.BrandRepository;
 import com.jnucst2015.dropshopping_test.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,8 +1,7 @@
 package com.jnucst2015.dropshopping_cmdtmgmt.controller;
 
 import com.jnucst2015.dropshopping.entity.MvoCommodity;
-import com.jnucst2015.dropshopping.service.MvoCommodityService;
-import com.jnucst2015.dropshopping.util.PasswordUtil;
+import com.jnucst2015.dropshopping_cmdtmgmt.service.MvoCommodityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;

@@ -1,7 +1,7 @@
 package com.jnucst2015.dropshopping_test.service.impl;
 
-import com.jnucst2015.dropshopping_test.entity.Shop;
-import com.jnucst2015.dropshopping_test.repository.ShopRepository;
+import com.jnucst2015.dropshopping.entity.Shop;
+import com.jnucst2015.dropshopping.repository.ShopRepository;
 import com.jnucst2015.dropshopping_test.service.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,19 +37,18 @@ public class ShopServiceImpl implements ShopService {
         return shopRepository.findByDescriptionLike("%" + description + "%");
     }
 
-
     @Override
     public Shop addShopInfo(Shop shop) {
-        return shopRepository.save(shop);
+        return null;
     }
 
     @Override
     public void deleteByShopID(Integer ID) {
-        shopRepository.deleteById(ID);
+
     }
 
     @Override
     public Shop updateShopInfo(Shop shop) {
-        return shopRepository.save(shop);
+        return null;
     }
 }

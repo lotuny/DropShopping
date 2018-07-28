@@ -1,12 +1,11 @@
 package com.jnucst2015.dropshopping_roleMgmt.controller;
 
 import com.jnucst2015.dropshopping.entity.Company;
-import com.jnucst2015.dropshopping.entity.SaleInfo;
 import com.jnucst2015.dropshopping.entity.Seller;
 import com.jnucst2015.dropshopping.entity.User;
-import com.jnucst2015.dropshopping.service.CompanyService;
-import com.jnucst2015.dropshopping.service.SaleInfoService;
-import com.jnucst2015.dropshopping.service.SellerService;
+import com.jnucst2015.dropshopping_roleMgmt.service.CompanyService;
+import com.jnucst2015.dropshopping_roleMgmt.service.SaleInfoService;
+import com.jnucst2015.dropshopping_roleMgmt.service.SellerService;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

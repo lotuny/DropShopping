@@ -1,6 +1,6 @@
 package com.jnucst2015.dropshopping_test.service;
 
-import com.jnucst2015.dropshopping_test.entity.Shop;
+import com.jnucst2015.dropshopping.entity.Shop;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
