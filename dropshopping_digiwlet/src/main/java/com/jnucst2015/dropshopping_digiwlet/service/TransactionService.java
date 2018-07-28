@@ -15,8 +15,4 @@ public interface TransactionService {
     void deleteByID(Integer id);
 
     Transaction addTransaction(Transaction transaction);
-
-    Transaction addTransaction(Integer payer_id, Integer recipient_id, Integer price);
-
-    Transaction addTransaction();
 }

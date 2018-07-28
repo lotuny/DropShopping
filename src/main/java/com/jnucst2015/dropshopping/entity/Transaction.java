@@ -25,6 +25,23 @@ public class Transaction {
     @Column(columnDefinition = "INT(11) COMMENT '交易金额'")
     private int price;
 
+    public Transaction(Integer payer_id, Integer payer_role, Integer recipient_role, Integer recipient_id, int price) {
+        this.payer_id = payer_id;
+        this.payer_role = payer_role;
+        this.recipient_role = recipient_role;
+        this.recipient_id = recipient_id;
+        this.price = price;
+    }
+
+    public Transaction(Integer payer_id, Integer payer_role, Integer recipient_role, Integer recipient_id, String description, int price) {
+        this.payer_id = payer_id;
+        this.payer_role = payer_role;
+        this.recipient_role = recipient_role;
+        this.recipient_id = recipient_id;
+        this.description = description;
+        this.price = price;
+    }
+
     public Integer getPayer_role() {
         return payer_role;
     }

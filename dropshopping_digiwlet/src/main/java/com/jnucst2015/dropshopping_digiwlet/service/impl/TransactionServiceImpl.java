@@ -2,7 +2,7 @@ package com.jnucst2015.dropshopping_digiwlet.service.impl;
 
 import com.jnucst2015.dropshopping.entity.Transaction;
 import com.jnucst2015.dropshopping.repository.TransactionRepository;
-import com.jnucst2015.dropshopping.service.TransactionService;
+import com.jnucst2015.dropshopping_digiwlet.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,13 +43,4 @@ public class TransactionServiceImpl implements TransactionService {
         return transactionRepository.save(transaction);
     }
 
-    @Override
-    public Transaction addTransaction(Integer payer_id, Integer recipient_id, Integer price) {
-        return null;
-    }
-
-    @Override
-    public Transaction addTransaction() {
-        return null;
-    }
 }

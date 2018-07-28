@@ -1,10 +1,115 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="/js/jquery-1.9.1.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-responsive.min.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/ace.min.css">
+    <link rel="stylesheet" href="/css/ace-skins.min.css">
+    <link rel="stylesheet" href="/css/ace-responsive.min.css">
 </head>
 <body>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <form role="form">
+                <div class="form-group">
+                    <label for="balance">账户余额</label><label th:text="'¥'+${balance}" class="form-control" id="balance"></label>
+                </div>
+                <button class="btn btn-default"><a id="modal-40655" href="#modal-container-40655" role="button" class="btn" data-toggle="modal">充值</a></button>
 
+                <div class="modal fade" id="modal-container-40655" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h4 class="modal-title" id="myModalLabel">
+                                    充值操作
+                                </h4>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form-horizontal" role="form" method="post" th:action="@{/background/addClass}">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">充值金额：</label>
+                                        <div class="col-sm-5">
+                                            <input type="text" name="num" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">支付密码：</label>
+                                        <div class="col-sm-5">
+                                            <input type="text" name="pay_pwd" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="col-sm-offset-2">确定</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <button class="btn btn-default"><a id="modal-4065" href="#modal-container-40655" role="button" class="btn" data-toggle="modal">提现</a></button>
+
+                <div class="modal fade" id="modal-container-4065" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h4 class="modal-title" id="myModalLabel2">
+                                    提现操作
+                                </h4>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form-horizontal" role="form" method="post" th:action="@{/background/addClass}">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">提现金额：</label>
+                                        <div class="col-sm-5">
+                                            <input type="text" name="first_class" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">支付密码：</label>
+                                        <div class="col-sm-5">
+                                            <input type="text" name="second_class" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="col-sm-offset-2">确定</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+
+
+    <div class="btn-group">
+        <button class="btn btn-default">Action</button> <button data-toggle="dropdown" class="btn btn-default dropdown-toggle"><span class="caret"></span></button>
+        <ul class="dropdown-menu">
+            <li>
+                <a href="#">支出</a>
+            </li>
+            <li class="disabled">
+                <a href="#">收入</a>
+            </li>
+            <li class="divider"></li>
+        </ul>
+    </div>
+</div>
 </body>
 </html>
