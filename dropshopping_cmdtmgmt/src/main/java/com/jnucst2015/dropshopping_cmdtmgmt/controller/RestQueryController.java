@@ -47,12 +47,12 @@ public class RestQueryController {
 //        }
 //
 //    }
-
+/*
     @GetMapping("/shop/{sellerId}")
     public List<Map<String, Object>> getShops(@PathVariable("sellerId") Integer sellerId){
         return saleInfoRepository.query(sellerId);
     }
 
-
+*/
 
 }

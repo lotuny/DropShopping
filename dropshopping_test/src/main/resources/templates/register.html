@@ -11,58 +11,8 @@
     <title>Document</title>
 </head>
 <body>
-<nav class="navbar navbar-fixed-top my-navbar" role="navigation" style="font-weight: bold;">
-    <div class="container-fluid">
-        <div class="row-fluid">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse"
-                            data-target="#example-navbar-collapse">
-                        <span class="sr-only">切换导航</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#" style="font-size: 1.6em">借卖商城</a>
-                </div>
 
-                <div class="collapse navbar-collapse" id="example-navbar-collapse" style="font-size: 1.1em">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">首页</a></li>
-                        <li><a href="#">跳转1</a></li>
-                        <li>
-                            <a href="#">跳转2</a>
-                        </li>
-                    </ul>
-
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
-                    </ul>
-
-                    <form class="navbar-form navbar-right">
-                        <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-addon">
-                                    <i class="glyphicon glyphicon-search"></i>
-                                </div>
-                                <input type="text" class="form-control" placeholder="请输入想搜索的商品"/>
-                            </div>
-
-                        </div>
-                        <button type="button" class="btn btn-danger">搜索</button>
-                    </form>
-
-
-                </div>
-
-
-            </div>
-            <div class="col-md-2"></div>
-        </div>
-    </div>
-</nav>
+<nav th:include="/nav :: navigation" class="navbar navbar-fixed-top my-navbar" role="navigation" style="font-weight: bold;" ></nav>
 
 <div class="container" style="margin-top: 100px;">
     <h3 style="font-weight: bold;text-align: center">用户注册</h3>
