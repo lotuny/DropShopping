@@ -18,13 +18,13 @@ public interface OrderItemRepository extends JpaRepository<OrderItem,Integer> {
     @Query(value = "select * from order_item join sale_info on order_item.sale_info_id = sale_info.id where order_item.id=?1", nativeQuery = true)
     public OrderItem selectByOrderItemId(@Param("order_item.id")int orderItemId);
 
-    @Modifying
-    @Transactional
-    @Query(value = "INSERT INTO transaction VALUES ('0', '324', '234', '32', '432', '432', '432');",nativeQuery = true)
+    @Query(value = "select * from order_item ", nativeQuery = true)
     public List<OrderItem> selectAllOrderItems();
 
+    List<OrderItem> findAllByStateBefore(Integer integer);
 
-
+    @Modifying
+    @Transactional
     @Query(value = "update order_item set state = 4 where id = ?1",nativeQuery = true)
     void setOrderItemDelete(Integer orderItemId);
 

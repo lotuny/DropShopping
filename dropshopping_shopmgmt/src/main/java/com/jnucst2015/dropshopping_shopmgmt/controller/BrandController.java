@@ -1,6 +1,6 @@
 package com.jnucst2015.dropshopping_shopmgmt.controller;
 
-import com.jnucst2015.dropshopping_shopmgmt.entity.Brand;
+import com.jnucst2015.dropshopping.entity.Brand;
 import com.jnucst2015.dropshopping_shopmgmt.service.impl.BrandServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +16,7 @@ public class BrandController {
     private BrandServiceImpl brandService;
     @GetMapping("")
     public String getAllByCompanyId(Model model){
-        List<Brand>list = brandService.getAllBrand();
+        List<Brand> list = brandService.getAllBrand();
         model.addAttribute("brand",list);
         return "brand-brandInput";
     }
