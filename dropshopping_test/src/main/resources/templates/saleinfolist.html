@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -9,11 +9,16 @@
 </head>
 
 <script th:inline="javascript">
-    $(function () {
-        $("#updateModal").on('show.bs.modal',function () {
-            console.log("test log")
-        })
-    })
+
+    function outModal(name,description,price,saleInfoId) {
+        $("#inputName").val(name.toString());
+        $("#inputDescription").val(description.toString());
+        $("#inputPrice").val(price.toString());
+        $("#inputSaleInfoId").val(saleInfoId.toString());
+        $("#updateModal").modal("show");
+    }
+    
+    
 </script>
 
 <body>
@@ -57,7 +62,7 @@
                                 <a th:case="'1'" th:href="@{'/saleinfo/desale/' + ${SaleInfo.id}}">下架</a>
                                 <a th:case="'0'" th:href="@{'/saleinfo/onsaleAgain/' + ${SaleInfo.id}}">上架</a>
                                 &nbsp;&nbsp;&nbsp;&nbsp;
-                                <button data-toggle="modal" data-target="#updateModal" >修改</button>
+                                <button data-toggle="modal" th:onclick="'javascrpit:outModal(' + '&quot;' +${SaleInfo.name} + '&quot;,&quot;' + ${SaleInfo.description} + '&quot;,&quot' + ${SaleInfo.price} + '&quot;,&quot' + ${SaleInfo.id} + '&quot;' + ')'">修改</button>
                                 &nbsp;&nbsp;&nbsp;&nbsp;
                                 <a th:href="@{'delete/'+ ${SaleInfo.id}}">删除</a>
                             </td>
@@ -79,7 +84,7 @@
 
                                         <div class="control-group" style="display: none">
                                             <div class="controls">
-                                                <input type="text" name="sellerId" value="1" >
+                                                <input type="text" id="inputSaleInfoId" name="saleInfoId" value="">
                                             </div>
                                         </div>
 
@@ -93,7 +98,7 @@
                                         <div class="control-group">
                                             <label class="control-label" for="inputName" >商品名称</label>
                                             <div class="controls">
-                                                <input type="text"id="inputName" name="name" >
+                                                <input type="text" id="inputName" name="name" >
                                             </div>
                                         </div>
 

@@ -48,8 +48,8 @@ public class SaleInfoServiceImpl implements SaleInfoService {
     }
 
     @Override
-    public void updateSaleInfo(String name, String descrpition, Integer price, Integer id, Integer commodityId) {
-        saleInfoRepository.updateSaleInfo(name,descrpition,price,id, commodityId);
+    public void updateSaleInfo(String name, String descrpition, Integer price, Integer saleInfoId) {
+        saleInfoRepository.updateSaleInfo(name,descrpition,price, saleInfoId);
     }
 
     @Override
