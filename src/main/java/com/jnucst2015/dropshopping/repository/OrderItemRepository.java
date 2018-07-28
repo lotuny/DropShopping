@@ -27,4 +27,6 @@ public interface OrderItemRepository extends JpaRepository<OrderItem,Integer> {
     @Transactional
     @Query(value = "update order_item set state = 4 where id = ?1",nativeQuery = true)
     void setOrderItemDelete(Integer orderItemId);
+
+
 }
