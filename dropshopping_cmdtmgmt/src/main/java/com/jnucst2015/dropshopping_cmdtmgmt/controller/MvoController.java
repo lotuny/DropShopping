@@ -2,12 +2,10 @@ package com.jnucst2015.dropshopping_cmdtmgmt.controller;
 
 import com.jnucst2015.dropshopping.entity.MvoCommodity;
 import com.jnucst2015.dropshopping.service.MvoCommodityService;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -46,12 +44,13 @@ public class MvoController
         model.addAttribute("company_id", 0);
         return "onsale";
     }
-/*
-    @GetMapping("/upload/{file}")
-    private String getImage(@PathVariable("file") String file)
+
+    @GetMapping("/detail")
+    private String getDetail(Model model, @RequestParam("id") Integer id)
     {
-        return "redirect:upload/" + file;
-    }*/
+        model.addAttribute("commodity", service.getById(id));
+        return "detail";
+    }
 
     @PostMapping("/addMvo")
     private String addOne(
