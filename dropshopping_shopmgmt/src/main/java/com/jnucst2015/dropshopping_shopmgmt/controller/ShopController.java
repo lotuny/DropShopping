@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -19,40 +20,37 @@ public class ShopController {
 
 
     @GetMapping("")
-    public String getAllShop( Model model){
-        List<Shop> list = shopService.getAllShop();
+    public String getAllShop(HttpSession session, Model model){
+        Integer sellerId = (Integer) session.getAttribute("userId");
+        List<Shop> list = shopService.getShopBySellerID(sellerId);
         model.addAttribute("shops",list);
         return "shop-shopInput";
     }
 
     @PostMapping("/addShop")
-    public String addBrandByCompanyId(Integer companyId,Shop brand){
+    public String addShopByCompanyId(HttpSession session,Shop brand){
+        Integer sellerId = (Integer) session.getAttribute("userId");
         brand.setSellerId(1);
         shopService.addShopInfo(brand);
         return "redirect:/shop";
     }
     @GetMapping("/delete/{id}")
-    public String deleteByBrandID(@PathVariable("id")Integer ID){
+    public String deleteByShopID(@PathVariable("id")Integer ID){
         shopService.deleteByShopID(ID);
         return "redirect:/shop";
     }
 
     @GetMapping("/update/{id}")
-    public String updateBrandByBrandId(@PathVariable("id") Integer id,Model model){
+    public String updateShopByBrandId(@PathVariable("id") Integer id,Model model){
         Shop shop = shopService.getShopByID(id);
         model.addAttribute("shop",shop);
         return "shop-updateShop";
     }
     @PostMapping("/update")
-    public String modifyBrand(Shop shop){
+    public String modifyShop(Shop shop){
         shopService.updateShopInfo(shop);
         return "redirect:/shop";
     }
-    @GetMapping("Mg")
-    public String getAllShopBySellerId(Integer Id,Model model){
-        List<Shop> list = shopService.getShopBySellerID(Id);
-        model.addAttribute("shops",list);
-        return "brand-brandMg";
-    }
+
 
 }

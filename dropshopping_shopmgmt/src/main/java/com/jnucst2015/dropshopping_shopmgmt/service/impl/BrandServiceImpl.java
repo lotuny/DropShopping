@@ -48,7 +48,17 @@ public class BrandServiceImpl implements BrandService {
     }
 
     @Override
+    public void deleteByCompanyId(Integer id) {
+        brandRepository.deleteBrandByCompanyId(id);
+    }
+
+    @Override
     public Brand updateBrandInfo(Brand brand) {
         return brandRepository.save(brand);
+    }
+
+    @Override
+    public List<Brand> getGroupByCompanyId() {
+        return brandRepository.findGroupByCompanyId();
     }
 }

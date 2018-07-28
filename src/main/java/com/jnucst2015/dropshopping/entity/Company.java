@@ -1,9 +1,7 @@
 package com.jnucst2015.dropshopping.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Company extends User{
@@ -15,6 +13,7 @@ public class Company extends User{
     private String name;
     private String description;
     private Integer balance;
+
 
     public Company(){}
 

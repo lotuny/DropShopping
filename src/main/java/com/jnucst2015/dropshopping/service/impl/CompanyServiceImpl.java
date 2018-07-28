@@ -8,13 +8,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Service
 public class CompanyServiceImpl implements CompanyService {
 
     @Autowired
     private CompanyRepository companyRepository;
+    //new
+    @Override
+    public Company getCompanyById(Integer Id) {
+        return companyRepository.findById(Id).get();
+    }
 
+    @Override
+    public List<Company> getAllCompany() {
+        return companyRepository.findAll();
+    }
+//
     @Override
     public String companyRegister(Company company) {
         String plainPwd = company.getPassword();

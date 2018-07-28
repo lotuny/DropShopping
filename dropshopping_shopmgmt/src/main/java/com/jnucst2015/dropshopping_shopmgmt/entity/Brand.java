@@ -1,5 +1,7 @@
 package com.jnucst2015.dropshopping_shopmgmt.entity;
 
+import com.jnucst2015.dropshopping.entity.Company;
+
 import javax.persistence.*;
 
 @Entity
