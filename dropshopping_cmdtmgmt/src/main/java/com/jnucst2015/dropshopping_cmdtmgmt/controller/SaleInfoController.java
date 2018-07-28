@@ -57,10 +57,12 @@ public class SaleInfoController {
     public String update(@RequestParam("name") String name,
                          @RequestParam("description") String description,
                          @RequestParam("price") Integer price,
-                         @RequestParam("sellerId") Integer id
+                         @RequestParam("sellerId") Integer id,
+                         @RequestParam("commodityId") Integer commodityID,
+                         HttpSession session
     ) {
-        saleInfoService.updateSaleInfo(name,description,price,id);
-        return "saleinfolist";
+        saleInfoService.updateSaleInfo(name,description,price,id,commodityID);
+        return "redirect:/saleinfo/list/" + session.getAttribute("userId");
     }
 
     @GetMapping("/saleinfo/list/{sellerId}")

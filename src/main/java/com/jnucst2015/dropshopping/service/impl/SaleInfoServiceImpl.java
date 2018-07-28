@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class SaleInfoServiceImpl implements SaleInfoService {
@@ -47,12 +48,17 @@ public class SaleInfoServiceImpl implements SaleInfoService {
     }
 
     @Override
-    public void updateSaleInfo(String name, String descrpition, Integer price, Integer id) {
-        saleInfoRepository.updateSaleInfo(name,descrpition,price,id);
+    public void updateSaleInfo(String name, String descrpition, Integer price, Integer id, Integer commodityId) {
+        saleInfoRepository.updateSaleInfo(name,descrpition,price,id, commodityId);
     }
 
     @Override
     public void onsaleSaleInfoAgain(int id) {
         saleInfoRepository.onSale(id);
+    }
+
+    @Override
+    public List<Map<String, Object>> getShopList(Integer sellerId) {
+        return saleInfoRepository.queryShopList(sellerId);
     }
 }

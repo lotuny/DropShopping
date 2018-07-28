@@ -3,6 +3,7 @@ package com.jnucst2015.dropshopping.service;
 import com.jnucst2015.dropshopping.entity.SaleInfo;
 
 import java.util.List;
+import java.util.Map;
 
 public interface SaleInfoService {
 
@@ -30,8 +31,10 @@ public interface SaleInfoService {
 
     void updateSaleInfo(SaleInfo saleInfo);
 
-    void updateSaleInfo(String name, String descrpition, Integer price, Integer id);
+    void updateSaleInfo(String name, String descrpition, Integer price, Integer id, Integer commodityId);
 
     void onsaleSaleInfoAgain(int id);
+
+    List<Map<String, Object>> getShopList(Integer sellerId);
 
 }

@@ -16,6 +16,7 @@
     <script th:inline="javascript">
         $(function () {
             var username = [[${session.username}]];
+            var userId = [[${session.userId}]];
             var role = [[${session.role}]];
 
             if (username == undefined || username == null || username == "") {
@@ -41,14 +42,22 @@
                         "<p style='display: none'>" + json[i].classification + "</p>" +
                         "<p style='display: none'>" + json[i].shop_id + "</p>" +
                         "<p style='display: none'>" + json[i].state + "</p>" +
-                        "<p style='display: none'>" + json[i].companyId + "</p>" +
+                        "<p style='display: none'>" + json[i].company_id + "</p>" +
                         "        </div>" +
                         "    </div>" +
                         " </div>";
                 }
             });
 
-            $.getJSON("http://loaclhost:8082/")
+            $.getJSON("http://localhost:8080/shop.list/" + userId, function (json) {
+                console.log("tetetetetetete")
+                console.log(json);
+                for (var i=0; i < json.length; i++){
+                    var optionList = document.getElementById("diShop");
+                    optionList.innerHTML +=
+                        "<option value='"+ json[i].id + "'>" + json[i].name + "</option>";
+                }
+            });
 
             $("#dialog-form").dialog({
                 resizable: false,
@@ -74,9 +83,10 @@
             $("#diName").val(nodes[1].innerHTML.toString());
             $("#diDesc").val(nodes[3].innerHTML.toString());
             $("#diCmdtId").val(nodes[8].innerHTML.toString());
-            $("#diCompanyId").val(nodes[10].innerHTML.toString());
+            $("#diCompanyId").val(nodes[12].innerHTML.toString());
             $("#dialog-form").dialog("open");
         };
+
     </script>
 </head>
 <body>
@@ -121,9 +131,9 @@
                                 <b class="caret"></b>
                             </a>
 
-                            <ul class="dropdown-menu" th:switch="${session.role}">
+                            <ul class="dropdown-menu" th:switch="${session.role}" style="background-color: orangered">
                                 <li th:case="'seller'"><a th:href="@{'background/1'}">我的信息</a>
-                                <a th:href="@{'http://localhost:8081/saleinfo/list/' + ${session.userId}}">店铺信息</a> </li>
+                                <a th:href="@{'http://localhost:8080/saleinfo/list/' + ${session.userId}}">店铺信息</a> </li>
                                 <li th:case="'company'"><a th:href="@{'background/0'}">公司信息</a></li>
                                 <li class="divider">
                                 <li><a href="/user/exit">退出</a></li>
@@ -165,16 +175,15 @@
 
 <div id="dialog-form" title="商品上架">
     <p class="validateTips">所有的表单字段都是必填的。</p>
-    <form class="form-horizontal" role="form" action="http://localhost:8081/commodity/onsale" method="post"
+    <form class="form-horizontal" role="form" action="http://localhost:8080/onsale/commodity/onsale" method="post"
           autocomplete="off" enctype="multipart/form-data">
         <div class="form-group">
             <div class="col-sm-1"></div>
             <h3 class="col-sm-4" style="font-weight: bolder">商品上架</h3>
             <input type="text" name="mvoCmdtId" id="diCmdtId" style="display: none" value="">
-            <input type="text" name="shopId" style="display: none" value="">
             <input type="text" name="sellerId" style="display: none" th:value="${session.userId}">
-            <input type="text" nama="companyId" id="diCompanyId" style="display: none" value="">
             <input type="text" name="state" style="display: none" value="1">
+            <input type="text" name="companyId" id="diCompanyId" style="display: none" value="12">
         </div>
 
         <div class="form-group">
@@ -218,6 +227,17 @@
             <label for="diQuantity" class="col-sm-3 control-label">商品数量</label>
             <div class="col-sm-6">
                 <input type="text" name="quantity" class="form-control" id="diQuantity" placeholder="设置商品描述">
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-1"></div>
+            <label for="diShop" class="col-sm-3 control-label">上架店铺</label>
+            <div class="col-sm-6">
+                <select name="shopId" class="form-control" id="diShop" placeholder="选择上架的店铺">
+
+                </select>
             </div>
             <div class="col-sm-2"></div>
         </div>

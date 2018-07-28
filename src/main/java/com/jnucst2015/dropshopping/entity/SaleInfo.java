@@ -19,7 +19,7 @@ public class SaleInfo {
     @Column(columnDefinition = "INT(11) COMMENT '借卖方ID'")
     private Integer sellerId;
 
-    @Column(columnDefinition = "VARCHAR(11) COMMENT '商品名字'")
+    @Column(columnDefinition = "VARCHAR(255) COMMENT '商品名字'")
     private String name;
 
     @Column(columnDefinition = "VARCHAR(255) COMMENT '商品图片'")
