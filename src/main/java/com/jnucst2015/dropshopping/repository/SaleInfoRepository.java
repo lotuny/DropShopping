@@ -32,7 +32,7 @@ public interface SaleInfoRepository extends JpaRepository<SaleInfo, Integer> {
 
     @Transactional
     @Modifying(clearAutomatically = true)
-    @Query(value = "UPDATE sale_info SET name = ?1, description = ?2, price = ?3 WHERE seller_id = ?4 AND mvo_cmdt_id = ?5",nativeQuery = true)
-    void updateSaleInfo(String name, String description, Integer price, Integer id, Integer commodityId);
+    @Query(value = "UPDATE sale_info SET name = ?1, description = ?2, price = ?3 WHERE id=?4",nativeQuery = true)
+    void updateSaleInfo(String name, String description, Integer price, Integer saleInfoId);
 
 }
