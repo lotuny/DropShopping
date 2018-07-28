@@ -19,10 +19,12 @@
     </parent>
 
     <modules>
-        <module>dropshopping_bvo</module>
-        <module>dropshopping_mvo</module>
-        <module>dropshopping_uam</module>
+        <module>dropshopping_cmdtmgmt</module>
         <module>dropshopping_oderMgmt</module>
+        <module>dropshopping_roleMgmt</module>
+        <module>dropshopping_digiwlet</module>
+        <module>dropshopping_shopmgmt</module>
+        <module>dropshopping_test</module>
     </modules>
 
     <properties>
@@ -54,6 +56,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.0</version>
         </dependency>
     </dependencies>
 
