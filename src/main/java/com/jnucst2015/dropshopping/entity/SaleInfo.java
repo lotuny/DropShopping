@@ -17,9 +17,9 @@ public class SaleInfo {
     private Integer shopId;
 
     @Column(columnDefinition = "INT(11) COMMENT '借卖方ID'")
-    private Integer userId;
+    private Integer sellerId;
 
-    @Column(columnDefinition = "VARCHAR(11) COMMENT '商品ID'")
+    @Column(columnDefinition = "VARCHAR(11) COMMENT '商品名字'")
     private String name;
 
     @Column(columnDefinition = "VARCHAR(255) COMMENT '商品图片'")
@@ -39,6 +39,21 @@ public class SaleInfo {
 
     @Column(columnDefinition = "INT(11) COMMENT '公司ID'")
     private Integer companyId;
+
+    public SaleInfo(){}
+
+    public SaleInfo(Integer mvoCmdtId, Integer shopId, Integer sellerId, String name, String image, Integer price, Integer quantity, String description, Integer state, Integer companyId) {
+        this.mvoCmdtId = mvoCmdtId;
+        this.shopId = shopId;
+        this.sellerId = sellerId;
+        this.name = name;
+        this.image = image;
+        this.price = price;
+        this.quantity = quantity;
+        this.description = description;
+        this.state = state;
+        this.companyId = companyId;
+    }
 
     public Integer getCompanyId() {
         return companyId;
@@ -70,14 +85,6 @@ public class SaleInfo {
 
     public void setShopId(Integer shopId) {
         this.shopId = shopId;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
     }
 
     public String getName() {
@@ -126,5 +133,13 @@ public class SaleInfo {
 
     public void setState(Integer state) {
         this.state = state;
+    }
+
+    public Integer getSellerId() {
+        return sellerId;
+    }
+
+    public void setSellerId(Integer sellerId) {
+        this.sellerId = sellerId;
     }
 }
