@@ -12,7 +12,7 @@ html, body {
     padding: 100px 0;
     text-align: center;
     color: #fff;
-    /*background: url() no-repeat bottom center;*/
+    background: url(images/indexbanner.jpg) no-repeat bottom center;
     background-color: white;
     background-size: cover;
 }
@@ -28,10 +28,10 @@ html, body {
 }
 
 .my-navbar a:hover {
-    color: rgba(255, 69, 0, 0.699) !important;
-    background: transparent;
-    outline: 0
-}
+     color: rgba(255, 69, 0, 0.699) !important;
+     background: transparent;
+     outline: 0
+ }
 
 .my-navbar a {
     transition: color 0.5s ease-in-out;
@@ -46,6 +46,12 @@ html, body {
 .top-nav a {
     background: transparent !important;
     color: white !important
+}
+
+.top-nav a:hover{
+    color: rgba(234, 240, 255, 0.7) !important;
+    background: transparent;
+    outline: 0
 }
 
 button.navbar-toggle {

@@ -16,11 +16,27 @@ public class AdminServiceImpl implements AdminService {
     private AdminRepository adminRepository;
 
 
+//    @Override
+//    public String adminLogin(String name, String password, HttpSession session) {
+//        Admin admin = adminRepository.findAdminByName(name);
+//        String pwd = admin.getPassword();
+//        if (pwd.equals(PasswordUtil.md5Password(password))){
+//            session.setAttribute("adminId",admin.getId());
+//            session.setAttribute("adminName",admin.getName());
+//            return "successfully";
+//        }else {
+//            session.removeAttribute("adminId");
+//            session.removeAttribute("adminName");
+//            return "failure";
+//        }
+//    }
+
+    //no encryption
     @Override
     public String adminLogin(String name, String password, HttpSession session) {
         Admin admin = adminRepository.findAdminByName(name);
         String pwd = admin.getPassword();
-        if (pwd.equals(PasswordUtil.md5Password(password))){
+        if (pwd.equals(password)){
             session.setAttribute("adminId",admin.getId());
             session.setAttribute("adminName",admin.getName());
             return "successfully";
@@ -30,4 +46,5 @@ public class AdminServiceImpl implements AdminService {
             return "failure";
         }
     }
+
 }

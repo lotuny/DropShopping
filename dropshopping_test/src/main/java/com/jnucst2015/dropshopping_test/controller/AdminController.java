@@ -22,10 +22,9 @@ public class AdminController {
         return "admin_login";
     }
 
-    //remains to modify
     @PostMapping("admin_login")
     public String adminLogin(HttpSession session,
-                             @RequestParam("username") String name,
+                             @RequestParam("name") String name,
                              @RequestParam("password") String password) {
         adminService.adminLogin(name, password, session);
 

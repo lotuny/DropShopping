@@ -2,8 +2,8 @@ package com.jnucst2015.dropshopping_test.controller;
 
 import com.jnucst2015.dropshopping.entity.MvoCommodity;
 import com.jnucst2015.dropshopping.repository.MvoCommodityRepository;
-import com.jnucst2015.dropshopping.repository.SaleInfoRepository;
 import com.jnucst2015.dropshopping_test.service.CompanyService;
+import com.jnucst2015.dropshopping_test.service.SaleInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,7 +20,7 @@ public class RestQueryController {
     private MvoCommodityRepository mvoCommodityRepository;
 
     @Autowired
-    private SaleInfoRepository saleInfoRepository;
+    private SaleInfoService saleInfoService;
 
     @Autowired
     private CompanyService companyService;
@@ -48,11 +48,10 @@ public class RestQueryController {
 //
 //    }
 
-    @GetMapping("/shop/{sellerId}")
+    @GetMapping("/shop.list/{sellerId}")
     public List<Map<String, Object>> getShops(@PathVariable("sellerId") Integer sellerId){
-        return saleInfoRepository.query(sellerId);
+        return saleInfoService.getShopList(sellerId);
     }
-
 
 
 }

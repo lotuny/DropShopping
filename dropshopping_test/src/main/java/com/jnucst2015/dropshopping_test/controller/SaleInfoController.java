@@ -25,7 +25,7 @@ public class SaleInfoController {
     @Autowired
     private SaleInfoService saleInfoService;
 
-    @PostMapping(value = "/commodity/onsale")
+    @PostMapping(value = "/onsale/commodity/onsale")
     public String onSale(@RequestParam("mvoCmdtId") Integer mvoCmdtId,
                       @RequestParam("image") MultipartFile image,
                       @RequestParam("name") String name,
@@ -57,10 +57,17 @@ public class SaleInfoController {
     public String update(@RequestParam("name") String name,
                          @RequestParam("description") String description,
                          @RequestParam("price") Integer price,
-                         @RequestParam("sellerId") Integer id
+                         @RequestParam("sellerId") Integer id,
+                         @RequestParam("commodityId") Integer commodityID,
+                         HttpSession session
     ) {
-        saleInfoService.updateSaleInfo(name,description,price,id);
-        return "saleinfolist";
+        saleInfoService.updateSaleInfo(name,description,price,id,commodityID);
+        return "redirect:/saleinfo/list/" + session.getAttribute("userId");
+    }
+
+    @GetMapping("/saleinfo/list")
+    public String list(HttpSession session){
+        return "redirect:/saleinfo/list/" + session.getAttribute("userId");
     }
 
     @GetMapping("/saleinfo/list/{sellerId}")
@@ -81,4 +88,5 @@ public class SaleInfoController {
         saleInfoService.onsaleSaleInfoAgain(saleInfoId);
         return "redirect:/saleinfo/list/" + session.getAttribute("userId");
     }
+
 }
