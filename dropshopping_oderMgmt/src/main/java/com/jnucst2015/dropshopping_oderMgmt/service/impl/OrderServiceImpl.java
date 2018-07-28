@@ -66,7 +66,7 @@ public class OrderServiceImpl implements OrderService {
         orderItem.setCount(orderItemVo.getCount());
         orderItem.setSale_info_id(orderItemVo.getSaleInfoId());
         orderItem.setOrder_id(orderItemVo.getOrderId());
-        orderItem.setId(orderItem.getId());
+        orderItem.setId(orderItemVo.getId());
         orderItemRepository.save(orderItem);
 
         Order order = new Order();
@@ -74,16 +74,17 @@ public class OrderServiceImpl implements OrderService {
         order.setCreation_time(orderItemVo.getCreationTime());
         orderRepository.save(order);
 
-        SaleInfo saleInfo = new SaleInfo();
-        saleInfo.setId(orderItemVo.getSaleInfoId());
-        saleInfo.setDescription(orderItemVo.getDescription());
-        saleInfo.setName(orderItemVo.getName());
-        saleInfo.setPrice(orderItemVo.getPrice());
-        saleInfo.setCompanyId(orderItemVo.getCompanyId());
-        saleInfo.setSellerId(orderItemVo.getSellerId());
-        saleInfo.setShopId(orderItemVo.getShopId());
-        saleInfo.setMvoCmdtId(orderItemVo.getMvoCmdtId());
-        saleInfoRepository.save(saleInfo);
+
+//        SaleInfo saleInfo = new SaleInfo();
+//        saleInfo.setId(orderItemVo.getSaleInfoId());
+//        saleInfo.setDescription(orderItemVo.getDescription());
+//        saleInfo.setName(orderItemVo.getName());
+//        saleInfo.setPrice(orderItemVo.getPrice());
+//        saleInfo.setCompanyId(orderItemVo.getCompanyId());
+//        saleInfo.setSellerId(orderItemVo.getSellerId());
+//        saleInfo.setShopId(orderItemVo.getShopId());
+//        saleInfo.setMvoCmdtId(orderItemVo.getMvoCmdtId());
+//        saleInfoRepository.save(saleInfo);
 
         return orderItemVo;
     }
