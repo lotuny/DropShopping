@@ -81,7 +81,7 @@ public class MvoController
         {
             byte[] bytes = file.getBytes();
             psstPath = System.currentTimeMillis() + "_" + Integer.toHexString(Arrays.hashCode(bytes)) + "." + file.getOriginalFilename().replaceAll("(\\S+)\\.", "");
-            Path path = Paths.get("dropshopping_cmdtMgmt/src/main/resources/static/upload/" + psstPath);
+            Path path = Paths.get("dropshopping_cmdtmgmt/src/main/resources/static/upload/" + psstPath);
             Files.write(path, bytes);
         }
         catch (IOException e)

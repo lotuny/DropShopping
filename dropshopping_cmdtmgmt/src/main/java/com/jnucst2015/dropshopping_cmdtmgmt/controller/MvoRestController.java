@@ -12,7 +12,7 @@ public class MvoRestController
 {
     @Autowired private MvoCommodityService service;
 
-    @GetMapping("/")
+    @GetMapping("/getAll")
     private List<MvoCommodity> getAll()
     {
         return service.getAll();
