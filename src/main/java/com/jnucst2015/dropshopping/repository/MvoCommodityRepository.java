@@ -16,7 +16,13 @@ public interface MvoCommodityRepository extends JpaRepository<MvoCommodity, Inte
     List<MvoCommodity> LIKEquery(@Param("keyName") String keyName);
 
 
+    @Query(value = "SELECT * FROM mvo_commodity c WHERE c.company_id = ?1", nativeQuery = true)
+    List<MvoCommodity> findMvoCommoditiesByCompany_idIs(Integer company_id);
 
-    @Query("SELECT c FROM MvoCommodity c ORDER BY c.creation_time DESC")
+
+    @Query(value = "SELECT * FROM mvo_commodity ORDER BY creation_time DESC LIMIT ?1", nativeQuery = true)
     List<MvoCommodity> getMvoCommoditiesRecently(Integer count);
+
+    @Query(value = "SELECT * FROM mvo_commodity WHERE id = ?1 AND company_id = ?2", nativeQuery = true)
+    MvoCommodity getMvoCommoditiesByIdIsAndCompany_idIs(Integer id, Integer company_id);
 }

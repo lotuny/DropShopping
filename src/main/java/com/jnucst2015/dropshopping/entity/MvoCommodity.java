@@ -35,7 +35,7 @@ public class MvoCommodity
     @Column(columnDefinition = "INT(11) COMMENT '分类'", nullable = false)
     private Integer class_id;
 
-    @Column(columnDefinition = "TIMESTAMP COMMENT '创建时间'", nullable = false)
+    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间'", nullable = false, updatable = false)
     private Timestamp creation_time;
 
     @Column(columnDefinition = "INT(11) COMMENT '库存预警设置'")
