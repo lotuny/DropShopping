@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <title>商品详细信息</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-offset-1 col-lg-10">
+            <div class="panel panel-primary">
+
+
+                <!-- Default panel contents -->
+                <div class="panel-heading">商品详细信息</div>
+                <div class="panel-body">
+                    <p>
+                    <div class="alert alert-success" th:text="${commodity.getName() + '详细信息'}">
+
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-lg-offset-2 col-lg-8">
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label for="description" class="col-sm-2">商品编号</label>
+                                    <p id="id" th:text="${commodity.getId()}"></p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name" class="col-sm-2">商品名称</label>
+                                    <p id="name" th:text="${commodity.getName()}"></p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="image" class="col-sm-2">图片</label>
+                                    <img id="image" th:src="${'upload/' + commodity.getImage()}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="description" class="col-sm-2">商品描述</label>
+                                    <p id="description" th:text="${commodity.getDescription()}"></p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="price" class="col-sm-2">商品定价</label>
+                                    <p id="price" th:text="${commodity.getPrice() / 100.0} + ' RMB'"></p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="quantity" class="col-sm-2">商品库存</label>
+                                    <p id="quantity" th:text="${commodity.getQuantity()}"></p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="quantity" class="col-sm-2">商品状态</label>
+                                    <p class="mvo_state" th:switch="${commodity.getState()}">
+                                        <span th:case="1">上架</span>
+                                        <span th:case="*">下架</span>
+                                    </p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="quantity" class="col-sm-2">商品创建时间</label>
+                                    <p id="creation_time" th:text="${commodity.getCreation_time()}"></p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="class_id" class="col-sm-2">商品分类</label>
+                                    <p id="class_id" th:text="${commodity.getClass_id()}"></p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="warn_num" class="col-sm-2">库存预警</label>
+                                    <p id="warn_num" th:value="${commodity.getWarn_num()}"></p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="warn_num" class="col-sm-2">品牌编号</label>
+                                    <p id="brand_id" th:value="${commodity.getBrand_id()}"></p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="warn_num" class="col-sm-2">公司编号</label>
+                                    <p id="company_id" th:value="${commodity.getCompany_id()}"></p>
+                                </div>
+
+                                <input type="hidden" name="state" th:value="${commodity.getState()}">
+
+                            </form>
+                            <button onclick="window.location.href='getMvo'">返回</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

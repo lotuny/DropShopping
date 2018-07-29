@@ -28,7 +28,7 @@ public class MvoController
     private String getMvo(Model model)
     {
         model.addAttribute("lsts", service.getAll());
-        return "getMvo";
+        return "getmvo";
     }
 
     @GetMapping("/modify")
@@ -44,12 +44,13 @@ public class MvoController
         model.addAttribute("company_id", 0);
         return "onsale";
     }
-/*
-    @GetMapping("/upload/{file}")
-    private String getImage(@PathVariable("file") String file)
+
+    @GetMapping("/detail")
+    private String getDetail(Model model, @RequestParam("id") Integer id)
     {
-        return "redirect:upload/" + file;
-    }*/
+        model.addAttribute("commodity", service.getById(id));
+        return "detail";
+    }
 
     @PostMapping("/addMvo")
     private String addOne(
