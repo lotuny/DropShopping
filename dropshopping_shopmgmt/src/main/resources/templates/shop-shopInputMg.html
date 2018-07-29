@@ -29,7 +29,7 @@
 
 
         <div class="page-header position-relative">
-            <h1 style="color: #2679b5;">借卖方 <small><i class="icon-double-angle-right"></i> 店铺信息</small></h1>
+            <h1 style="color: #2679b5;">管理员 <small><i class="icon-double-angle-right"></i> 店铺信息</small></h1>
         </div>
 
 
@@ -65,7 +65,7 @@
                              + '&quot;'+'&#44'+'&quot;' + ${Shop.getDescription()} + '&quot;' +')'">
                             <i class="icon-edit"></i>
                         </button>
-                        <a th:href="@{'shop/delete/'+${Shop.getId()}}">
+                        <a th:href="@{'/mg/seller/deleteShopMg/'+${Shop.getId()}}">
                             <button class="btn btn-mini btn-danger"><i class="icon-trash"></i></button>
                         </a>
                     </div>
@@ -74,44 +74,9 @@
 
             </tbody>
         </table>
-        <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">新增</button>
 
 
         <!-- Modal -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">店铺信息</h4>
-                    </div>
-                    <div class="modal-body" >
-                        <form class="form-horizontal" role="form" th:action="@{/shop/addShop}" method="post">
-
-                            <div class="control-group">
-                                <label class="control-label" for="inputName" >店铺名称<br>Brand Name</label>
-                                <div class="controls">
-                                    <input type="text"id="inputName" name="name" >
-                                </div>
-                            </div>
-
-                            <div class="control-group">
-                                <label class="control-label" for="InputDescription">店铺描述<br>Brand Description</label>
-                                <div class="controls">
-                                    <input type="text" id = "inputDescription" name="description" >
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                                <button type="submit" class="btn btn-primary" >保存</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -121,7 +86,7 @@
                 <h4 class="modal-title" id="ModalLabel">店铺信息</h4>
             </div>
             <div class="modal-body" >
-                <form class="form-horizontal" role="form" th:action="@{/shop/updateShop}" method="post">
+                <form class="form-horizontal" role="form" th:action="@{/mg/seller/updateShopMg}" method="post">
 
                     <input type="hidden" id="updateId" name="id" >
                     <input type="hidden" id="updateSellerId" name="sellerId" >

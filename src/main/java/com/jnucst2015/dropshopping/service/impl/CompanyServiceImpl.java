@@ -25,7 +25,18 @@ public class CompanyServiceImpl implements CompanyService {
     public List<Company> getAllCompany() {
         return companyRepository.findAll();
     }
-//
+
+    @Override
+    public Company updateCompany(Company company) {
+        return companyRepository.save(company);
+    }
+
+    @Override
+    public void deleteByCompanyId(Integer id) {
+        companyRepository.deleteById(id);
+    }
+
+    //
     @Override
     public String companyRegister(Company company) {
         String plainPwd = company.getPassword();

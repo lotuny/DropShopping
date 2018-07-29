@@ -49,7 +49,11 @@
                 <td th:text="${company.getDescription()}">goblemarket</td>
                 <td>
                     <div class="inline position-relative">
-                        <button class="btn btn-mini btn-info" onclick="goEdit()"><i class="icon-edit"></i></button>
+                        <button class="btn btn-mini btn-info" data-toggle="modal" th:onclick="'javascrpit:goEdit('+ '&quot;' +${company.id} + '&quot;'+'&#44'
+                            + '&quot;' +${company.name}
+                             + '&quot;'+'&#44'+'&quot;' + ${company.getDescription()} + '&quot;' +')'">
+                            <i class="icon-edit"></i>
+                        </button>
                     </div>
                 </td>
             </tr>
@@ -84,10 +88,12 @@
                 <td th:text="${Brand.getDescription()}">@aehyok</td>
                 <td>
                     <div class="inline position-relative">
-                        <a th:href="@{'brand/update/'+${Brand.getId()}}">
-                            <button class="btn btn-mini btn-info" >
+
+                            <button class="btn btn-mini btn-info" data-toggle="modal" th:onclick="'javascrpit:outModal('+ '&quot;' +${Brand.id} + '&quot;'+'&#44'
+                            + '&quot;' +${Brand.companyId} + '&quot;'+'&#44'+ '&quot;' +${Brand.name}
+                             + '&quot;'+'&#44'+'&quot;' + ${Brand.getDescription()} + '&quot;' +')'">
                                 <i class="icon-edit"></i>
-                            </button></a>
+                            </button>
                         <a th:href="@{'brand/delete/'+${Brand.getId()}}">
                             <button class="btn btn-mini btn-danger"><i class="icon-trash"></i></button>
                         </a>
@@ -135,6 +141,99 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="ModalLabel">品牌信息</h4>
+            </div>
+            <div class="modal-body" >
+                <form class="form-horizontal" role="form" th:action="@{/brand/updateBrand}" method="post">
+
+                    <input type="hidden" id="updateId" name="id" >
+                    <input type="hidden" id="updateCompanyId" name="companyId" >
+                    <div class="control-group">
+                        <label class="control-label" for="inputName" >品牌名称<br>Brand Name</label>
+                        <div class="controls">
+                            <input type="text"id="updateName" name="name" >
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="InputDescription">品牌描述<br>Brand Description</label>
+                        <div class="controls">
+                            <input type="text" id = "updateDescription" name="description" >
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary" >保存</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+<div class="modal fade" id="updateCompanyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="ModalLabel2">公司信息</h4>
+            </div>
+            <div class="modal-body" >
+                <form class="form-horizontal" role="form" th:action="@{/brand/updateCompany}" method="post">
+
+                    <input type="hidden" id="updateIdForCompany" name="id" >
+                    <div class="control-group">
+                        <label class="control-label" for="inputName" >公司名称<br>Brand Name</label>
+                        <div class="controls">
+                            <input type="text"id="updateCompanyName" name="name" >
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="InputDescription">公司描述<br>Brand Description</label>
+                        <div class="controls">
+                            <input type="text" id = "updateCompanyDescription" name="description" >
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary" >保存</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+<script th:inline="javascript">
+
+    function outModal(id,companyId,name,description) {
+        $("#updateId").val(id.toString());
+        $("#updateCompanyId").val(companyId.toString());
+        $("#updateName").val(name.toString());
+        $("#updateDescription").val(description.toString());
+        $("#updateModal").modal("show");
+    }
+
+    function goEdit(id,name,description) {
+        $("#updateIdForCompany").val(id.toString());
+        $("#updateCompanyName").val(name.toString());
+        $("#updateCompanyDescription").val(description.toString());
+        $("#updateCompanyModal").modal("show");
+    }
+
+
+</script>
 
 </body>
 </html>

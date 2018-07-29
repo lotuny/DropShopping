@@ -26,5 +26,7 @@ public interface CompanyService {
 //new
     Company getCompanyById(Integer Id);
     List<Company> getAllCompany();
+    Company updateCompany(Company company);
+    void deleteByCompanyId(Integer id);
 //
 }

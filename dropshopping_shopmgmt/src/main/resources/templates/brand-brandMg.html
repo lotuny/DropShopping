@@ -51,11 +51,11 @@
         <td th:text="${Company.getDescription()}"></td>
         <td>
             <div class="inline position-relative">
-                <a th:href="@{'mgupdate/'+${Company.getId()}}">
+                <a th:href="@{'/mg/company/mgupdate/'+${Company.getId()}}">
                     <button class="btn btn-mini btn-info" >
                         <i class="icon-edit"></i>
                     </button></a>
-                <a th:href="@{'mgdelete/'+${Company.getId()}}">
+                <a th:href="@{'/mg/company/mgdelete/'+${Company.getId()}}">
                     <button class="btn btn-mini btn-danger"><i class="icon-trash"></i></button>
                 </a>
             </div>

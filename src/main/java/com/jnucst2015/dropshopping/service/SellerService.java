@@ -39,4 +39,10 @@ public interface SellerService {
 
 
     void updateSellerInfo(Seller seller);
+
+    //new
+    Seller getSellerById(Integer Id);
+    List<Seller> getAllSeller();
+    Seller updateSeller(Seller seller);
+    void deleteBySellerId(Integer id);
 }

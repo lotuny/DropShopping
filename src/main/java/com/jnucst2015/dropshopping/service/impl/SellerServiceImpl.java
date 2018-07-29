@@ -58,6 +58,26 @@ public class SellerServiceImpl implements SellerService {
         seller.setPassword(PasswordUtil.md5Password(plainPwd));
         sellerRepository.saveAndFlush(seller);
     }
+//new
+    @Override
+    public Seller getSellerById(Integer Id) {
+        return sellerRepository.findById(Id).get();
+    }
+
+    @Override
+    public List<Seller> getAllSeller() {
+        return sellerRepository.findAll();
+    }
+
+    @Override
+    public Seller updateSeller(Seller seller) {
+        return sellerRepository.save(seller);
+    }
+
+    @Override
+    public void deleteBySellerId(Integer id) {
+        sellerRepository.deleteById(id);
+    }
 
 
 }
