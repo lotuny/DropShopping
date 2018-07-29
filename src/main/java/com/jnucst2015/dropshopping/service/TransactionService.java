@@ -1,4 +1,4 @@
-package com.jnucst2015.dropshopping_digiwlet.service;
+package com.jnucst2015.dropshopping.service;
 
 import com.jnucst2015.dropshopping.entity.Transaction;
 

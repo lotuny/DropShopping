@@ -1,0 +1,180 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>纯CSS3实现垂直手风琴菜单DEMO演示</title>
+
+<style type="text/css">
+@import url("hh/css/font-awesome.css");
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font: 16px/1 'Open Sans', sans-serif;
+  color: #555;
+  background: #e5e5e5;
+}
+
+body {
+  padding: 50px;
+}
+
+.togglebox {
+  width: 400px;
+  margin: 0 auto;
+  background: #fff;
+  transform: translateZ(0);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+}
+
+label {
+  position: relative;
+  display: block;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 20px;
+  font-size: 14px;
+  font-weight: 700;
+  border-top: 1px solid #ddd;
+  background: #fff;
+  cursor: pointer;
+}
+
+label[for*='1'] {
+  border: 0;
+}
+
+label:after {
+  content: '\f078';
+  position: absolute;
+  top: 0px;
+  right: 20px;
+  font-family: fontawesome;
+  transform: rotate(90deg);
+  transition: .3s transform;
+}
+
+section {
+  height: 0;
+  transition: .3s all;
+  overflow: hidden;
+}
+
+#toggle1:checked ~ label[for*='1']:after,
+#toggle2:checked ~ label[for*='2']:after,
+#toggle3:checked ~ label[for*='3']:after,
+#toggle4:checked ~ label[for*='4']:after {
+  transform: rotate(0deg);
+}
+
+#toggle1:checked ~ #content1,
+#toggle2:checked ~ #content2,
+#toggle3:checked ~ #content3,
+#toggle4:checked ~ #content4 {
+  height: 200px;
+}
+
+p {
+  margin: 15px 0;
+  padding: 0 20px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+</style>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/ace.min.css">
+  <link rel="stylesheet" href="css/ace-skins.min.css">
+  <link rel="stylesheet" href="css/ace-responsive.min.css">
+  <link rel="stylesheet" type="text/css" href="webuploader/webuploader.css" />
+  <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+  <script type="text/javascript" src="webuploader/webuploader.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/bootbox.min.js"></script>
+</head>
+<body>
+
+<div class="togglebox">
+  
+  <input id="toggle1" type="radio" name="toggle" />
+  <label for="toggle1">Pure CSS Accordion</label>
+  
+  <section id="content1">
+    <table id="table_bug_report" name="table">
+      <thead>
+      <tr>
+        <th>店铺编号Shop ID</th>
+        <th>店铺名称Shop Name</th>
+        <th>店铺描述Shop Description</th>
+      </tr>
+      </thead>
+
+      <tbody>
+
+      <tr th:each="Shop:${shops}">
+        <td th:text="${Shop.getId()}"></td>
+        <td th:text="${Shop.getName()}">leo</td>
+        <td th:text="${Shop.getDescription()}">@aehyok</td>
+      </tr>
+
+      </tbody>
+    </table>
+  </section>
+  
+  <input id="toggle2" type="radio" name="toggle" />
+  <label for="toggle2">Pure CSS Accordion</label>
+  
+  <section id="content2">
+    <p>
+      Bacon ipsum dolor sit amet beef venison beef ribs kielbasa. Sausage pig leberkas, t-bone sirloin shoulder bresaola. Frankfurter rump porchetta ham. Pork belly prosciutto brisket meatloaf short ribs.
+    </p>
+    <p>
+      Brisket meatball turkey short loin boudin leberkas meatloaf chuck andouille pork loin pastrami spare ribs pancetta rump. Frankfurter corned beef beef tenderloin short loin meatloaf swine ground round venison.
+    </p>
+  </section>
+  
+  <input id="toggle3" type="radio" name="toggle" />
+  <label for="toggle3">Pure CSS Accordion</label>
+  
+  <section id="content3">
+    <table>
+
+    </table>
+  </section>
+
+  <input id="toggle4" type="radio" name="toggle" />
+  <label for="toggle4">Pure CSS Accordion</label>
+  
+  <section id="content4">
+    <p>
+      Bacon ipsum dolor sit amet beef venison beef ribs kielbasa. Sausage pig leberkas, t-bone sirloin shoulder bresaola. Frankfurter rump porchetta ham. Pork belly prosciutto brisket meatloaf short ribs.
+    </p>
+    <p>
+      Brisket meatball turkey short loin boudin leberkas meatloaf chuck andouille pork loin pastrami spare ribs pancetta rump. Frankfurter corned beef beef tenderloin short loin meatloaf swine ground round venison.
+    </p>
+  </section>
+
+</div>
+
+<div style="text-align:center;clear:both">
+<script src="/gg_bd_ad_720x90.js" type="text/javascript"></script>
+<script src="/follow.js" type="text/javascript"></script>
+</div>
+
+</body>
+</html>
+

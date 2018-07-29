@@ -22,11 +22,11 @@ public interface OrderService {
 
     OrderItemVo updateOrderItemInfo(OrderItemVo orderItemVo);
 
-    OrderItem showOrderItem (int orderItemId);
+    OrderItem showOrderItem(int orderItemId);
 
     void deleteOrderItem(int orderItemId);
 
-    List<OrderItemVo> showOrderItems ();
+    List<OrderItemVo> showOrderItems();
 
 
 
