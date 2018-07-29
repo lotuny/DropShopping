@@ -44,4 +44,10 @@ public interface SellerService {
     void topup(Integer topup_num, Integer userId, String pay_pwd);
 
     void withdraw(Integer withdraw_num, Integer userId, String pay_pwd);
+
+    //new
+    Seller getSellerById(Integer Id);
+    List<Seller> getAllSeller();
+    Seller updateSeller(Seller seller);
+    void deleteBySellerId(Integer id);
 }

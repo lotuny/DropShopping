@@ -39,16 +39,16 @@ public class ShopServiceImpl implements ShopService {
 
     @Override
     public Shop addShopInfo(Shop shop) {
-        return null;
+        return shopRepository.save(shop);
     }
 
     @Override
     public void deleteByShopID(Integer ID) {
-
+        shopRepository.deleteById(ID);
     }
 
     @Override
     public Shop updateShopInfo(Shop shop) {
-        return null;
+        return shopRepository.save(shop);
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Service
 public class CompanyServiceImpl implements CompanyService {
@@ -40,10 +41,47 @@ public class CompanyServiceImpl implements CompanyService {
         }
     }
 
-    @Override
-    public Company findById(Integer id) {
-        return null;
+    public List<Company> getAllCompany() {
+        return companyRepository.findAll();
     }
 
+    @Override
+    public Company findById(Integer id) {
+        return companyRepository.findById(id).get();
+    }
 
+    @Override
+    public void topup(Integer topup_num, Integer userId, String pay_pwd) {
+        Company company = findById(userId);
+        //if (company.getPassword().equals(PasswordUtil.md5Password(pay_pwd))) {
+            company.setBalance(company.getBalance() + topup_num*100);
+            companyRepository.save(company);
+        //}
+    }
+
+    @Override
+    public void withdraw(Integer withdraw_num, Integer userId, String pay_pwd) {
+        Company company = findById(userId);
+        //if (company.getPassword().equals(PasswordUtil.md5Password(pay_pwd))) {
+            company.setBalance(company.getBalance() - withdraw_num*100);
+            companyRepository.save(company);
+        //}
+    }
+
+    @Override
+    public Company getCompanyById(Integer Id) {
+        return findById(Id);
+    }
+
+    @Override
+    public Company updateCompany(Company company) {
+        return companyRepository.save(company);
+    }
+
+    @Override
+    public void deleteByCompanyId(Integer id) {
+        companyRepository.deleteById(id);
+    }
+
+    //
 }

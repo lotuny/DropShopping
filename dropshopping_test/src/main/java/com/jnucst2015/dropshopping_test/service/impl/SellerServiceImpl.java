@@ -68,17 +68,40 @@ public class SellerServiceImpl implements SellerService {
     @Override
     public void topup(Integer topup_num, Integer userId, String pay_pwd) {
         Seller seller = findById(userId);
-        if (seller.getPayPwd().equals(pay_pwd)) {
-            seller.setBalance(seller.getBalance() + topup_num);
-        }
+//        if (seller.getPayPwd().equals(PasswordUtil.md5Password(pay_pwd))) {
+            seller.setBalance(seller.getBalance() + topup_num*100);
+            sellerRepository.save(seller);
+//        }
     }
 
     @Override
     public void withdraw(Integer withdraw_num, Integer userId, String pay_pwd) {
         Seller seller = findById(userId);
-        if (seller.getPayPwd().equals(pay_pwd)) {
-            seller.setBalance(seller.getBalance() - withdraw_num);
-        }
+//        if (seller.getPayPwd().equals(PasswordUtil.md5Password(pay_pwd))) {
+            seller.setBalance(seller.getBalance() - withdraw_num*100);
+            sellerRepository.save(seller);
+//        }
+    }
+
+    //new
+    @Override
+    public Seller getSellerById(Integer Id) {
+        return sellerRepository.findById(Id).get();
+    }
+
+    @Override
+    public List<Seller> getAllSeller() {
+        return sellerRepository.findAll();
+    }
+
+    @Override
+    public Seller updateSeller(Seller seller) {
+        return sellerRepository.save(seller);
+    }
+
+    @Override
+    public void deleteBySellerId(Integer id) {
+        sellerRepository.deleteById(id);
     }
 
 

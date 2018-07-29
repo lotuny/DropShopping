@@ -30,4 +30,8 @@ public interface TransactionService {
     List<TranVo> showAllVoByUserIdAndRole(Integer userId, Integer userRole);
 
     TranVo fromTranToVo(Transaction tran);
+
+    void topup(Integer topup_num, Integer userId, Integer userRole);
+
+    void withdraw(Integer withdraw_num, Integer userId, Integer userRole);
 }

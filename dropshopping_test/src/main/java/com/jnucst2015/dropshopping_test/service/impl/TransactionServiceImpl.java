@@ -9,7 +9,7 @@ import com.jnucst2015.dropshopping_test.vo.TranVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +19,7 @@ public class TransactionServiceImpl implements TransactionService {
     public static final Integer COMPANY = 0;
     public static final Integer SELLER = 1;
     public static final Integer CONSUMER = 2;
+    public static final Integer PLATFORM = 3;
 
     @Autowired
     private TransactionRepository transactionRepository;
@@ -120,23 +121,37 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public TranVo fromTranToVo(Transaction tran) {
         Integer id = tran.getId();
-        Date date = tran.getDate();
+        Timestamp timestamp = tran.getTimestamp();
         String description = tran.getDescription();
-        Integer price = tran.getPrice();
+        double price = tran.getPrice()/100.00;
         String payer = "";
         String recipient = "";
 
-        if (tran.getPayer_role()== COMPANY)
+        if (tran.getPayer_role() == COMPANY)
             payer = companyRepository.findById(tran.getPayer_id()).get().getName();
         else if (tran.getPayer_role() == SELLER)
             payer = sellerRepository.findById(tran.getPayer_id()).get().getUsername();
+        else if (tran.getPayer_role() == PLATFORM)
+            payer = "借卖平台";
 
         if (tran.getRecipient_role() == COMPANY)
             recipient = companyRepository.findById(tran.getRecipient_id()).get().getName();
         else if (tran.getRecipient_role() == SELLER)
             recipient = sellerRepository.findById(tran.getRecipient_id()).get().getUsername();
+        else if (tran.getRecipient_role() == PLATFORM)
+            recipient = "借卖平台";
 
-        return new TranVo(id,date,payer,recipient,description,price);
+        return new TranVo(id,timestamp,payer,recipient,description,price);
+    }
+
+    @Override
+    public void topup(Integer topup_num, Integer userId, Integer userRole) {
+        transactionRepository.save(new Transaction(userId, userRole, PLATFORM, 0, "充值", topup_num*100));
+    }
+
+    @Override
+    public void withdraw(Integer withdraw_num, Integer userId, Integer userRole) {
+        transactionRepository.save(new Transaction(0, PLATFORM, userRole, userId, "提现", withdraw_num*100));
     }
 
 }

@@ -1,5 +1,9 @@
 package com.jnucst2015.dropshopping_shopmgmt.controller;
 
+import com.jnucst2015.dropshopping.entity.Company;
+import com.jnucst2015.dropshopping.entity.Seller;
+import com.jnucst2015.dropshopping.service.impl.SellerServiceImpl;
+import com.jnucst2015.dropshopping_shopmgmt.entity.Brand;
 import com.jnucst2015.dropshopping_shopmgmt.entity.Shop;
 import com.jnucst2015.dropshopping_shopmgmt.service.impl.ShopServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -15,44 +20,37 @@ public class ShopController {
 
     @Autowired
     private ShopServiceImpl shopService;
-
+    @Autowired
+    private SellerServiceImpl sellerService;
 
 
     @GetMapping("")
-    public String getAllShop( Model model){
-        List<Shop> list = shopService.getAllShop();
+    public String getAllShop(HttpSession session, Model model){
+        Integer sellerId = (Integer) session.getAttribute("userId");
+        List<Shop> list = shopService.getShopBySellerID(sellerId);
         model.addAttribute("shops",list);
         return "shop-shopInput";
     }
 
     @PostMapping("/addShop")
-    public String addBrandByCompanyId(Integer companyId,Shop brand){
-        brand.setSellerId(1);
-        shopService.addShopInfo(brand);
+    public String addShopByCompanyId(HttpSession session,Shop shop){
+        Integer sellerId = (Integer) session.getAttribute("userId");
+        shop.setSellerId(sellerId);
+        shopService.addShopInfo(shop);
         return "redirect:/shop";
     }
     @GetMapping("/delete/{id}")
-    public String deleteByBrandID(@PathVariable("id")Integer ID){
+    public String deleteByShopID(@PathVariable("id")Integer ID){
         shopService.deleteByShopID(ID);
         return "redirect:/shop";
     }
 
-    @GetMapping("/update/{id}")
-    public String updateBrandByBrandId(@PathVariable("id") Integer id,Model model){
-        Shop shop = shopService.getShopByID(id);
-        model.addAttribute("shop",shop);
-        return "shop-updateShop";
-    }
-    @PostMapping("/update")
-    public String modifyBrand(Shop shop){
+    @PostMapping("/updateShop")
+    public String updateShopById(Shop shop){
         shopService.updateShopInfo(shop);
         return "redirect:/shop";
     }
-    @GetMapping("Mg")
-    public String getAllShopBySellerId(Integer Id,Model model){
-        List<Shop> list = shopService.getShopBySellerID(Id);
-        model.addAttribute("shops",list);
-        return "brand-brandMg";
-    }
+
+
 
 }

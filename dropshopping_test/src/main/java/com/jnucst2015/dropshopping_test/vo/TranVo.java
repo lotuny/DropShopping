@@ -1,19 +1,20 @@
 package com.jnucst2015.dropshopping_test.vo;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class TranVo {
 
     private Integer id;
-    private Date date;
+    private Timestamp timestamp;
     private String payer;
     private String recipient;
     private String description;
-    private int price;
+    private double price;
 
-    public TranVo(Integer id, Date date, String payer, String recipient, String description, int price) {
+    public TranVo(Integer id, Timestamp timestamp, String payer, String recipient, String description, double price) {
         this.id = id;
-        this.date = date;
+        this.timestamp = timestamp;
         this.payer = payer;
         this.recipient = recipient;
         this.description = description;
@@ -28,12 +29,12 @@ public class TranVo {
         this.id = id;
     }
 
-    public Date getDate() {
-        return date;
+    public Timestamp getTimestamp() {
+        return timestamp;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
     }
 
     public String getPayer() {
@@ -52,11 +53,11 @@ public class TranVo {
         this.description = description;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

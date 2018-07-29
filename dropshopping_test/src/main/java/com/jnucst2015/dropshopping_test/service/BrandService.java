@@ -14,5 +14,7 @@ public interface BrandService {
     List<Brand> getBrandByDescription(String description);
     Brand addBrandInfo(Brand brand);
     void deleteByBrandId(Integer id);
+    void deleteByCompanyId(Integer id);
     Brand updateBrandInfo(Brand brand);
+    List<Brand> getGroupByCompanyId();
 }

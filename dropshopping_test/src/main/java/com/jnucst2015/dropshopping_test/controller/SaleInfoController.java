@@ -40,7 +40,7 @@ public class SaleInfoController {
         Path path = Paths.get("blank.jpg");
         try {
             byte[] imageByte = image.getBytes();
-            path = Paths.get("src\\main\\resources\\upload\\" + System.currentTimeMillis() + "_" + Integer.toHexString(Arrays.hashCode(imageByte)) + "." + image.getOriginalFilename().replaceAll("(\\S+)\\.",""));
+            path = Paths.get("src\\main\\resources\\images\\" + System.currentTimeMillis() + "_" + Integer.toHexString(Arrays.hashCode(imageByte)) + "." + image.getOriginalFilename().replaceAll("(\\S+)\\.",""));
             Files.write(path, imageByte);
         }
         catch (IOException e) {
