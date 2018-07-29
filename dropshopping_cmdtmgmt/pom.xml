@@ -7,8 +7,8 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>dropshopping_cmdtMgmt</name>
-    <description>Demo project for Spring Boot</description>
+    <name>CmdtMgmt</name>
+    <description>Commodity Management</description>
 
     <parent>
         <groupId>com.jnucst2015</groupId>
