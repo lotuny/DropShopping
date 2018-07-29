@@ -60,7 +60,7 @@ public class SaleInfoController {
                          @RequestParam("saleInfoId") Integer saleInfoId,
                          HttpSession session
     ) {
-        saleInfoService.updateSaleInfo(name,description,price,saleInfoId);
+//        saleInfoService.updateSaleInfo(name,description,price,saleInfoId);
         return "redirect:/saleinfo/list/" + session.getAttribute("userId");
     }
 

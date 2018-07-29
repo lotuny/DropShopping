@@ -6,7 +6,6 @@ import com.jnucst2015.dropshopping.util.PasswordUtil;
 import com.jnucst2015.dropshopping_test.service.SellerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import redis.clients.jedis.Jedis;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -59,6 +58,27 @@ public class SellerServiceImpl implements SellerService {
         String plainPwd = seller.getPassword();
         seller.setPassword(PasswordUtil.md5Password(plainPwd));
         sellerRepository.saveAndFlush(seller);
+    }
+
+    @Override
+    public Seller findById(Integer id) {
+        return sellerRepository.findById(id).get();
+    }
+
+    @Override
+    public void topup(Integer topup_num, Integer userId, String pay_pwd) {
+        Seller seller = findById(userId);
+        if (seller.getPayPwd().equals(pay_pwd)) {
+            seller.setBalance(seller.getBalance() + topup_num);
+        }
+    }
+
+    @Override
+    public void withdraw(Integer withdraw_num, Integer userId, String pay_pwd) {
+        Seller seller = findById(userId);
+        if (seller.getPayPwd().equals(pay_pwd)) {
+            seller.setBalance(seller.getBalance() - withdraw_num);
+        }
     }
 
 

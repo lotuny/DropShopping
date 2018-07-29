@@ -85,7 +85,7 @@
                     </li>
 
                     <li>
-                        <a href="mvo-wallet.html" class="dropdown-toggle" target="menuFrame">
+                        <a th:href="@{'/tran/company_wallet'}" class="dropdown-toggle" target="menuFrame">
                             <i class="icon-desktop"></i>
                             <span>我的钱包</span>
                         </a>
@@ -122,7 +122,7 @@
                     </li>
 
                     <li>
-                        <a href="bvo-wallet.html" class="dropdown-toggle" target="menuFrame">
+                        <a th:href="@{'/tran/seller_wallet'}"  class="dropdown-toggle" target="menuFrame">
                             <i class="icon-desktop"></i>
                             <span>我的钱包</span>
                         </a>
@@ -145,13 +145,6 @@
                     </li>
 
                     <li>
-                        <a th:href="@{'/getMvo'}" class="dropdown-toggle" target="menuFrame">
-                            <i class="icon-file"></i>
-                            <span>商品管理</span>
-                        </a>
-                    </li>
-
-                    <li>
                         <a th:href="@{'/orderPage'}" class="dropdown-toggle" target="menuFrame">
                             <i class="icon-desktop"></i>
                             <span>订单管理</span>
@@ -170,8 +163,8 @@
 
             <div th:switch="${session.role}" class="col-md-offset-2">
                 <iframe th:case="0" name="menuFrame" th:src="@{'/brand'}"  frameborder="no" width="100%" height="800px"></iframe>
-                <iframe th:case="1" name="menuFrame" th:src="@{'/brand'}" frameborder="no" width="100%" height="800px"></iframe>
-                <iframe th:case="2" name="menuFrame" th:src="@{'/brand'}" frameborder="no" width="100%" height="800px"></iframe>
+                <iframe th:case="1" name="menuFrame" th:src="@{'/shop'}" frameborder="no" width="100%" height="800px"></iframe>
+                <iframe th:case="2" name="menuFrame" th:src="@{'/'}" frameborder="no" width="100%" height="800px"></iframe>
             </div>
         </div>
     </div>

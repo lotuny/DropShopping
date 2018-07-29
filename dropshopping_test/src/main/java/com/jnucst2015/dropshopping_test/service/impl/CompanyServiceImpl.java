@@ -40,5 +40,24 @@ public class CompanyServiceImpl implements CompanyService {
         }
     }
 
+    @Override
+    public Company findById(Integer id) {
+        return companyRepository.findById(id).get();
+    }
 
+    @Override
+    public void topup(Integer topup_num, Integer userId, String pay_pwd) {
+        Company company = findById(userId);
+        if (company.getPassword().equals(pay_pwd)) {
+            company.setBalance(company.getBalance() + topup_num);
+        }
+    }
+
+    @Override
+    public void withdraw(Integer withdraw_num, Integer userId, String pay_pwd) {
+        Company company = findById(userId);
+        if (company.getPassword().equals(pay_pwd)) {
+            company.setBalance(company.getBalance() - withdraw_num);
+        }
+    }
 }

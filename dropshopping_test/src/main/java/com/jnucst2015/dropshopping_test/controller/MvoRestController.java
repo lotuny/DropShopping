@@ -15,7 +15,8 @@ public class MvoRestController
 {
     @Autowired private MvoCommodityService service;
 
-    @GetMapping("/")
+    //lotuny edified
+    @GetMapping("/mvo")
     private List<MvoCommodity> getAll()
     {
         return service.getAll();

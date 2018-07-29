@@ -23,7 +23,10 @@ public class Transaction {
     @Column(columnDefinition = "VARCHAR(255) COMMENT '描述'")
     private String description;
     @Column(columnDefinition = "INT(11) COMMENT '交易金额'")
-    private int price;
+    private Integer price;
+
+    public Transaction() {
+    }
 
     public Transaction(Integer payer_id, Integer payer_role, Integer recipient_role, Integer recipient_id, int price) {
         this.payer_id = payer_id;

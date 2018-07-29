@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/static/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <title>添加交易记录</title>
+</head>
+<body>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-5 column">
+            <form class="form-horizontal" role="form" method="post" th:action="@{/addTran}">
+                <input name="id" type="text" value="0" style="display: none;">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">交易日期：</label>
+                    <div class="col-sm-5">
+                        <input type="text" name="date" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">支付方ID：</label>
+                    <div class="col-sm-5">
+                        <input type="text" name="payer_id" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">收款方ID：</label>
+                    <div class="col-sm-5">
+                        <input type="text" name="recipient_id" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">描述：</label>
+                    <div class="col-sm-5">
+                        <input type="text" name="description" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="col-sm-offset-2">添加</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

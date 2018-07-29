@@ -73,5 +73,13 @@ public class SellerServiceImpl implements SellerService {
         }
     }
 
+    @Override
+    public void withdraw(Integer withdraw_num, Integer userId, String pay_pwd) {
+        Seller seller = findById(userId);
+        if (seller.getPayPwd().equals(pay_pwd)) {
+            seller.setBalance(seller.getBalance() - withdraw_num);
+        }
+    }
+
 
 }

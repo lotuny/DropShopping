@@ -31,7 +31,7 @@ public interface SaleInfoService {
 
     void updateSaleInfo(SaleInfo saleInfo);
 
-    void updateSaleInfo(String name, String descrpition, Integer price, Integer saleInfoId);
+   // void updateSaleInfo(String name, String descrpition, Integer price, Integer saleInfoId);
 
     void onsaleSaleInfoAgain(int id);
 

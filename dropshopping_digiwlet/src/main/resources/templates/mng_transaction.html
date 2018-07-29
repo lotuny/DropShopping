@@ -15,27 +15,33 @@
         <div class="col-lg-offset-1 col-lg-10">
             <div class="panel panel-primary">
                 <!-- Default panel contents -->
-                <div class="panel-heading">交易记录查看界面</div>
+                <div class="panel-heading">交易记录管理界面</div>
                 <div class="panel-body">
+                    <p>
+                    <div class="alert alert-success">
+                        在这里，你可以对交易记录进行查看/修改/删除/查询操作，如果需要添加交易记录请点击
+                        <a th:href="@{/mng/addTran}" class="alert-link">添加交易记录</a>
+                    </div>
+                    </p>
                     <table class="table">
                         <thead>
                         <tr>
                             <th>编号</th>
                             <th>交易时间</th>
-                            <th>支付方ID</th>
-                            <th>收款方ID</th>
-                            <th>描述</th>
-                            <th>操作</th>
+                            <th>支付方</th>
+                            <th>收款方</th>
+                            <th>具体信息</th>
+                            <th>交易金额</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr th:each="tran:${trans}">
                             <td th:text="${tran.getId()}"></td>
                             <td th:text="${tran.getDate()}"></td>
-                            <td th:text="${tran.getPayer_id()}"></td>
-                            <td th:text="${tran.getRecipient_id()}"></td>
+                            <td th:text="${tran.getPayer()}"></td>
+                            <td th:text="${tran.getRecipient()}"></td>
                             <td th:text="${tran.getDescription()}"></td>
-                            <td><a th:href="@{'/updateTran/'+${tran.getId()}}">修改</a>&nbsp;&nbsp;<a th:href="@{'/deleteTran/'+${tran.getId()}}">删除</a></td>
+                            <td th:text="${tran.getPrice()}"></td>
                         </tr>
                         </tbody>
                     </table>

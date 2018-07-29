@@ -69,6 +69,14 @@ public class OrderController {
         model.addAttribute("oderItemsVos", orderItemVos);
         return "showOrder";
     }
+
+    @GetMapping("/{userId}")
+    public String getOrderItemInfos(@PathVariable("userId") Integer userId,  Model model) {
+        List<OrderItemVo> orderItemVos = orderService.showOrderItems();
+
+        model.addAttribute("oderItemsVos", orderItemVos);
+        return "showOrder";
+    }
 //
 //    @GetMapping
 //    public String getAllOrders(Model model){

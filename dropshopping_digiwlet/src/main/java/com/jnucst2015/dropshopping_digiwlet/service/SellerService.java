@@ -42,4 +42,6 @@ public interface SellerService {
     Seller findById(Integer id);
 
     void topup(Integer topup_num, Integer userId, String pay_pwd);
+
+    void withdraw(Integer withdraw_num, Integer userId, String pay_pwd);
 }

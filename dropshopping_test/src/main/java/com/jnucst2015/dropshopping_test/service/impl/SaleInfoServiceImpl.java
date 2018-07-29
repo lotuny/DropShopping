@@ -2,6 +2,7 @@ package com.jnucst2015.dropshopping_test.service.impl;
 
 import com.jnucst2015.dropshopping.entity.SaleInfo;
 import com.jnucst2015.dropshopping.repository.SaleInfoRepository;
+import com.jnucst2015.dropshopping_test.service.SaleInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,10 +47,10 @@ public class SaleInfoServiceImpl implements SaleInfoService {
         saleInfoRepository.saveAndFlush(saleInfo);
     }
 
-    @Override
-    public void updateSaleInfo(String name, String descrpition, Integer price, Integer id, Integer commodityId) {
-        saleInfoRepository.updateSaleInfo(name,descrpition,price,id, commodityId);
-    }
+//    @Override
+//    public void updateSaleInfo(String name, String descrpition, Integer price, Integer id, Integer commodityId) {
+//        saleInfoRepository.updateSaleInfo(name,descrpition,price,id, commodityId);
+//    }
 
     @Override
     public void onsaleSaleInfoAgain(int id) {
