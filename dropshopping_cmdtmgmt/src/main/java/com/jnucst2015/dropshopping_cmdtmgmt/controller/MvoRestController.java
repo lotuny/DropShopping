@@ -23,7 +23,7 @@ public class MvoRestController
 {
     @Autowired private MvoCommodityService service;
 
-    @GetMapping("/")
+    @GetMapping("/getAllMvo")
     private List<MvoCommodity> getAll()
     {
         return service.getAll();
