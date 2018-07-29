@@ -26,8 +26,9 @@ public class AdminController {
     public String adminLogin(HttpSession session,
                              @RequestParam("name") String name,
                              @RequestParam("password") String password) {
-        adminService.adminLogin(name, password, session);
-
-        return "redirect:/background/2";
+        if (adminService.adminLogin(name, password, session).equals("successfully"))
+            return "redirect:/background/index";
+        else
+            return "redirect:/admin/admin_login";
     }
 }

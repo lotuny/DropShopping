@@ -19,17 +19,11 @@ public class MenuController {
     @Autowired
     private ClassificationService classificationService;
 
-    @GetMapping("/{role}")
-    public String showBackgroundMenu(HttpSession session, @PathVariable("role") Integer role) {
-        session.setAttribute("role", role);
+    @GetMapping("/index")
+    public String showBackgroundMenu(HttpSession session) {
         session.setAttribute("classes", classificationService.getAllClassification());
         return "index_background";
     }
-
-//    @GetMapping("/**")
-//    public String forceRoute(HttpServletRequest request) {
-//        return request.getAttribute(HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE).toString();
-//    }
 
     //************************************************************************************
     //*********************************管理员-分类管理************************************

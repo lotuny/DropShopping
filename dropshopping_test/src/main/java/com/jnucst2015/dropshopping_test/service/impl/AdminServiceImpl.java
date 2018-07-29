@@ -36,13 +36,11 @@ public class AdminServiceImpl implements AdminService {
     public String adminLogin(String name, String password, HttpSession session) {
         Admin admin = adminRepository.findAdminByName(name);
         String pwd = admin.getPassword();
-        if (pwd.equals(password)){
-            session.setAttribute("adminId",admin.getId());
-            session.setAttribute("adminName",admin.getName());
+        if (pwd.equals(PasswordUtil.md5Password(password))){
+            session.setAttribute("role","admin");
             return "successfully";
         }else {
-            session.removeAttribute("adminId");
-            session.removeAttribute("adminName");
+            session.removeAttribute("role");
             return "failure";
         }
     }

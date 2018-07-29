@@ -17,8 +17,8 @@
     <div class="row clearfix">
         <div class="col-md-12 column">
             <form role="form">
-                <div class="form-group">
-                    <label for="balance">账户余额</label><label th:text="'¥'+${balance}" class="form-control" id="balance"></label>
+                <div class="form-group" style="font-size: 0.8cm;">
+                    <label for="balance">账户余额</label>&nbsp;&nbsp;&nbsp;<label th:text="'¥'+${balance}" id="balance"></label>
                 </div>
                 <button class="btn btn-default"><a id="modal-40655" href="#modal-container-40655" role="button" class="btn" data-toggle="modal">充值</a></button>
                 <button class="btn btn-default"><a id="modal-4065" href="#modal-container-4065" role="button" class="btn" data-toggle="modal">提现</a></button>
@@ -33,15 +33,15 @@
                                 </h4>
                             </div>
                             <div class="modal-body">
-                                <form class="form-horizontal" role="form" method="post" th:action="@{'tran/seller_wallet/topup'}">
+                                <form class="form-horizontal" role="form" method="post" th:action="@{'/tran/seller_wallet/topup'}">
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label">充值金额：</label>
+                                        <label class="col-sm-3 control-label">金额：</label>
                                         <div class="col-sm-5">
                                             <input type="text" name="num" class="form-control">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label">支付密码：</label>
+                                        <label class="col-sm-3 control-label">密码：</label>
                                         <div class="col-sm-5">
                                             <input type="text" name="pay_pwd" class="form-control">
                                         </div>
@@ -69,15 +69,15 @@
                             <div class="modal-body">
                                 <form class="form-horizontal" role="form" method="post" th:action="@{'tran/seller_wallet/withdraw'}">
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label">提现金额：</label>
+                                        <label class="col-sm-3 control-label">金额：</label>
                                         <div class="col-sm-5">
-                                            <input type="text" name="first_class" class="form-control">
+                                            <input type="text" name="num" class="form-control">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label">支付密码：</label>
+                                        <label class="col-sm-3 control-label">密码：</label>
                                         <div class="col-sm-5">
-                                            <input type="text" name="second_class" class="form-control">
+                                            <input type="text" name="pay_pwd" class="form-control">
                                         </div>
                                     </div>
                                     <div class="form-group">

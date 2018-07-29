@@ -5,9 +5,7 @@ import com.jnucst2015.dropshopping_digiwlet.service.CompanyService;
 import com.jnucst2015.dropshopping_digiwlet.service.SellerService;
 import com.jnucst2015.dropshopping_digiwlet.service.TransactionService;
 import com.jnucst2015.dropshopping_digiwlet.service.impl.TransactionServiceImpl;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -36,7 +34,7 @@ public class TransactionController {
     //获取借卖方电子钱包界面
     @GetMapping("seller_wallet")
     public String sellerWallet(HttpSession session, Model model) {
-        Integer userId = 1;//(Integer) session.getAttribute("userId");
+        Integer userId = (Integer) session.getAttribute("userId");
         model.addAttribute("balance", sellerService.findById(userId).getBalance());
         model.addAttribute("trans", transactionService.showAllVoByUserIdAndRole(userId,TransactionServiceImpl.SELLER));
         return "seller_wallet";
@@ -44,7 +42,7 @@ public class TransactionController {
 
     @GetMapping("seller_wallet/onlyPay")
     public String sellerWalletPay(HttpSession session, Model model) {
-        Integer userId = 1;//(Integer) session.getAttribute("userId");
+        Integer userId = (Integer) session.getAttribute("userId");
         model.addAttribute("balance", sellerService.findById(userId).getBalance());
         model.addAttribute("trans", transactionService.showAllVoByPayerIdAndRole(userId,TransactionServiceImpl.SELLER));
         return "seller_wallet";
@@ -52,7 +50,7 @@ public class TransactionController {
 
     @GetMapping("seller_wallet/onlyReceive")
     public String sellerWalletRecieve(HttpSession session, Model model) {
-        Integer userId = 1;//(Integer) session.getAttribute("userId");
+        Integer userId = (Integer) session.getAttribute("userId");
         String userRole = (String) session.getAttribute("role");
         model.addAttribute("balance", sellerService.findById(userId).getBalance());
         model.addAttribute("trans", transactionService.showAllVoByRecipientIdAndRole(userId,TransactionServiceImpl.SELLER));
@@ -61,13 +59,27 @@ public class TransactionController {
 
     //获取品牌商电子钱包界面
     @GetMapping("company_wallet")
-    public String companyWallet(HttpSession session) {
-        return "company_wallet/"+session.getAttribute("userId");
+    public String companyWallet(HttpSession session, Model model) {
+        Integer userId = (Integer) session.getAttribute("userId");
+        model.addAttribute("balance", companyService.findById(userId).getBalance());
+        model.addAttribute("trans", transactionService.showAllVoByUserIdAndRole(userId,TransactionServiceImpl.COMPANY));
+        return "company_wallet";
     }
 
-    @GetMapping("company_wallet/{userId}")
-    public String companyWallet(@PathVariable("userId") Integer userId,  Model model) {
-        model.addAttribute("balance", companyService.findById(userId));
+    @GetMapping("company_wallet/onlyPay")
+    public String companyWalletPay(HttpSession session, Model model) {
+        Integer userId = (Integer) session.getAttribute("userId");
+        model.addAttribute("balance", companyService.findById(userId).getBalance());
+        model.addAttribute("trans", transactionService.showAllVoByPayerIdAndRole(userId,TransactionServiceImpl.SELLER));
+        return "company_wallet";
+    }
+
+    @GetMapping("company_wallet/onlyReceive")
+    public String companyWalletRecieve(HttpSession session, Model model) {
+        Integer userId = (Integer) session.getAttribute("userId");
+        String userRole = (String) session.getAttribute("role");
+        model.addAttribute("balance", companyService.findById(userId).getBalance());
+        model.addAttribute("trans", transactionService.showAllVoByRecipientIdAndRole(userId,TransactionServiceImpl.SELLER));
         return "company_wallet";
     }
 

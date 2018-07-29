@@ -133,7 +133,7 @@ public class TransactionServiceImpl implements TransactionService {
 
         if (tran.getRecipient_role() == COMPANY)
             recipient = companyRepository.findById(tran.getRecipient_id()).get().getName();
-        else if (tran.getPayer_role() == SELLER)
+        else if (tran.getRecipient_role() == SELLER)
             recipient = sellerRepository.findById(tran.getRecipient_id()).get().getUsername();
 
         return new TranVo(id,date,payer,recipient,description,price);

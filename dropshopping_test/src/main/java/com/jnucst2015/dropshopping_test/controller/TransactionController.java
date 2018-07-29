@@ -89,7 +89,7 @@ public class TransactionController {
                                @RequestParam("pay_pwd") String pay_pwd,
                                HttpSession session) {
         sellerService.topup(num, (Integer) session.getAttribute("userId"), pay_pwd);
-        return "redirect:/seller_wallet";
+        return "redirect:/tran/seller_wallet";
     }
 
     @PostMapping("seller_wallet/withdraw")
@@ -97,7 +97,7 @@ public class TransactionController {
                                @RequestParam("pay_pwd") String pay_pwd,
                                HttpSession session) {
         sellerService.withdraw(num, (Integer) session.getAttribute("userId"), pay_pwd);
-        return "redirect:/seller_wallet";
+        return "redirect:/tran/seller_wallet";
     }
 
     @GetMapping("mng_transaction")

@@ -46,9 +46,9 @@
                             </a>
 
                             <ul class="dropdown-menu" id="infobarDown"th:switch="${session.role}" >
-                                <li th:case="'seller'"><a th:href="@{'background/1'}">我的信息</a>
+                                <li th:case="'seller'"><a th:href="@{'/background/index'}">我的信息</a>
                                     <a th:href="@{'http://localhost:8080/saleinfo/list/' + ${session.userId}}">店铺信息</a> </li>
-                                <li th:case="'company'"><a th:href="@{'background/0'}">公司信息</a></li>
+                                <li th:case="'company'"><a th:href="@{'/background/index'}">公司信息</a></li>
                                 <li class="divider">
                                 <li><a href="/user/exit">退出</a></li>
                                 </li>
