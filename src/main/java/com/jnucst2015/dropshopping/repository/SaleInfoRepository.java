@@ -14,7 +14,7 @@ public interface SaleInfoRepository extends JpaRepository<SaleInfo, Integer> {
     SaleInfo findSaleInfoById(Integer id);
 
     @Query(value = "SELECT s.id,s.name FROM shop as s WHERE s.seller_id = ?1",nativeQuery = true)
-    List<Map<String, Object>> queryShopList(int sellerId);
+    List<Map<String, Object>> query(int sellerId);
 
     List<SaleInfo> findSaleInfosByStateEqualsAndSellerIdEquals(int state, Integer sellerId);
 
@@ -32,7 +32,7 @@ public interface SaleInfoRepository extends JpaRepository<SaleInfo, Integer> {
 
     @Transactional
     @Modifying(clearAutomatically = true)
-    @Query(value = "UPDATE sale_info SET name = ?1, description = ?2, price = ?3 WHERE seller_id = ?4 AND mvo_cmdt_id = ?5",nativeQuery = true)
-    void updateSaleInfo(String name, String description, Integer price, Integer id, Integer commodityId);
+    @Query(value = "UPDATE sale_info SET name = ?1, description = ?2, price = ?3 WHERE seller_id = ?4",nativeQuery = true)
+    void updateSaleInfo(String name, String description, Integer price, Integer id);
 
 }

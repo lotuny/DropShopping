@@ -1,4 +1,4 @@
-package com.jnucst2015.dropshopping_roleMgmt;
+package com.jnucst2015.dropshopping_rolemgmt;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -20,11 +20,11 @@
 
     <modules>
         <module>dropshopping_cmdtmgmt</module>
-        <module>dropshopping_oderMgmt</module>
-        <module>dropshopping_roleMgmt</module>
+        <module>dropshopping_odermgmt</module>
+        <module>dropshopping_rolemgmt</module>
         <module>dropshopping_digiwlet</module>
         <module>dropshopping_shopmgmt</module>
-        <module>dropshopping_test</module>
+        <!--<module>dropshopping_test</module>-->
     </modules>
 
     <properties>

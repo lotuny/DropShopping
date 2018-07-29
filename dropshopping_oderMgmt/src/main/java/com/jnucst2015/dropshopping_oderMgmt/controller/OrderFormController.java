@@ -1,14 +1,10 @@
-package com.jnucst2015.dropshopping_oderMgmt.controller;
+package com.jnucst2015.dropshopping_odermgmt.controller;
 
 
 import com.jnucst2015.dropshopping.entity.Order;
-import com.jnucst2015.dropshopping.entity.OrderItem;
-import com.jnucst2015.dropshopping_oderMgmt.service.OrderService;
+import com.jnucst2015.dropshopping.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

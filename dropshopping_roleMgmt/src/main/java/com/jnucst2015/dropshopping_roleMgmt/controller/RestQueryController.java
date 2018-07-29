@@ -1,9 +1,9 @@
-package com.jnucst2015.dropshopping_roleMgmt.controller;
+package com.jnucst2015.dropshopping_rolemgmt.controller;
 
 import com.jnucst2015.dropshopping.entity.MvoCommodity;
 import com.jnucst2015.dropshopping.repository.MvoCommodityRepository;
-import com.jnucst2015.dropshopping_roleMgmt.service.CompanyService;
-import com.jnucst2015.dropshopping_roleMgmt.service.SaleInfoService;
+import com.jnucst2015.dropshopping.service.CompanyService;
+import com.jnucst2015.dropshopping.service.SaleInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

@@ -1,20 +1,10 @@
 package com.jnucst2015.dropshopping_cmdtmgmt.controller;
 
 import com.jnucst2015.dropshopping.entity.MvoCommodity;
-import com.jnucst2015.dropshopping_cmdtmgmt.service.MvoCommodityService;
+import com.jnucst2015.dropshopping.service.service.MvoCommodityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.sql.Timestamp;
-import java.time.Instant;
-import java.util.Arrays;
 import java.util.List;
 
 @RestController

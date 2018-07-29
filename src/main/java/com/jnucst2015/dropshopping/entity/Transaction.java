@@ -12,7 +12,7 @@ public class Transaction {
     private Integer id;
     @Column(columnDefinition = "DATE COMMENT '交易时间'")
     private Date date;
-    @Column(columnDefinition = "INT(11) COMMENT '支付方ID'")
+    @Column(columnDefinition = "INT(11) COMMENT '支付方用户名'")
     private Integer payer_id;
     @Column(columnDefinition = "TINYINT(3) COMMENT '支付方角色'")
     private Integer payer_role;

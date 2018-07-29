@@ -1,7 +1,7 @@
-package com.jnucst2015.dropshopping_roleMgmt.controller;
+package com.jnucst2015.dropshopping_rolemgmt.controller;
 
 import com.jnucst2015.dropshopping.entity.SaleInfo;
-import com.jnucst2015.dropshopping_roleMgmt.service.SaleInfoService;
+import com.jnucst2015.dropshopping.service.SaleInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -57,11 +57,10 @@ public class SaleInfoController {
     public String update(@RequestParam("name") String name,
                          @RequestParam("description") String description,
                          @RequestParam("price") Integer price,
-                         @RequestParam("sellerId") Integer id,
-                         @RequestParam("commodityId") Integer commodityID,
+                         @RequestParam("saleInfoId") Integer id,
                          HttpSession session
     ) {
-        saleInfoService.updateSaleInfo(name,description,price,id,commodityID);
+        saleInfoService.updateSaleInfo(name,description,price,id);
         return "redirect:/saleinfo/list/" + session.getAttribute("userId");
     }
 
