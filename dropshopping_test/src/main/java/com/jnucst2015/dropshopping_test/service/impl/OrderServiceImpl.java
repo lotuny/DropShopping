@@ -113,7 +113,7 @@ public class OrderServiceImpl implements OrderService {
     public List<OrderItemVo> showOrderItems () {
         List<OrderItemVo> orderItemVos = new ArrayList<OrderItemVo>();
 
-        List<OrderItem> orderItems = orderItemRepository.findAllByStateBefore(3);
+        List<OrderItem> orderItems = orderItemRepository.findAllByStateBefore(4);
         for (OrderItem orderItem: orderItems) {
             OrderItemVo orderItemVo = new OrderItemVo();
 
@@ -142,7 +142,7 @@ public class OrderServiceImpl implements OrderService {
         if (saleInfos == null) { saleInfos = new ArrayList<SaleInfo>();}
         for (SaleInfo saleInfo:saleInfos){
 
-            List<OrderItem> orderItems = orderItemRepository.findAllBySale_info_id(saleInfo.getId());
+            List<OrderItem> orderItems = orderItemRepository.findAllBySale_info_idAndStateBefore(saleInfo.getId(),4);
             if (orderItems == null) { orderItems = new ArrayList<OrderItem>();}
             for (OrderItem orderItem:orderItems) {
 
@@ -168,7 +168,7 @@ public class OrderServiceImpl implements OrderService {
         if (saleInfos == null) { saleInfos = new ArrayList<SaleInfo>();}
         for (SaleInfo saleInfo:saleInfos){
 
-            List<OrderItem> orderItems = orderItemRepository.findAllBySale_info_id(saleInfo.getId());
+            List<OrderItem> orderItems = orderItemRepository.findAllBySale_info_idAndStateBefore(saleInfo.getId(),4);
             if (orderItems == null) { orderItems = new ArrayList<OrderItem>();}
             for (OrderItem orderItem:orderItems) {
 
