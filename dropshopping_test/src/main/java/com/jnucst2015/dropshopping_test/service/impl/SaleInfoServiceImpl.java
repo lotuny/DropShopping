@@ -44,6 +44,7 @@ public class SaleInfoServiceImpl implements SaleInfoService {
 
     @Override
     public void updateSaleInfo(SaleInfo saleInfo) {
+        saleInfoRepository.reduceCommodityQuantity(saleInfo.getQuantity(), saleInfo.getId());
         saleInfoRepository.saveAndFlush(saleInfo);
     }
 

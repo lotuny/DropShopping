@@ -47,7 +47,7 @@ public class SaleInfoController {
             e.printStackTrace();
         }
 
-        SaleInfo saleInfo = new SaleInfo(mvoCmdtId, shopId, sellerId, name, path.toString(), price, quantity, description, state, companyId);
+        SaleInfo saleInfo = new SaleInfo(mvoCmdtId, shopId, sellerId, name, path.toString(), price*100, quantity, description, state, companyId);
         saleInfoService.updateSaleInfo(saleInfo);
         return "redirect:/";
 

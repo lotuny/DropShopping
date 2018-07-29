@@ -24,8 +24,4 @@ public interface CompanyService {
     String companyLogin(String username, String password, HttpSession session);
 
     Company findById(Integer id);
-
-    void topup(Integer topup_num, Integer userId, String pay_pwd);
-
-    void withdraw(Integer withdraw_num, Integer userId, String pay_pwd);
 }

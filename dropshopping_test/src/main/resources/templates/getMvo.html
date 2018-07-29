@@ -67,7 +67,7 @@
                             <td class="mvo_id" th:text="${mvo.getId()}"></td>
                             <td class="mvo_description" th:text="${mvo.getDescription()}"></td>
                             <td class="mvo_image"
-                                th:utext="${'<img width=&quot;200px;&quot; src=&quot;upload/' + mvo.getImage() + '&quot;/>'}"></td>
+                                th:utext="${'<img width=&quot;200px;&quot; src=&quot;images/' + mvo.getImage() + '&quot;/>'}"></td>
                             <td class="mvo_name" th:text="${mvo.getName()}"></td>
                             <td class="mvo_price" th:text="${mvo.getPrice()/100.0}"></td>
                             <td class="mvo_quantity" th:text="${mvo.getQuantity()}"></td>

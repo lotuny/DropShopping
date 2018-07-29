@@ -62,3 +62,25 @@ button.navbar-toggle {
 button.navbar-toggle > span.icon-bar {
     background-color: #dedede
 }
+
+.row [class*="col-"]{
+
+    margin-bottom: -99999px;
+
+    padding-bottom: 99999px;
+
+}
+
+.row{
+
+    overflow: hidden;
+
+}
+
+
+p {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
