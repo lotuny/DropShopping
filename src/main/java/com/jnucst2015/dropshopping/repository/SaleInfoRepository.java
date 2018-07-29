@@ -12,6 +12,8 @@ import java.util.Map;
 public interface SaleInfoRepository extends JpaRepository<SaleInfo, Integer> {
 
     SaleInfo findSaleInfoById(Integer id);
+    List<SaleInfo> findSaleInfoBySellerId(Integer sellerId);
+    List<SaleInfo> findSaleInfoByCompanyId(Integer companyId);
 
     @Query(value = "SELECT s.id,s.name FROM shop as s WHERE s.seller_id = ?1",nativeQuery = true)
     List<Map<String, Object>> queryShopList(int sellerId);
@@ -19,6 +21,8 @@ public interface SaleInfoRepository extends JpaRepository<SaleInfo, Integer> {
     List<SaleInfo> findSaleInfosByStateEqualsAndSellerIdEquals(int state, Integer sellerId);
 
     List<SaleInfo> findSaleInfosBySellerIdEquals(Integer sellerId);
+
+
 
     @Transactional
     @Modifying(clearAutomatically = true)

@@ -1,4 +1,4 @@
-package com.jnucst2015.dropshopping_test.service.impl;
+package com.jnucst2015.dropshopping.service.impl;
 
 import com.jnucst2015.dropshopping.entity.Order;
 import com.jnucst2015.dropshopping.entity.OrderItem;
@@ -6,8 +6,8 @@ import com.jnucst2015.dropshopping.entity.SaleInfo;
 import com.jnucst2015.dropshopping.repository.OrderItemRepository;
 import com.jnucst2015.dropshopping.repository.OrderRepository;
 import com.jnucst2015.dropshopping.repository.SaleInfoRepository;
-import com.jnucst2015.dropshopping_test.service.OrderService;
-import com.jnucst2015.dropshopping_test.vo.OrderItemVo;
+import com.jnucst2015.dropshopping.service.OrderService;
+import com.jnucst2015.dropshopping.vo.OrderItemVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -68,7 +68,7 @@ public class OrderServiceImpl implements OrderService {
         orderItem.setCount(orderItemVo.getCount());
         orderItem.setSale_info_id(orderItemVo.getSaleInfoId());
         orderItem.setOrder_id(orderItemVo.getOrderId());
-        orderItem.setId(orderItemVo.getId());
+        orderItem.setId(orderItem.getId());
         orderItemRepository.save(orderItem);
 
         Order order = new Order();
@@ -76,6 +76,10 @@ public class OrderServiceImpl implements OrderService {
         order.setCreation_time(orderItemVo.getCreationTime());
         orderRepository.save(order);
 
+        Integer saleInfoId = orderItemVo.getSaleInfoId();
+        if (saleInfoRepository.findSaleInfoById(saleInfoId) == null) {
+            throw new  NullPointerException("No such commodity!");
+        }
 
 //        SaleInfo saleInfo = new SaleInfo();
 //        saleInfo.setId(orderItemVo.getSaleInfoId());
@@ -99,56 +103,118 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void deleteOrderItem(int orderItemId) {
+    public void changeState(int state,int orderItemId) {
 
-        orderItemRepository.setOrderItemDelete(orderItemId);
+        orderItemRepository.setOrderItemState(state, orderItemId);
 
     }
 
     @Override
     public List<OrderItemVo> showOrderItems () {
         List<OrderItemVo> orderItemVos = new ArrayList<OrderItemVo>();
-//        List<OrderItem> orderItems = orderItemRepository.findAll();
+
         List<OrderItem> orderItems = orderItemRepository.findAllByStateBefore(3);
         for (OrderItem orderItem: orderItems) {
             OrderItemVo orderItemVo = new OrderItemVo();
-            orderItemVo.setId(orderItem.getId());
-            orderItemVo.setCount(orderItem.getCount());
-            orderItemVo.setNotes(orderItem.getNotes());
-            orderItemVo.setState(orderItem.getState());
+
+            setOrderItem(orderItemVo,orderItem);
 
             Order order = orderRepository.findOrderById(orderItem.getOrder_id());
             if (order == null) { order = new Order();}
-//            else { orderItemVo.setOrder(order);}
-            orderItemVo.setOrderId(order.getId());
-            orderItemVo.setCreationTime(order.getCreation_time());
+            setOrder(orderItemVo,order);
 
             SaleInfo saleInfo = saleInfoRepository.findSaleInfoById(orderItem.getSale_info_id());
             if (saleInfo == null) { saleInfo = new SaleInfo();}
-//            else { orderItemVo.setSale_info(saleInfo);}
-            orderItemVo.setSaleInfoId(saleInfo.getId());
-            orderItemVo.setDescription(saleInfo.getDescription());
-            orderItemVo.setName(saleInfo.getName());
-            orderItemVo.setPrice(saleInfo.getPrice());
-            orderItemVo.setCompanyId(saleInfo.getCompanyId());
-            orderItemVo.setSellerId(saleInfo.getSellerId());
-            orderItemVo.setShopId(saleInfo.getShopId());
-            orderItemVo.setMvoCmdtId(saleInfo.getMvoCmdtId());
+            setSaleInfo(orderItemVo,saleInfo);
 
             orderItemVos.add(orderItemVo);
+
         }
 
         return orderItemVos;
 
     }
-//    @Override
+
+    @Override
+    public List<OrderItemVo> showOrderItemsBySellerId(Integer userId) {
+        List<OrderItemVo> orderItemVos = new ArrayList<OrderItemVo>();
+        List<SaleInfo> saleInfos = saleInfoRepository.findSaleInfoBySellerId(userId);
+        if (saleInfos == null) { saleInfos = new ArrayList<SaleInfo>();}
+        for (SaleInfo saleInfo:saleInfos){
+
+            List<OrderItem> orderItems = orderItemRepository.findAllBySale_info_id(saleInfo.getId());
+            if (orderItems == null) { orderItems = new ArrayList<OrderItem>();}
+            for (OrderItem orderItem:orderItems) {
+
+                OrderItemVo orderItemVo = new OrderItemVo();
+                //
+                setSaleInfo(orderItemVo,saleInfo);
+                setOrderItem(orderItemVo,orderItem);
+                Order order = orderRepository.findOrderById(orderItem.getOrder_id());
+                if (order == null) { order = new Order();}
+                setOrder(orderItemVo,order);
+
+                orderItemVos.add(orderItemVo);
+            }
+
+        }
+        return orderItemVos;
+    }
+
+    @Override
+    public List<OrderItemVo> showOrderItemsByCompanyId(Integer userId) {
+        List<OrderItemVo> orderItemVos = new ArrayList<OrderItemVo>();
+        List<SaleInfo> saleInfos = saleInfoRepository.findSaleInfoByCompanyId(userId);
+        if (saleInfos == null) { saleInfos = new ArrayList<SaleInfo>();}
+        for (SaleInfo saleInfo:saleInfos){
+
+            List<OrderItem> orderItems = orderItemRepository.findAllBySale_info_id(saleInfo.getId());
+            if (orderItems == null) { orderItems = new ArrayList<OrderItem>();}
+            for (OrderItem orderItem:orderItems) {
+
+                OrderItemVo orderItemVo = new OrderItemVo();
+                setSaleInfo(orderItemVo,saleInfo);
+                setOrderItem(orderItemVo,orderItem);
+                Order order = orderRepository.findOrderById(orderItem.getOrder_id());
+                if (order == null) { order = new Order();}
+                setOrder(orderItemVo,order);
+
+                orderItemVos.add(orderItemVo);
+            }
+
+        }
+        return orderItemVos;
+    }
+
+
+    //    @Override
 //    public List<OrderItem> updateOrderInfo(List<OrderItem> order) {
 //        for (OrderItem orderItem: order) {
 //            orderItemRepository.save(orderItem);
 //        }
 //        return order;
 //    }
+    public void setOrder(OrderItemVo orderItemVo, Order order) {
+        orderItemVo.setOrderId(order.getId());
+        orderItemVo.setCreationTime(order.getCreation_time());
+    }
 
+    public void setSaleInfo(OrderItemVo orderItemVo, SaleInfo saleInfo) {
+        orderItemVo.setSaleInfoId(saleInfo.getId());
+        orderItemVo.setDescription(saleInfo.getDescription());
+        orderItemVo.setName(saleInfo.getName());
+        orderItemVo.setPrice(saleInfo.getPrice());
+        orderItemVo.setCompanyId(saleInfo.getCompanyId());
+        orderItemVo.setSellerId(saleInfo.getSellerId());
+        orderItemVo.setShopId(saleInfo.getShopId());
+        orderItemVo.setMvoCmdtId(saleInfo.getMvoCmdtId());
+    }
+    public void setOrderItem(OrderItemVo orderItemVo, OrderItem orderItem) {
+        orderItemVo.setId(orderItem.getId());
+        orderItemVo.setCount(orderItem.getCount());
+        orderItemVo.setNotes(orderItem.getNotes());
+        orderItemVo.setState(orderItem.getState());
+    }
 
 
 }

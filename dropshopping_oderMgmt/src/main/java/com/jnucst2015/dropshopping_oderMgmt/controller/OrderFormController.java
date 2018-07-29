@@ -3,7 +3,7 @@ package com.jnucst2015.dropshopping_oderMgmt.controller;
 
 import com.jnucst2015.dropshopping.entity.Order;
 import com.jnucst2015.dropshopping.entity.OrderItem;
-import com.jnucst2015.dropshopping_oderMgmt.service.OrderService;
+import com.jnucst2015.dropshopping.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

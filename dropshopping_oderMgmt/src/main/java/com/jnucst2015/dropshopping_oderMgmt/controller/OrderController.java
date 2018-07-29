@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -20,9 +21,16 @@ public class OrderController {
 
     @GetMapping("delete/{id}")
     public String deleteOrder(@PathVariable("id") Integer orderId){
-        orderService.deleteOrderItem(orderId);
+        orderService.changeState(4 ,orderId);
         return "redirect:/orderPage";
     }
+
+    @GetMapping("Ship/{id}")
+    public String shipOrder(@PathVariable("id") Integer orderId){
+        orderService.changeState(2 ,orderId);
+        return "redirect:/orderPage";
+    }
+
 
     @GetMapping("update/{orderItemId}")
     public String modifOrder(@PathVariable("orderItemId") Integer orderItemId,
@@ -63,11 +71,24 @@ public class OrderController {
 //        return "redirect:/order/";
 //    }
     @GetMapping
-    public String getOrderItemInfos(Model model) {
-        List<OrderItemVo> orderItemVos = orderService.showOrderItems();
+    public String getOrderItemInfos(Model model, HttpSession session) {
 
-        model.addAttribute("oderItemsVos", orderItemVos);
-        return "showOrder";
+        String role = (String) session.getAttribute("role");
+        Integer userId = (Integer) session.getAttribute("userId");
+        if ( role == "seller") {
+            List<OrderItemVo> orderItemVos = orderService.showOrderItemsBySellerId(userId);
+            model.addAttribute("oderItemsVos", orderItemVos);
+            return "showBVOOrder";
+        } else if (role == "company") {
+            List<OrderItemVo> orderItemVos = orderService.showOrderItemsByCompanyId(userId);
+            model.addAttribute("oderItemsVos", orderItemVos);
+            return "showCompanyOrder";
+        } else {
+            List<OrderItemVo> orderItemVos = orderService.showOrderItems();
+            model.addAttribute("oderItemsVos", orderItemVos);
+            return "showOrder";
+        }
+
     }
 
     @GetMapping("/{userId}")
