@@ -28,7 +28,7 @@ public class CompanyServiceImpl implements CompanyService {
         Company company = companyRepository.findCompanyByUsername(username);
         String pwd = company.getPassword();
         if (pwd.equals(PasswordUtil.md5Password(password))){
-            session.setAttribute("companyId",company.getId());
+            session.setAttribute("userId",company.getId());
             session.setAttribute("username",username);
             session.setAttribute("role","company");
             return "successful";

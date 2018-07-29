@@ -1,4 +1,4 @@
-package com.jnucst2015.dropshopping.service.impl;
+package com.jnucst2015.dropshopping_test.service.impl;
 
 import com.jnucst2015.dropshopping.entity.Order;
 import com.jnucst2015.dropshopping.entity.OrderItem;
@@ -6,8 +6,8 @@ import com.jnucst2015.dropshopping.entity.SaleInfo;
 import com.jnucst2015.dropshopping.repository.OrderItemRepository;
 import com.jnucst2015.dropshopping.repository.OrderRepository;
 import com.jnucst2015.dropshopping.repository.SaleInfoRepository;
-import com.jnucst2015.dropshopping.service.OrderService;
-import com.jnucst2015.dropshopping.vo.OrderItemVo;
+import com.jnucst2015.dropshopping_test.service.OrderService;
+import com.jnucst2015.dropshopping_test.vo.OrderItemVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
