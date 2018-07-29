@@ -147,6 +147,7 @@ public class OrderServiceImpl implements OrderService {
             for (OrderItem orderItem:orderItems) {
 
                 OrderItemVo orderItemVo = new OrderItemVo();
+                //
                 setSaleInfo(orderItemVo,saleInfo);
                 setOrderItem(orderItemVo,orderItem);
                 Order order = orderRepository.findOrderById(orderItem.getOrder_id());
