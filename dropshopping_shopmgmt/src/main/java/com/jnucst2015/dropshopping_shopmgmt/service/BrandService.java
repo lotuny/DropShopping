@@ -1,6 +1,6 @@
 package com.jnucst2015.dropshopping_shopmgmt.service;
 
-import com.jnucst2015.dropshopping_shopmgmt.entity.Brand;
+import com.jnucst2015.dropshopping.entity.Brand;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

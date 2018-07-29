@@ -2,7 +2,7 @@ package com.jnucst2015.dropshopping_digiwlet.service.impl;
 
 import com.jnucst2015.dropshopping.entity.Transaction;
 import com.jnucst2015.dropshopping.repository.TransactionRepository;
-import com.jnucst2015.dropshopping.service.TransactionService;
+import com.jnucst2015.dropshopping_digiwlet.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

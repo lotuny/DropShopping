@@ -2,7 +2,7 @@ package com.jnucst2015.dropshopping_cmdtmgmt.service.impl;
 
 import com.jnucst2015.dropshopping.entity.MvoCommodity;
 import com.jnucst2015.dropshopping.repository.MvoCommodityRepository;
-import com.jnucst2015.dropshopping_test.service.MvoCommodityService;
+import com.jnucst2015.dropshopping_cmdtmgmt.service.MvoCommodityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

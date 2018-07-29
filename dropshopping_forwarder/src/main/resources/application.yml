@@ -1,0 +1,19 @@
+server:
+  port: 80
+zuul:
+  routes:
+    cmdtmgmt:
+      path: /cmdtmgmt/**
+      url: http://localhost:8081
+    digiwlet:
+      path: /digiwlet/**
+      url: http://localhost:8082
+    odermgmt:
+      path: /odermgmt/**
+      url: http://localhost:8083
+    rolemgmt:
+      path: /rolemgmt/**
+      url: http://localhost:8084
+    shopmgmt:
+      path: /shopmgmt/**
+      url: http://localhost:8085

@@ -1,6 +1,6 @@
 package com.jnucst2015.dropshopping_shopmgmt.service.impl;
 
-import com.jnucst2015.dropshopping_shopmgmt.entity.Brand;
+import com.jnucst2015.dropshopping.entity.Brand;
 import com.jnucst2015.dropshopping.repository.BrandRepository;
 import com.jnucst2015.dropshopping_shopmgmt.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;

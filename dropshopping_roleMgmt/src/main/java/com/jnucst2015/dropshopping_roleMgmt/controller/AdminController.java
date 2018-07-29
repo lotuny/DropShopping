@@ -1,6 +1,6 @@
 package com.jnucst2015.dropshopping_roleMgmt.controller;
 
-import com.jnucst2015.dropshopping.service.AdminService;
+import com.jnucst2015.dropshopping_roleMgmt.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

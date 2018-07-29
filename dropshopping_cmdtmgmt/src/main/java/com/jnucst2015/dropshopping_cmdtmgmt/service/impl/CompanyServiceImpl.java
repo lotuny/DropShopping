@@ -3,7 +3,7 @@ package com.jnucst2015.dropshopping_cmdtmgmt.service.impl;
 import com.jnucst2015.dropshopping.entity.Company;
 import com.jnucst2015.dropshopping.repository.CompanyRepository;
 import com.jnucst2015.dropshopping.util.PasswordUtil;
-import com.jnucst2015.dropshopping_test.service.CompanyService;
+import com.jnucst2015.dropshopping_cmdtmgmt.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

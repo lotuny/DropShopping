@@ -2,7 +2,7 @@ package com.jnucst2015.dropshopping_digiwlet.service.impl;
 
 import com.jnucst2015.dropshopping.entity.Classification;
 import com.jnucst2015.dropshopping.repository.ClassificationRepository;
-import com.jnucst2015.dropshopping.service.ClassificationService;
+import com.jnucst2015.dropshopping_digiwlet.service.ClassificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
