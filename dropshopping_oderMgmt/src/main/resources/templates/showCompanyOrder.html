@@ -52,8 +52,7 @@
                                     <td th:text="${oderItemVo.getNotes()}" ></td>
 
                                     <td>
-                                        <label th:switch="${oderItemVo.getState()}"></label>
-                                        <a th:href="@{'/orderPage/Ship/'+${oderItemVo.getId()}}" th:case="2" >发货<i class="fa fa-edit text-navy">
+                                        <label th:switch="${oderItemVo.getState()}"><a th:href="@{'/orderPage/Ship/'+${oderItemVo.getId()}}" th:case="2" >发货</a></label>
                                     </td>
                                 </tr>
 

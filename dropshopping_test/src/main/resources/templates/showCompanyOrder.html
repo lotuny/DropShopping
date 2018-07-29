@@ -41,20 +41,18 @@
                                     <td th:text="${oderItemVo.getOrderId()}" ></td>
                                     <td th:text="${oderItemVo.getCreationTime()}" ></td>
                                     <td th:switch="${oderItemVo.getState()}">
-                                    <span th:case="*">待支付</span>
                                     <span th:case="1">待发货</span>
                                     <span th:case="2">已发货</span>
                                     <span th:case="3">已完成</span>
                                     <span th:case="4">已取消</span>
+                                    <span th:case="*">待支付</span>
                                     </td>
                                     <td th:text="${oderItemVo.getName()}" ></td>
                                     <td th:text="${oderItemVo.getPrice()}" ></td>
                                     <td th:text="${oderItemVo.getNotes()}" ></td>
 
                                     <td>
-                                        <label th:switch="${oderItemVo.getState()}">
-                                            <a th:href="@{'/orderPage/Ship/'+${oderItemVo.getId()}}" th:case="2" >发货</a>
-                                        </label>
+                                        <label th:if="${oderItemVo.getState()} != 2"><a th:href="@{'/orderPage/Ship/'+${oderItemVo.getId()}}">发货</a></label>
                                     </td>
                                 </tr>
 
