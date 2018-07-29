@@ -34,18 +34,18 @@ public class ShopController {
         Integer sellerId = (Integer) session.getAttribute("userId");
         shop.setSellerId(sellerId);
         shopService.addShopInfo(shop);
-        return "redirect:/shop";
+        return "redirect:/shopmgmt/shop";
     }
     @GetMapping("/delete/{id}")
     public String deleteByShopID(@PathVariable("id")Integer ID){
         shopService.deleteByShopID(ID);
-        return "redirect:/shop";
+        return "redirect:/shopmgmt/shop";
     }
 
     @PostMapping("/updateShop")
     public String updateShopById(Shop shop){
         shopService.updateShopInfo(shop);
-        return "redirect:/shop";
+        return "redirect:/shopmgmt/shop";
     }
 
 

@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="/mystyle.css">
     <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
@@ -16,6 +15,7 @@
     <script th:inline="javascript">
         $(function () {
             var username = [[${session.username}]];
+            var userId = [[${session.userId}]];
             var role = [[${session.role}]];
 
             if (username == undefined || username == null || username == "") {
@@ -24,31 +24,39 @@
                 $("#infobar").show();
             }
 
-            $.getJSON("http://localhost:8081/commodity/getAll", function (json) {
+            $.getJSON("http://localhost:8080/commodity/getAll", function (json) {
                 for (var i = 0; i < json.length; i++) {
                     var cmList = document.getElementById("commodityView");
                     cmList.innerHTML +=
                         " <div class='col-lg-3 col-md-4 col-sm-6 col-xs-6'>" +
                         "    <div class='thumbnail'>" +
-                        "    <img src='' alt='' class='img-responsive'>" +
+                        "    <img src='/images/" + json[i].image +　"'alt='' class='img-responsive'>" +
                         "    <div class='caption'>" +
                         "        <h4>" + json[i].name + "</h4>" +
                         "        <p style='color:red;'>" + json[i].description + "</p>" +
                         "<p>当前剩余 " + json[i].quantity + " 件</p>" +
                         "<p>价格 " + json[i].price + " 元</p>" +
-                        "        <button class='btn btn-primary' onclick='showDia(this)'>上架</button>" +
+                        "        <button class='btn btn-danger' data-toggle='modal' onclick='showDia(this)'>上架</button>" +
                         "<p style='display: none'>" + json[i].id + "</p>" +
                         "<p style='display: none'>" + json[i].classification + "</p>" +
                         "<p style='display: none'>" + json[i].shop_id + "</p>" +
                         "<p style='display: none'>" + json[i].state + "</p>" +
-                        "<p style='display: none'>" + json[i].companyId + "</p>" +
+                        "<p style='display: none'>" + json[i].company_id + "</p>" +
                         "        </div>" +
                         "    </div>" +
                         " </div>";
                 }
             });
 
-            $.getJSON("http://loaclhost:8082/")
+            $.getJSON("http://localhost:8080/shop.list/" + userId, function (json) {
+                console.log("tetetetetetete")
+                console.log(json);
+                for (var i=0; i < json.length; i++){
+                    var optionList = document.getElementById("diShop");
+                    optionList.innerHTML +=
+                        "<option value='"+ json[i].id + "'>" + json[i].name + "</option>";
+                }
+            });
 
             $("#dialog-form").dialog({
                 resizable: false,
@@ -59,100 +67,30 @@
             });
 
             $("#searchBtn").button().click(function () {
-                var keyName = $("#searchKeyName").val();
-                location.href = "search/" + keyName;
-                $("#searchKeyName").val = "";
+                var keyName = $("#searchKeyName").val().trim();
+                if (keyName.length>0){
+                    location.href = "/search/" + keyName;
+                    $("#searchKeyName").val = "";
+                }
             });
 
         });
 
         function showDia(button) {
-            button.parentNode.childNodes.forEach(function (node) {
-                console.log(node.innerHTML);
-            });
             var nodes = button.parentNode.childNodes;
             $("#diName").val(nodes[1].innerHTML.toString());
             $("#diDesc").val(nodes[3].innerHTML.toString());
             $("#diCmdtId").val(nodes[8].innerHTML.toString());
-            $("#diCompanyId").val(nodes[10].innerHTML.toString());
-            $("#dialog-form").dialog("open");
+            $("#diCompanyId").val(nodes[12].innerHTML.toString());
+            $("#onsaleModal").modal("show");
         };
+
     </script>
 </head>
 <body>
 
-<nav class="navbar navbar-fixed-top my-navbar" role="navigation" style="font-weight: bold;">
-    <div class="container-fluid">
-        <div class="row-fluid">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse"
-                            data-target="#example-navbar-collapse">
-                        <span class="sr-only">切换导航</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#" style="font-size: 1.6em">借卖商城</a>
-                </div>
+<nav th:include="/nav :: navigation" class="navbar navbar-fixed-top my-navbar" role="navigation" style="font-weight: bold;" ></nav>
 
-                <div class="collapse navbar-collapse" id="example-navbar-collapse" style="font-size: 1.1em">
-
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">首页</a></li>
-                        <li><a href="#">跳转1</a></li>
-                        <li>
-                            <a href="#">跳转2</a>
-                        </li>
-                    </ul>
-
-                    <ul id="funbar" class="nav navbar-nav navbar-right" style="display:none;">
-                        <li><a th:href="@{/user/register}"><span class="glyphicon glyphicon-user"></span>&nbsp;注册</a>
-                        </li>
-                        <li><a th:href="@{/user/login}"><span class="glyphicon glyphicon-log-in"></span>&nbsp;登录</a>
-                        </li>
-                    </ul>
-
-                    <ul id="infobar" class="nav navbar-nav navbar-right" style="display: none">
-                        <li class="dropdown" >
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                我的商城
-                                <b class="caret"></b>
-                            </a>
-
-                            <ul class="dropdown-menu" th:switch="${session.role}">
-                                <li th:case="'seller'"><a href="user/seller/info">我的信息</a>
-                                <a th:href="@{'http://localhost:8081/saleinfo/list/' + ${session.userId}}">店铺信息</a> </li>
-                                <li th:case="'company'"><a href="user/company/info">公司信息</a></li>
-                                <li class="divider">
-                                <li><a href="/user/exit">退出</a></li>
-                                </li>
-                            </ul>
-
-                        </li>
-                    </ul>
-
-                    <form class="navbar-form navbar-right">
-                        <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-addon">
-                                    <i class="glyphicon glyphicon-search"></i>
-                                </div>
-                                <input id="searchKeyName" type="text" class="form-control" placeholder="请输入想搜索的商品"/>
-                            </div>
-                        </div>
-                        <button type="button" class="btn btn-danger" id="searchBtn">搜索</button>
-                    </form>
-
-                </div>
-
-
-            </div>
-            <div class="col-md-2"></div>
-        </div>
-    </div>
-</nav>
 <div class="bg" style=""></div>
 
 <div class="container" style="margin-top: 50px">  <!-- 开加一个container的目的是为了让整体布局居中 -->
@@ -163,73 +101,77 @@
     <!-- 结束 -->
 </div>
 
-<div id="dialog-form" title="商品上架">
-    <p class="validateTips">所有的表单字段都是必填的。</p>
-    <form class="form-horizontal" role="form" action="http://localhost:8081/commodity/onsale" method="post"
-          autocomplete="off" enctype="multipart/form-data">
-        <div class="form-group">
-            <div class="col-sm-1"></div>
-            <h3 class="col-sm-4" style="font-weight: bolder">商品上架</h3>
-            <input type="text" name="mvoCmdtId" id="diCmdtId" style="display: none" value="">
-            <input type="text" name="shopId" style="display: none" value="">
-            <input type="text" name="sellerId" style="display: none" th:value="${session.userId}">
-            <input type="text" nama="companyId" id="diCompanyId" style="display: none" value="">
-            <input type="text" name="state" style="display: none" value="1">
-        </div>
-
-        <div class="form-group">
-            <div class="col-sm-1"></div>
-            <label for="diImage" class="col-sm-3 control-label">商品图片</label>
-            <div class="col-sm-6">
-                <input type="file" name="image" class="form-control" id="diImage" placeholder="设置商品名称">
+<div class="modal fade" id="onsaleModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">商品上架</h4>
             </div>
-            <div class="col-sm-2"></div>
-        </div>
+            <div class="modal-body" >
+                <form class="form-horizontal" role="form" action="http://localhost:8080/onsale/commodity/onsale" method="post"
+                      autocomplete="off" enctype="multipart/form-data">
 
-        <div class="form-group">
-            <div class="col-sm-1"></div>
-            <label for="diName" class="col-sm-3 control-label">商品名称</label>
-            <div class="col-sm-6">
-                <input type="text" name="name" class="form-control" id="diName" placeholder="设置商品名称">
-            </div>
-            <div class="col-sm-2"></div>
-        </div>
+                    <div class="control-group" style="display: none">
+                        <div class="controls">
+                            <input type="text" name="mvoCmdtId" id="diCmdtId" style="display: none" value="">
+                            <input type="text" name="sellerId" style="display: none" th:value="${session.userId}">
+                            <input type="text" name="state" style="display: none" value="1">
+                            <input type="text" name="companyId" id="diCompanyId" style="display: none" value="">
+                        </div>
+                    </div>
 
-        <div class="form-group">
-            <div class="col-sm-1"></div>
-            <label for="diDesc" class="col-sm-3 control-label">商品描述</label>
-            <div class="col-sm-6">
-                <input type="text" name="description" class="form-control" id="diDesc" placeholder="设置商品描述">
-            </div>
-            <div class="col-sm-2"></div>
-        </div>
+                    <div class="control-group">
+                        <label class="control-label" for="diImage" >商品图片</label>
+                        <div class="controls">
+                            <input type="file" name="image" class="form-control" id="diImage" placeholder="设置商品图片">
+                        </div>
+                    </div>
 
-        <div class="form-group">
-            <div class="col-sm-1"></div>
-            <label for="diPrice" class="col-sm-3 control-label">商品价格</label>
-            <div class="col-sm-6">
-                <input type="text" name="price" class="form-control" id="diPrice" placeholder="设置商品价格">
-            </div>
-            <div class="col-sm-2"></div>
-        </div>
+                    <div class="control-group">
+                        <label class="control-label" for="diName" >商品名称</label>
+                        <div class="controls">
+                            <input type="text" name="name" class="form-control" id="diName" placeholder="设置商品名称">
+                        </div>
+                    </div>
 
-        <div class="form-group">
-            <div class="col-sm-1"></div>
-            <label for="diQuantity" class="col-sm-3 control-label">商品数量</label>
-            <div class="col-sm-6">
-                <input type="text" name="quantity" class="form-control" id="diQuantity" placeholder="设置商品描述">
-            </div>
-            <div class="col-sm-2"></div>
-        </div>
+                    <div class="control-group">
+                        <label class="control-label" for="diDesc">商品描述</label>
+                        <div class="controls">
+                            <input type="text" name="description" class="form-control" id="diDesc" placeholder="设置商品描述">
+                        </div>
+                    </div>
 
-        <div class="form-group">
-            <div class="col-sm-3"></div>
-            <div class="col-sm-8">
-                <button type="submit" class="btn btn-success btn-block">确认上架</button>
+                    <div class="control-group">
+                        <label class="control-label" for="diPrice">商品价格</label>
+                        <div class="controls">
+                            <input type="text" name="price" class="form-control" id="diPrice" placeholder="设置商品价格">
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="diQuantity">商品数量</label>
+                        <div class="controls">
+                            <input type="text" name="quantity" class="form-control" id="diQuantity" placeholder="设置商品数量">
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="diShop">上架店铺</label>
+                        <div class="controls">
+                            <select name="shopId" class="form-control" id="diShop" placeholder="选择上架的店铺">
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-danger" >上架</button>
+                    </div>
+                </form>
             </div>
-            <div class="col-sm-1"></div>
         </div>
-    </form>
+    </div>
 </div>
 
 <script>

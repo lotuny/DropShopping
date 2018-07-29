@@ -19,13 +19,13 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
-@Controller("/saleInfo")
+@Controller("saleInfo")
 public class SaleInfoController {
 
     @Autowired
     private SaleInfoService saleInfoService;
 
-    @PostMapping(value = "/commodity/onsale")
+    @PostMapping(value = "commodity/onsale")
     public String onSale(@RequestParam("mvoCmdtId") Integer mvoCmdtId,
                       @RequestParam("image") MultipartFile image,
                       @RequestParam("name") String name,
@@ -53,7 +53,7 @@ public class SaleInfoController {
 
     }
 
-    @PostMapping("/saleinfo/update")
+    @PostMapping("saleinfo/update")
     public String update(@RequestParam("name") String name,
                          @RequestParam("description") String description,
                          @RequestParam("price") Integer price,
@@ -61,25 +61,25 @@ public class SaleInfoController {
                          HttpSession session
     ) {
         saleInfoService.updateSaleInfo(name,description,price,id);
-        return "redirect:/saleinfo/list/" + session.getAttribute("userId");
+        return "redirect:/rolemgmt/saleinfo/list/" + session.getAttribute("userId");
     }
 
-    @GetMapping("/saleinfo/list/{sellerId}")
+    @GetMapping("saleinfo/list/{sellerId}")
     public String list(@PathVariable("sellerId") Integer sellerId, Model model){
         List<SaleInfo> saleInfoList = saleInfoService.listSaleInfo(sellerId);
         model.addAttribute(saleInfoList);
         return "saleinfolist";
     }
 
-    @GetMapping("/saleinfo/desale/{saleInfoId}")
+    @GetMapping("saleinfo/desale/{saleInfoId}")
     public String deSale(@PathVariable("saleInfoId") Integer saleInfoId, HttpSession session){
         saleInfoService.desaleSaleInfo(saleInfoId);
-        return "redirect:/saleinfo/list/" + session.getAttribute("userId");
+        return "redirect:/rolemgmt/saleinfo/list/" + session.getAttribute("userId");
     }
 
-    @GetMapping("/saleinfo/onsaleAgain/{saleInfoId}")
+    @GetMapping("saleinfo/onsaleAgain/{saleInfoId}")
     public String onSaleAgain(@PathVariable("saleInfoId") Integer saleInfoId, HttpSession session){
         saleInfoService.onsaleSaleInfoAgain(saleInfoId);
-        return "redirect:/saleinfo/list/" + session.getAttribute("userId");
+        return "redirect:/rolemgmt/saleinfo/list/" + session.getAttribute("userId");
     }
 }

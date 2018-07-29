@@ -1,8 +1,8 @@
-package com.jnucst2015.dropshopping.service.impl.impl;
+package com.jnucst2015.dropshopping.service.impl;
 
 import com.jnucst2015.dropshopping.entity.MvoCommodity;
 import com.jnucst2015.dropshopping.repository.MvoCommodityRepository;
-import com.jnucst2015.dropshopping.service.service.MvoCommodityService;
+import com.jnucst2015.dropshopping.service.MvoCommodityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -68,11 +68,24 @@ public class MvoCommodityServiceImpl implements MvoCommodityService
      * @param company_id to be get.
      * @return all commodities from the company_id.
      */
-    /*@Override
+    @Override
     public List<MvoCommodity> getCommoditiesByCompanyId(Integer company_id)
     {
-        return re(company_id);
-    }*/
+        return re.findMvoCommoditiesByCompany_idIs(company_id);
+    }
+
+    /**
+     * Get the commodity from the company
+     *
+     * @param id         to be get.
+     * @param company_id as a token.
+     * @return the specified commodity from the company.
+     */
+    @Override
+    public MvoCommodity getCommoditiesByIdAndCompanyId(Integer id, Integer company_id)
+    {
+        return re.getMvoCommoditiesByIdIsAndCompany_idIs(id, company_id);
+    }
 
     /**
      * Delete a commodity by id.

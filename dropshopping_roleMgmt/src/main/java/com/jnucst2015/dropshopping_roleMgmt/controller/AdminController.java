@@ -29,6 +29,6 @@ public class AdminController {
                              @RequestParam("password") String password) {
         adminService.adminLogin(name, password, session);
 
-        return "redirect:/background/2";
+        return "redirect:/rolemgmt/background/2";
     }
 }

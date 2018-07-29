@@ -21,7 +21,7 @@ public class OrderController {
     @GetMapping("delete/{id}")
     public String deleteOrder(@PathVariable("id") Integer orderId){
         orderService.deleteOrderItem(orderId);
-        return "redirect:/orderPage";
+        return "redirect:/odermgmt/orderPage";
     }
 
     @GetMapping("update/{orderItemId}")
@@ -43,13 +43,13 @@ public class OrderController {
     @PostMapping("update")
     public String modifOrder(OrderItemVo orderItemVo){
         orderService.updateOrderItemInfo(orderItemVo);
-        return "redirect:/orderPage";
+        return "redirect:/odermgmt/orderPage";
     }
 
     @PostMapping("add")
     public String addOrder(OrderItemVo orderItemVo){
         orderService.updateOrderItemInfo(orderItemVo);
-        return "redirect:/orderPage";
+        return "redirect:/odermgmt/orderPage";
     }
 
 //    @GetMapping("add")

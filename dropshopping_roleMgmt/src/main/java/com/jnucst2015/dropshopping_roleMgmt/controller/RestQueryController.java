@@ -7,6 +7,7 @@ import com.jnucst2015.dropshopping.service.SaleInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@RequestMapping("query")
 public class RestQueryController {
 
     @Autowired
@@ -25,13 +27,13 @@ public class RestQueryController {
     @Autowired
     private CompanyService companyService;
 
-    @GetMapping(value = "/commodity/get/{keyName}")
+    @GetMapping(value = "commodity/get/{keyName}")
     public List<MvoCommodity> LIKEquery(@PathVariable(value = "keyName") String keyName, HttpServletResponse response){
         response.setHeader("Access-Control-Allow-Origin", "*");
         return mvoCommodityRepository.LIKEquery(keyName);
     }
 
-    @GetMapping(value = "/commodity/getAll")
+    @GetMapping(value = "commodity/getAll")
     public List<MvoCommodity> gets(HttpServletResponse response){
         List<MvoCommodity> list = mvoCommodityRepository.findAll();
         response.setHeader("Access-Control-Allow-Origin", "*");
@@ -48,7 +50,7 @@ public class RestQueryController {
 //
 //    }
 
-    @GetMapping("/shop.list/{sellerId}")
+    @GetMapping("shop.list/{sellerId}")
     public List<Map<String, Object>> getShops(@PathVariable("sellerId") Integer sellerId){
         return saleInfoService.getShopList(sellerId);
     }

@@ -8,24 +8,24 @@
     <script type="application/javascript">
         function upMvo(node) {
             let mvo_id = node.parentNode.parentNode.children[0].innerHTML;
-            $.post("/up", {id: mvo_id}, function () {
+            $.post("/cmdtmgmt/mvoRest/up", {id: mvo_id}, function () {
                 window.location.reload()
             })
         }
 
         function downMvo(node) {
             let mvo_id = node.parentNode.parentNode.children[0].innerHTML;
-            $.post("/down", {id: mvo_id}, function () {
+            $.post("/cmdtmgmt/mvoRest/down", {id: mvo_id}, function () {
                 window.location.reload()
             })
         }
         function modify(node) {
             let mvo_id = node.parentNode.parentNode.children[0].innerHTML;
-            window.location.href = "/modify?id=" + mvo_id;
+            window.location.href = "/cmdtmgmt/mvo/modify?id=" + mvo_id;
         }
         function del(node) {
             let mvo_id = node.parentNode.parentNode.children[0].innerHTML;
-            $.post("/delete", {id: mvo_id}, function () {
+            $.post("/cmdtmgmt/mvoRest/delete", {id: mvo_id}, function () {
                 window.location.reload()
             })
         }
@@ -67,7 +67,7 @@
                             <td class="mvo_id" th:text="${mvo.getId()}"></td>
                             <td class="mvo_description" th:text="${mvo.getDescription()}"></td>
                             <td class="mvo_image"
-                                th:utext="${'<img width=&quot;200px;&quot; src=&quot;upload/' + mvo.getImage() + '&quot;/>'}"></td>
+                                th:utext="${'<img width=&quot;200px;&quot; src=&quot;images/' + mvo.getImage() + '&quot;/>'}"></td>
                             <td class="mvo_name" th:text="${mvo.getName()}"></td>
                             <td class="mvo_price" th:text="${mvo.getPrice()/100.0}"></td>
                             <td class="mvo_quantity" th:text="${mvo.getQuantity()}"></td>
@@ -93,7 +93,7 @@
                         </tr>
                         </tbody>
                     </table>
-                    <button style="width: 100%" th:text="添加商品" onclick="window.location.href='/addMvo'"></button>
+                    <button style="width: 100%" th:text="添加商品" onclick="window.location.href='/cmdtmgmt/addMvo'"></button>
                 </div>
             </div>
         </div>

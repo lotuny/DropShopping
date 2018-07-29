@@ -1,15 +1,17 @@
 package com.jnucst2015.dropshopping_cmdtmgmt.controller;
 
 import com.jnucst2015.dropshopping.entity.MvoCommodity;
-import com.jnucst2015.dropshopping.service.service.MvoCommodityService;
+import com.jnucst2015.dropshopping.service.MvoCommodityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -19,39 +21,41 @@ import java.time.Instant;
 import java.util.Arrays;
 
 @Controller
+@RequestMapping("mvo")
 public class MvoController
 {
     @Autowired
     private MvoCommodityService service;
 
-    @GetMapping("/getMvo")
-    private String getMvo(Model model)
+    @GetMapping("getMvo")
+    private String getMvo(Model model, HttpSession session)
     {
-        model.addAttribute("lsts", service.getAll());
+        model.addAttribute("lsts", service.getCommoditiesByCompanyId(Integer.parseInt(session.getAttribute("userId").toString())));
         return "getmvo";
     }
 
-    @GetMapping("/modify")
-    private String modifyMvo(Model model, @RequestParam("id") Integer id)
+    @GetMapping("modify")
+    private String modifyMvo(Model model, @RequestParam("id") Integer id, HttpSession session)
     {
-        model.addAttribute("mvo", service.getById(id));
+        model.addAttribute("mvo", service.getCommoditiesByIdAndCompanyId(id, Integer.parseInt(session.getAttribute("userId").toString())));
         return "modify";
     }
 
     @GetMapping("addMvo")
-    private String addMvo(Model model)
+    private String addMvo(Model model, HttpSession session)
     {
-        model.addAttribute("company_id", 0);
+        model.addAttribute("company_id", Integer.parseInt(session.getAttribute("userId").toString()));
         return "onsale";
     }
-/*
-    @GetMapping("/upload/{file}")
-    private String getImage(@PathVariable("file") String file)
-    {
-        return "redirect:upload/" + file;
-    }*/
 
-    @PostMapping("/addMvo")
+    @GetMapping("detail")
+    private String getDetail(Model model, @RequestParam("id") Integer id, HttpSession session)
+    {
+        model.addAttribute("commodity", service.getCommoditiesByIdAndCompanyId(id, Integer.parseInt(session.getAttribute("userId").toString())));
+        return "detail";
+    }
+
+    @PostMapping("addMvo")
     private String addOne(
             @RequestParam("class_id") Integer class_id,
             @RequestParam("name") String name,
@@ -61,8 +65,9 @@ public class MvoController
             @RequestParam("quantity") Integer quantity,
             @RequestParam("state") Integer state,
             @RequestParam("warn_num") Integer warn_num,
-            @RequestParam("company_id") Integer company_id,
-            @RequestParam("brand_id") Integer brand_id
+//            @RequestParam("company_id") Integer company_id,
+            @RequestParam("brand_id") Integer brand_id,
+            HttpSession session
     )
     {
         String psstPath = "notfound.jpg";
@@ -71,8 +76,8 @@ public class MvoController
             psstPath = writeFileOrNull(file, psstPath);
         }
 
-        service.add(new MvoCommodity(null, description, psstPath, name, (int) (100 * price), quantity, state, class_id, Timestamp.from(Instant.now()), warn_num, brand_id, company_id));
-        return "redirect:/getMvo";
+        service.add(new MvoCommodity(null, description, psstPath, name, (int) (100 * price), quantity, state, class_id, Timestamp.from(Instant.now()), warn_num, brand_id, Integer.parseInt(session.getAttribute("userId").toString())));
+        return "redirect:/cmdtmgmt/getMvo";
     }
 
     public String writeFileOrNull(@RequestParam("image") MultipartFile file, String psstPath)
@@ -81,7 +86,7 @@ public class MvoController
         {
             byte[] bytes = file.getBytes();
             psstPath = System.currentTimeMillis() + "_" + Integer.toHexString(Arrays.hashCode(bytes)) + "." + file.getOriginalFilename().replaceAll("(\\S+)\\.", "");
-            Path path = Paths.get("dropshopping_cmdtmgmt/src/main/resources/static/upload/" + psstPath);
+            Path path = Paths.get("dropshopping_cmdtmgmt/src/main/resources/static/images/" + psstPath);
             Files.write(path, bytes);
         }
         catch (IOException e)
@@ -102,8 +107,9 @@ public class MvoController
             @RequestParam(value = "quantity", required = false) Integer quantity,
             @RequestParam(value = "state", required = false) Integer state,
             @RequestParam(value = "warn_num", required = false) Integer warn_num,
-            @RequestParam(value = "company_id", required = false) Integer company_id,
-            @RequestParam(value = "brand_id", required = false) Integer brand_id
+//            @RequestParam(value = "company_id", required = false) Integer company_id,
+            @RequestParam(value = "brand_id", required = false) Integer brand_id,
+            HttpSession session
     )
     {
         MvoCommodity mvoCommodity = service.getById(id);
@@ -125,10 +131,10 @@ public class MvoController
                         Timestamp.from(Instant.now()),
                         warn_num == null ? mvoCommodity.getWarn_num() : warn_num,
                         brand_id == null ? mvoCommodity.getBrand_id() : brand_id,
-                        company_id == null ? mvoCommodity.getCompany_id() : company_id
+                        session.getAttribute("userId") == null ? mvoCommodity.getCompany_id() : Integer.parseInt(session.getAttribute("userId").toString())
                 )
         );
-        return "redirect:/getMvo";
+        return "redirect:/cmdtmgmt/getMvo";
     }
 
 

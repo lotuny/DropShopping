@@ -34,18 +34,18 @@ public class BrandController {
         Integer companyId =(Integer) session.getAttribute("userId");
         brand.setCompanyId(companyId);
         brandService.addBrandInfo(brand);
-        return "redirect:/brand";
+        return "redirect:/shopmgmt/brand";
     }
     @GetMapping("/delete/{id}")
     public String deleteByBrandID(@PathVariable("id")Integer ID){
         brandService.deleteByBrandId(ID);
-        return "redirect:/brand";
+        return "redirect:/shopmgmt/brand";
     }
 
     @PostMapping("/updateBrand")
     public String updateBrandByBrandId(Brand brand){
         brandService.updateBrandInfo(brand);
-        return "redirect:/brand";
+        return "redirect:/shopmgmt/brand";
     }
     @PostMapping("/updateCompany")
     public String updateCompany(@RequestParam("id")Integer id,Company company){
@@ -53,7 +53,7 @@ public class BrandController {
         c.setDescription(company.getDescription());
         c.setName(company.getName());
         companyService.updateCompany(c);
-        return "redirect:/brand";
+        return "redirect:/shopmgmt/brand";
     }
 
 

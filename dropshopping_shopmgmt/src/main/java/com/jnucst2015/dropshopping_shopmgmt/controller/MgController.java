@@ -40,7 +40,7 @@ public class MgController {
     @GetMapping("seller/mgdelete/{id}")
     public String deleteBySellerIDMg(@PathVariable("id")Integer ID){
         sellerService.deleteBySellerId(ID);
-        return "redirect:/mg/seller";
+        return "redirect:/shopmgmt/mg/seller";
     }
 
     @GetMapping("seller/mgupdate/{id}")
@@ -54,7 +54,7 @@ public class MgController {
     @PostMapping("seller/updateShopMg")
     public String updateBrandByBrandIdMg(@RequestParam("sellerId")Integer id, Shop shop){
         shopService.updateShopInfo(shop);
-        return "redirect:/mg/seller/mgupdate/" + id.toString();
+        return "redirect:/shopmgmt/mg/seller/mgupdate/" + id.toString();
     }
 
     @GetMapping("seller/deleteShopMg/{id}")
@@ -62,7 +62,7 @@ public class MgController {
         Shop shop = shopService.getShopByID(ID);
         Integer sellerId = shop.getSellerId();
         shopService.deleteByShopID(ID);
-        return "redirect:/mg/seller/mgupdate/"+sellerId.toString();
+        return "redirect:/shopmgmt/mg/seller/mgupdate/"+sellerId.toString();
     }
 
     //brand and company
@@ -76,7 +76,7 @@ public class MgController {
     @GetMapping("/company/mgdelete/{id}")
     public String deleteByCompanyID(@PathVariable("id")Integer ID){
         companyService.deleteByCompanyId(ID);
-        return "redirect:/mg/company";
+        return "redirect:/shopmgmt/mg/company";
     }
 
     @GetMapping("company/mgupdate/{id}")
@@ -91,7 +91,7 @@ public class MgController {
     @PostMapping("company/updateBrandMg")
     public String updateBrandByBrandIdMg(@RequestParam("companyId")Integer id, Brand brand){
         brandService.updateBrandInfo(brand);
-        return "redirect:/mg/company/mgupdate/" + id.toString();
+        return "redirect:/shopmgmt/mg/company/mgupdate/" + id.toString();
     }
 
     @GetMapping("company/branddelete/{id}")
@@ -100,7 +100,7 @@ public class MgController {
         Integer companyId = brand.getCompanyId();
         brandService.deleteByBrandId(ID);
 
-        return "redirect:/mg/company/mgupdate/"+companyId.toString();
+        return "redirect:/shopmgmt/mg/company/mgupdate/"+companyId.toString();
     }
 
     @PostMapping("company/updateCompany")
@@ -109,6 +109,6 @@ public class MgController {
         c.setDescription(company.getDescription());
         c.setName(company.getName());
         companyService.updateCompany(c);
-        return "redirect:/mg/company/mgupdate/"+company.getId();
+        return "redirect:/shopmgmt/mg/company/mgupdate/"+company.getId();
     }
 }

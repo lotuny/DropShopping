@@ -112,7 +112,7 @@
                         <h4 class="modal-title" id="myModalLabel">品牌信息</h4>
                     </div>
                     <div class="modal-body" >
-                        <form class="form-horizontal" role="form" th:action="@{/brand/addBrand}" method="post">
+                        <form class="form-horizontal" role="form" th:action="@{/shopmgmt/brand/addBrand}" method="post">
 
                             <div class="control-group">
                                 <label class="control-label" for="inputName" >品牌名称<br>Brand Name</label>
@@ -147,7 +147,7 @@
                 <h4 class="modal-title" id="ModalLabel">品牌信息</h4>
             </div>
             <div class="modal-body" >
-                <form class="form-horizontal" role="form" th:action="@{/mg/company/updateBrandMg}" method="post">
+                <form class="form-horizontal" role="form" th:action="@{/shopmgmt/mg/company/updateBrandMg}" method="post">
 
                     <input type="hidden" id="updateId" name="id" >
                     <input type="hidden" id="updateCompanyId" name="companyId" >
@@ -184,7 +184,7 @@
                 <h4 class="modal-title" id="ModalLabel2">公司信息</h4>
             </div>
             <div class="modal-body" >
-                <form class="form-horizontal" role="form" th:action="@{/mg/company/updateCompany}" method="post">
+                <form class="form-horizontal" role="form" th:action="@{/shopmgmt/mg/company/updateCompany}" method="post">
 
                     <input type="hidden" id="updateIdForCompany" name="id" >
                     <div class="control-group">

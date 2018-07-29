@@ -85,14 +85,14 @@
                 <h4 class="modal-title" id="ModalLabel">店铺信息</h4>
             </div>
             <div class="modal-body" >
-                <form class="form-horizontal" role="form" th:action="@{/mg/seller/updateShopMg}" method="post">
+                <form class="form-horizontal" role="form" th:action="@{/shopmgmt/mg/seller/updateShopMg}" method="post">
 
                     <input type="hidden" id="updateId" name="id" >
                     <input type="hidden" id="updateSellerId" name="sellerId" >
                     <div class="control-group">
                         <label class="control-label" for="inputName" >店铺名称<br>Shop Name</label>
                         <div class="controls">
-                            <input type="text"id="updateName" name="name" >
+                            <input type="text" id="updateName" name="name" >
                         </div>
                     </div>
 

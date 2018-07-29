@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -70,7 +70,7 @@
 
     <div class="row">
         <div class="col-lg-offset-3 col-lg-6">
-            <form class="form-horizontal" role="form" th:action="@{/user/register}" method="post" autocomplete="off">
+            <form class="form-horizontal" role="form" th:action="@{/rolemgmt/user/register}" method="post" autocomplete="off">
                 <div class="form-group">
                     <div class="col-sm-2"></div>
                     <label for="inputName" class="col-sm-2 control-label">用户名</label>

@@ -1,54 +1,55 @@
 package com.jnucst2015.dropshopping_cmdtmgmt.controller;
 
 import com.jnucst2015.dropshopping.entity.MvoCommodity;
-import com.jnucst2015.dropshopping.service.service.MvoCommodityService;
+import com.jnucst2015.dropshopping.service.MvoCommodityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("mvoRest")
 public class MvoRestController
 {
     @Autowired private MvoCommodityService service;
 
-    @GetMapping("/getAll")
+    @GetMapping("getAll")
     private List<MvoCommodity> getAll()
     {
         return service.getAll();
     }
 
-    @GetMapping("/recent")
+    @GetMapping("recent")
     private List<MvoCommodity> getRecent(@RequestParam("count") Integer count)
     {
         return service.getRecent(count);
     }
 
-    @GetMapping("/get")
+    @GetMapping("get")
     private MvoCommodity getOne(@RequestParam("id") Integer id)
     {
         return service.getById(id);
     }
 
-    @PostMapping("/up")
+    @PostMapping("up")
     private void up(@RequestParam("id") Integer id)
     {
         service.up(id);
     }
 
-    @PostMapping("/down")
+    @PostMapping("down")
     private void down(@RequestParam("id") Integer id)
     {
         service.down(id);
     }
 
-    @PostMapping("/delete")
+    @PostMapping("delete")
     private void delete(@RequestParam("id") Integer id)
     {
         service.deleteById(id);
     }
 
-    @PostMapping("/deleteInBatch")
+    @PostMapping("deleteInBatch")
     private void delete(@RequestParam("commodities") String commodities)
     {
         service.deleteByIds(commodities);
