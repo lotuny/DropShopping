@@ -12,6 +12,9 @@ import java.util.List;
 
 public interface OrderItemRepository extends JpaRepository<OrderItem,Integer> {
 
+    @Query(value = "select * from order_item where sale_info_id = ?1", nativeQuery = true)
+    List<OrderItem> findAllBySale_info_id(Integer saleInfoId);
+
     @Query(value = "select * from order_item where state=?1", nativeQuery = true)
     public List<OrderItem> selectByState(@Param("state")short state);
 
@@ -25,8 +28,10 @@ public interface OrderItemRepository extends JpaRepository<OrderItem,Integer> {
 
     @Modifying
     @Transactional
-    @Query(value = "update order_item set state = 4 where id = ?1",nativeQuery = true)
-    void setOrderItemDelete(Integer orderItemId);
+    @Query(value = "update order_item set state = ?1 where id = ?2",nativeQuery = true)
+    void setOrderItemState(Integer state, Integer orderItemId);
+
+
 
 
 }
