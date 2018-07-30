@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <script type="application/javascript" th:src="@{/js/jquery-1.9.1.js}"></script>
+    <title>Lists</title>
+    <script type="application/javascript">
+        function upMvo(node) {
+            let mvo_id = node.parentNode.parentNode.children[0].innerHTML;
+            $.post("/up", {id: mvo_id}, function () {
+                window.location.reload()
+            })
+        }
+
+        function downMvo(node) {
+            let mvo_id = node.parentNode.parentNode.children[0].innerHTML;
+            $.post("/down", {id: mvo_id}, function () {
+                window.location.reload()
+            })
+        }
+        function modify(node) {
+            let mvo_id = node.parentNode.parentNode.children[0].innerHTML;
+            window.location.href = "/modify?id=" + mvo_id;
+        }
+        function detail(node) {
+            let mvo_id = node.parentNode.parentNode.children[0].innerHTML;
+            window.location.href = "/detail?id=" + mvo_id;
+        }
+        function del(node) {
+            let mvo_id = node.parentNode.parentNode.children[0].innerHTML;
+            $.post("/delete", {id: mvo_id}, function () {
+                window.location.reload()
+            })
+        }
+    </script>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-offset-1 col-lg-10">
+            <div class="panel panel-primary">
+                <!-- Default panel contents -->
+                <div class="panel-heading">品牌商商品管理界面</div>
+                <div class="panel-body">
+                    <p>
+                    <div class="alert alert-success">
+                        在这里，你可以对商品进行查看 / 修改 / 删除 / 查询操作
+                    </div>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th style="display: none;">id</th>
+                            <th>名称</th>
+                            <th>描述</th>
+                            <th>图片</th>
+                            <th>状态</th>
+                            <th>分类</th>
+                            <th>创建时间</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="mvo:${lsts}">
+                            <td class="mvo_id" style="display: none;" th:text="${mvo.getId()}"></td>
+                            <td class="mvo_name" th:text="${mvo.getName()}"></td>
+                            <td class="mvo_description" th:text="${mvo.getDescription()}"></td>
+                            <td class="mvo_image"
+                                th:utext="${'<img width=&quot;100px;&quot; src=&quot;upload/' + mvo.getImage() + '&quot;/>'}"></td>
+                            <td class="mvo_state" th:switch="${mvo.getState()}">
+                                <span th:case="1">上架</span>
+                                <span th:case="*">下架</span>
+                            </td>
+                            <td class="mvo_class" th:text="${mvo.getClass_id()}"></td>
+                            <td class="mvo_creation" th:text="${mvo.getCreation_time()}"></td>
+                            <td class="mvo_action" th:switch="${mvo.getState()}">
+                                <button th:case="1" onclick="downMvo(this)">下架</button>
+                                <button th:case="*" onclick="upMvo(this)">上架</button>
+                            </td>
+                            <td class="mvo_detail">
+                                <button onclick="detail(this)">详细信息</button>
+                            </td>
+                            <td class="mvo_modif">
+                                <button onclick="modify(this)">修改信息</button>
+                            </td>
+                            <td class="mvo_del">
+                                <button onclick="del(this)">删除商品</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <button style="width: 100%" th:text="添加商品" onclick="window.location.href='/addMvo'"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -7,17 +7,14 @@ public class Shop {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(columnDefinition = "int(11) COMMENT '商店ID'")
+    @Column(columnDefinition = "int(11) COMMENT '店铺ID'")
     private Integer id;
-    @Column(columnDefinition = "varchar(255) COMMENT '商店名'")
+    @Column(columnDefinition = "varchar(255) COMMENT '店铺名'")
     private String name;
-    @Column(columnDefinition = "varchar(255) COMMENT '商店描述'")
+    @Column(columnDefinition = "varchar(255) COMMENT '店铺描述'")
     private String description;
-    @Column(columnDefinition = "tinyint(11) COMMENT '商店分类'")
-    private Integer owner_role;
-    @Column(columnDefinition = "int(11) COMMENT '拥有者ID'")
-    @ManyToOne
-    private Integer owner_id;
+    @Column(columnDefinition = "int(11) COMMENT '借卖方ID'")
+    private Integer sellerId;
 
     public Integer getId() {
         return id;
@@ -43,19 +40,11 @@ public class Shop {
         this.description = description;
     }
 
-    public Integer getOwner_role() {
-        return owner_role;
+    public Integer getSellerId() {
+        return sellerId;
     }
 
-    public void setOwner_role(Integer owner_role) {
-        this.owner_role = owner_role;
-    }
-
-    public Integer getOwner_id() {
-        return owner_id;
-    }
-
-    public void setOwner_id(Integer owner_id) {
-        this.owner_id = owner_id;
+    public void setSellerId(Integer seller_id) {
+        this.sellerId = seller_id;
     }
 }

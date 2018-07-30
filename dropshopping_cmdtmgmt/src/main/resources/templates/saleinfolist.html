@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<script th:inline="javascript">
+    $(function () {
+        $("#updateModal").on('show.bs.modal',function () {
+            console.log("test log")
+        })
+    })
+</script>
+
+<body>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-offset-1 col-lg-10">
+            <div class="panel panel-primary">
+                <!-- Default panel contents -->
+                <div class="panel-heading">上架商品管理界面</div>
+                <div class="panel-body">
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>编号</th>
+                            <th>商品ID</th>
+                            <th>借卖方ID</th>
+                            <th>商品图片</th>
+                            <th>商品名字</th>
+                            <th>商品描述</th>
+                            <th>商品价格</th>
+                            <th>商品数量</th>
+                            <th>商品状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="SaleInfo:${saleInfoList}">
+                            <td th:text="${SaleInfo.id}">ID</td>
+                            <td th:text="${SaleInfo.mvoCmdtId}">Commodity ID</td>
+                            <td th:text="${SaleInfo.sellerId}">Seller ID</td>
+                            <td><img th:src="${SaleInfo.image}" alt="">Image</td>
+                            <td th:text="${SaleInfo.name}">Name</td>
+                            <td th:text="${SaleInfo.description}">Description</td>
+                            <td th:text="${SaleInfo.price}">Price</td>
+                            <th th:text="${SaleInfo.quantity}">Quantity</th>
+                            <td th:text="${SaleInfo.state}">商品状态</td>
+                            <td th:switch="${SaleInfo.state}">
+                                <a th:case="'1'" th:href="@{'/saleinfo/desale/' + ${SaleInfo.id}}">下架</a>
+                                <a th:case="'0'" th:href="@{'/saleinfo/onsaleAgain/' + ${SaleInfo.id}}">上架</a>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <button data-toggle="modal" data-target="#updateModal" >修改</button>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <a th:href="@{'delete/'+ ${SaleInfo.id}}">删除</a>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">修改上架信息</h4>
+                                </div>
+                                <div class="modal-body" >
+                                    <form class="form-horizontal" role="form" th:action="@{/saleinfo/update}" method="post">
+
+                                        <div class="control-group" style="display: none">
+                                            <div class="controls">
+                                                <input type="text" name="sellerId" value="1" >
+                                            </div>
+                                        </div>
+
+                                        <!--<div class="control-group">-->
+                                            <!--<label class="control-label" for="inputImage" >商品图片</label>-->
+                                            <!--<div class="controls">-->
+                                                <!--<input type="text"id="inputImage" name="image" >-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+
+                                        <div class="control-group">
+                                            <label class="control-label" for="inputName" >商品名称</label>
+                                            <div class="controls">
+                                                <input type="text"id="inputName" name="name" >
+                                            </div>
+                                        </div>
+
+                                        <div class="control-group">
+                                            <label class="control-label" for="inputDescription">商品描述</label>
+                                            <div class="controls">
+                                                <input type="text" id = "inputDescription" name="description">
+                                            </div>
+                                        </div>
+
+                                        <div class="control-group">
+                                            <label class="control-label" for="inputPrice">商品价格</label>
+                                            <div class="controls">
+                                                <input type="text" id = "inputPrice" name="price">
+                                            </div>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                            <button type="submit" class="btn btn-primary" >保存</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

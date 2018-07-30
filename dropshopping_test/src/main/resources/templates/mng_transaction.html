@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <link  th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+
+    <meta charset="UTF-8"/>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-offset-1 col-lg-10">
+            <div class="panel panel-primary">
+                <!-- Default panel contents -->
+                <div class="panel-heading">交易记录管理界面</div>
+                <div class="panel-body">
+                    <p>
+                    <div class="alert alert-success">
+                        在这里，你可以对交易记录进行查看/修改/删除/查询操作，如果需要添加交易记录请点击
+                        <a th:href="@{/mng/addTran}" class="alert-link">添加交易记录</a>
+                    </div>
+                    </p>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>编号</th>
+                            <th>交易时间</th>
+                            <th>支付方</th>
+                            <th>收款方</th>
+                            <th>具体信息</th>
+                            <th>交易金额</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="tran:${trans}">
+                            <td th:text="${tran.getId()}"></td>
+                            <td th:text="${tran.getDate()}"></td>
+                            <td th:text="${tran.getPayer()}"></td>
+                            <td th:text="${tran.getRecipient()}"></td>
+                            <td th:text="${tran.getDescription()}"></td>
+                            <td th:text="${tran.getPrice()}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+
+    <meta charset="UTF-8"/>
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="row">
+                <div class="col-lg-offset-1 col-lg-10">
+                    <div class="panel panel-primary">
+                        <!-- Default panel contents -->
+                        <div class="panel-heading">管理员订单信息管理界面</div>
+                        <div class="panel-body">
+                            <p>
+                            <div class="alert alert-success">
+                          在这里，你可以对订单信息进行查看/修改/删除/查询/<a th:href="@{orderPage/add/}" title="新增">新增<i class="fa fa-edit text-navy"></i></a>
+                            操作
+                            </div>
+                            </p>
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>id</th>
+                                    <th>数量</th>
+                                    <th>订单编号</th>
+                                    <th>创建时间</th>
+                                    <th>状态</th>
+                                    <th>商品名字</th>
+                                    <th>商品单价</th>
+                                    <th>附加信息</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="oderItemVo:${oderItemsVos}">
+                                    <td th:text="${oderItemVo.getId()}" ></td>
+                                    <td th:text="${oderItemVo.getCount()}" ></td>
+                                    <td th:text="${oderItemVo.getOrderId()}" ></td>
+                                    <td th:text="${oderItemVo.getCreationTime()}" ></td>
+                                    <td th:switch="${oderItemVo.getState()}">
+                                        <span th:case="1">待发货</span>
+                                        <span th:case="2">已发货</span>
+                                        <span th:case="3">已完成</span>
+                                        <span th:case="4">已取消</span>
+                                        <span th:case="*">待支付</span>
+                                    </td>
+                                    <td th:text="${oderItemVo.getName()}" ></td>
+                                    <td th:text="${oderItemVo.getPrice()}" ></td>
+                                    <td th:text="${oderItemVo.getNotes()}" ></td>
+
+                                    <td>
+                                        <a th:href="@{'/orderPage/delete/'+${oderItemVo.getId()}}" title="删除">取消订单<i class="fa fa-trash-o text-navy"></i></a>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+                </div>
+        </div>
+
+
+    </div>
+
+</body>
+</html>

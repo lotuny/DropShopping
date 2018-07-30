@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/js/jquery-1.9.1.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-responsive.min.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/ace.min.css">
+    <link rel="stylesheet" href="/css/ace-skins.min.css">
+    <link rel="stylesheet" href="/css/ace-responsive.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+                <div class="form-group" style="font-size: 0.8cm;">
+                    <label for="balance">账户余额</label>&nbsp;&nbsp;&nbsp;<label th:text="'¥'+${balance}" id="balance"></label>
+                </div>
+                <button class="btn btn-default"><a id="modal-40655" href="#modal-container-40655" role="button" class="btn" data-toggle="modal">充值</a></button>
+                <button class="btn btn-default"><a id="modal-4065" href="#modal-container-4065" role="button" class="btn" data-toggle="modal">提现</a></button>
+
+                <div class="modal fade" id="modal-container-40655" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h4 class="modal-title" id="myModalLabel">
+                                    充值操作
+                                </h4>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form-horizontal" role="form" method="post" th:action="@{'/tran/companyTopup'}">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">金额：</label>
+                                        <div class="col-sm-5">
+                                            <input type="text" name="num" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">密码：</label>
+                                        <div class="col-sm-5">
+                                            <input type="password" name="pay_pwd" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="col-sm-offset-2">确定</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="modal fade" id="modal-container-4065" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h4 class="modal-title" id="myModalLabel2">
+                                    提现操作
+                                </h4>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form-horizontal" role="form" method="post" th:action="@{'/tran/companyWithdraw'}">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">金额：</label>
+                                        <div class="col-sm-5">
+                                            <input type="text" name="num" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">密码：</label>
+                                        <div class="col-sm-5">
+                                            <input type="password" name="pay_pwd" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="col-sm-offset-2">确定</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="panel-body">
+
+                    <div class="btn-group">
+                        <button class="btn" th:href="@{'/tran/company_wallet/'}">全部</button>
+                        <button class="btn" th:href="@{'/tran/companyOnlyPay'}">支出</button>
+                        <button class="btn" th:href="@{'/tran/companyOnlyReceive'}">收入</button>
+                    </div>
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>编号</th>
+                            <th>交易时间</th>
+                            <th>支付方</th>
+                            <th>收款方</th>
+                            <th>具体信息</th>
+                            <th>交易金额</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="tran:${trans}">
+                            <td th:text="${tran.getId()}"></td>
+                            <td th:text="${tran.getTimestamp()}"></td>
+                            <td th:text="${tran.getPayer()}"></td>
+                            <td th:text="${tran.getRecipient()}"></td>
+                            <td th:text="${tran.getDescription()}"></td>
+                            <td th:text="${tran.getPrice()}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

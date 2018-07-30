@@ -7,6 +7,10 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
+  redis:
+    host: ns3.geno1024.com
+    port: 6379
 server:
   port: 8080
+
