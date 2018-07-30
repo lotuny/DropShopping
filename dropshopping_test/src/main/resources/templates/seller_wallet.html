@@ -20,8 +20,10 @@
                 <div class="form-group" style="font-size: 0.8cm;">
                     <label for="balance">账户余额</label>&nbsp;&nbsp;&nbsp;<label th:text="'¥'+${balance}" id="balance"></label>
                 </div>
-                <button class="btn btn-default"><a id="modal-40655" href="#modal-container-40655" role="button" class="btn" data-toggle="modal">充值</a></button>
+
                 <button class="btn btn-default"><a id="modal-4065" href="#modal-container-4065" role="button" class="btn" data-toggle="modal">提现</a></button>
+
+                <button class="btn btn-default"><a id="modal-40655" href="#modal-container-40655" role="button" class="btn" data-toggle="modal">充值</a></button>
 
                 <div class="modal fade" id="modal-container-40655" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -67,7 +69,7 @@
                                 </h4>
                             </div>
                             <div class="modal-body">
-                                <form class="form-horizontal" role="form" method="post" th:action="@{'tran/sellerWithdraw'}">
+                                <form class="form-horizontal" role="form" method="post" th:action="@{'/tran/sellerWithdraw'}">
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label">金额：</label>
                                         <div class="col-sm-5">
