@@ -38,16 +38,18 @@ public class SaleInfoController {
                       @RequestParam("state") Integer state
     ) {
         Path path = Paths.get("blank.jpg");
+        String img = "";
         try {
             byte[] imageByte = image.getBytes();
-            path = Paths.get("src\\main\\resources\\images\\" + System.currentTimeMillis() + "_" + Integer.toHexString(Arrays.hashCode(imageByte)) + "." + image.getOriginalFilename().replaceAll("(\\S+)\\.",""));
+            img = System.currentTimeMillis() + "_" + Integer.toHexString(Arrays.hashCode(imageByte)) + "." + image.getOriginalFilename().replaceAll("(\\S+)\\.","");
+            path = Paths.get("E:\\images\\" + img);
             Files.write(path, imageByte);
         }
         catch (IOException e) {
             e.printStackTrace();
         }
 
-        SaleInfo saleInfo = new SaleInfo(mvoCmdtId, shopId, sellerId, name, path.toString(), price*100, quantity, description, state, companyId);
+        SaleInfo saleInfo = new SaleInfo(mvoCmdtId, shopId, sellerId, name, img, price*100, quantity, description, state, companyId);
         saleInfoService.updateSaleInfo(saleInfo);
         return "redirect:/";
 
@@ -85,6 +87,12 @@ public class SaleInfoController {
     @GetMapping("/saleinfo/onsaleAgain/{saleInfoId}")
     public String onSaleAgain(@PathVariable("saleInfoId") Integer saleInfoId, HttpSession session){
         saleInfoService.onsaleSaleInfoAgain(saleInfoId);
+        return "redirect:/saleinfo/list/" + session.getAttribute("userId");
+    }
+
+    @GetMapping("/saleinfo/delete/{saleInfoId}")
+    public String delete(@PathVariable("saleInfoId") Integer saleInfoId, HttpSession session){
+        saleInfoService.delete(saleInfoId);
         return "redirect:/saleinfo/list/" + session.getAttribute("userId");
     }
 

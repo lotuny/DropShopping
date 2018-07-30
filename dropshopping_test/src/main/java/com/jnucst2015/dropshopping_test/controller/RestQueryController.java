@@ -35,7 +35,7 @@ public class RestQueryController {
     public List<MvoCommodity> gets(HttpServletResponse response){
         List<MvoCommodity> list = mvoCommodityRepository.findAll();
         response.setHeader("Access-Control-Allow-Origin", "*");
-        return mvoCommodityRepository.findAll();
+        return mvoCommodityRepository.getAllByStateEquals(1);
     }
 
 //    @GetMapping("/{sellerId}")

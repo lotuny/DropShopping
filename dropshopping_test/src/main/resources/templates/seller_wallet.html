@@ -16,14 +16,14 @@
 <div class="container">
     <div class="row clearfix">
         <div class="col-md-12 column">
-            <form role="form">
                 <div class="form-group" style="font-size: 0.8cm;">
                     <label for="balance">账户余额</label>&nbsp;&nbsp;&nbsp;<label th:text="'¥'+${balance}" id="balance"></label>
                 </div>
 
+                <button class="btn btn-default"><a id="modal-40655" href="#modal-container-40655" role="button" class="btn" data-toggle="modal">充值</a></button>
+
                 <button class="btn btn-default"><a id="modal-4065" href="#modal-container-4065" role="button" class="btn" data-toggle="modal">提现</a></button>
 
-                <button class="btn btn-default"><a id="modal-40655" href="#modal-container-40655" role="button" class="btn" data-toggle="modal">充值</a></button>
 
                 <div class="modal fade" id="modal-container-40655" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -96,9 +96,9 @@
                 <div class="panel-body">
 
                     <div class="btn-group">
-                        <button class="btn" th:href="@{'tran/seller_wallet/'}">全部</button>
-                        <button class="btn" th:href="@{'tran/sellerOnlyPay'}">支出</button>
-                        <button class="btn" th:href="@{'tran/sellerOnlyReceive'}">收入</button>
+                        <button class="btn" th:href="@{'/tran/seller_wallet/'}">全部</button>
+                        <button class="btn" th:href="@{'/tran/sellerOnlyPay'}">支出</button>
+                        <button class="btn" th:href="@{'/tran/sellerOnlyReceive'}">收入</button>
                     </div>
 
                     <table class="table">
@@ -125,7 +125,6 @@
                     </table>
                 </div>
 
-            </form>
         </div>
     </div>
 </div>

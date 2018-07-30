@@ -64,4 +64,7 @@ public interface MvoCommodityService
     void down(Integer id);
 
     List<MvoCommodity> getRecent(Integer count);
+
+    List<MvoCommodity> getAllOnSale();
+
 }

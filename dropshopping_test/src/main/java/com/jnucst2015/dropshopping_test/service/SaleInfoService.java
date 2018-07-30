@@ -37,4 +37,6 @@ public interface SaleInfoService {
 
     List<Map<String, Object>> getShopList(Integer sellerId);
 
+    void delete(int id);
+
 }

@@ -130,4 +130,9 @@ public class MvoCommodityServiceImpl implements MvoCommodityService
     {
         return re.getMvoCommoditiesRecently(count);
     }
+
+    @Override
+    public List<MvoCommodity> getAllOnSale() {
+        return re.getAllByStateEquals(1);
+    }
 }

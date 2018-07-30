@@ -62,4 +62,9 @@ public class SaleInfoServiceImpl implements SaleInfoService {
     public List<Map<String, Object>> getShopList(Integer sellerId) {
         return saleInfoRepository.queryShopList(sellerId);
     }
+
+    @Override
+    public void delete(int id) {
+        saleInfoRepository.deleteById(id);
+    }
 }

@@ -84,7 +84,7 @@ public class MvoController
         {
             byte[] bytes = file.getBytes();
             psstPath = System.currentTimeMillis() + "_" + Integer.toHexString(Arrays.hashCode(bytes)) + "." + file.getOriginalFilename().replaceAll("(\\S+)\\.", "");
-            Path path = Paths.get("dropshopping_test/src/main/resources/static/images/" + psstPath);
+            Path path = Paths.get("E:\\images\\" + psstPath);
             Files.write(path, bytes);
         }
         catch (IOException e)
