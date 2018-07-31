@@ -5,149 +5,140 @@
     <title>Title</title>
 </head>
 
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/bootstrap-responsive.min.css">
-    <link rel="stylesheet" href="/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/css/ace.min.css">
-    <link rel="stylesheet" href="/css/ace-skins.min.css">
-    <link rel="stylesheet" href="/css/ace-responsive.min.css">
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/bootstrap-responsive.min.css">
+<link rel="stylesheet" href="../css/font-awesome.min.css">
+<link rel="stylesheet" href="../css/ace.min.css">
+<link rel="stylesheet" href="../css/ace-skins.min.css">
+<link rel="stylesheet" href="../css/ace-responsive.min.css">
 
-    <style>
-        #logo{
-            text-decoration: none;
-            cursor: pointer;
-        }
-        #logo:hover{
-            color: whitesmoke;
-        }
-        #sidebar{
-            left: 0;
-            margin-top: 0;
-        }
-        #sidebar span{
-            font-size: 0.8cm;
-        }
-        body,html{
-            width: 100%;
-            height: 100%;
-        }
-        .green{
-            color: #00818b;
-        }
-
-    </style>
+<style>
+    #logo{
+        text-decoration: none;
+        cursor: pointer;
+    }
+    #logo:hover{
+        color: whitesmoke;
+    }
+    #sidebar{
+        left: 0;
+        margin-top: 0;
+    }
+    #sidebar span{
+        font-size: 0.8cm;
+    }
+    body,html{
+        width: 100%;
+        height: 100%;
+    }
+</style>
 
 <body>
 
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner" style="background:#00818b;">
         <div class="container-fluid">
-            <a class="brand" id="logo">
+            <a class="brand" id="logo" th:href="@{'/'}">
                 <h1><i class="icon-shopping-cart"></i> JNUCST借卖平台</h1>
             </a>
         </div>
     </div>
 </div>
 
-<div class="container" style="margin-top: 100px;">
-    <div class="row clearfix">
-        <div class="col-md-12 column">
+<div style="margin-top: 100px;">
 
             <div id="sidebar" th:switch="${session.role}" style="position: relative; float: left;">
 
-                <ul class="nav nav-list" th:case="0"><!--品牌商菜单-->
+                <ul class="nav nav-list" th:case="company"><!--品牌商菜单-->
                     <li>
-                        <a th:href="@{'brand'}" target="menuFrame">
-                            <i class="icon-dashboard"></i>
-                            <span>公司信息</span>
-                        </a>
+                        <label>
+                            &nbsp;<span>品牌商</span>
+                        </label>
                     </li>
 
                     <li>
-                        <a href="mvo-brand.html" target="menuFrame">
+                        <a th:href="@{'/brand'}" target="menuFrame">
                             <i class="icon-dashboard"></i>
                             <span>品牌管理</span>
                         </a>
                     </li>
 
                     <li>
-                        <a href="mvo/mvo-commodity.html" target="menuFrame">
+                        <a th:href="@{'/getMvo'}" target="menuFrame">
                             <i class="icon-text-width"></i>
                             <span>商品管理</span>
                         </a>
                     </li>
 
                     <li>
-                        <a href="mvo-orderlist.html" class="dropdown-toggle" target="menuFrame">
+                        <a th:href="@{'/orderPage'}" class="dropdown-toggle" target="menuFrame">
                             <i class="icon-file"></i>
                             <span>订单管理</span>
                         </a>
                     </li>
 
                     <li>
-                        <a href="mvo-wallet.html" class="dropdown-toggle" target="menuFrame">
+                        <a th:href="@{'/tran/company_wallet'}" class="dropdown-toggle" target="menuFrame">
                             <i class="icon-desktop"></i>
                             <span>我的钱包</span>
                         </a>
                     </li>
                 </ul>
 
-                <ul class="nav nav-list" th:case="1"><!--借卖方菜单-->
+                <ul class="nav nav-list" th:case="seller"><!--借卖方菜单-->
                     <li>
-                        <a href="bvo/bvo-myInfo.html" target="menuFrame">
-                            <i class="icon-dashboard"></i>
-                            <span>个人信息</span>
-                        </a>
+                        <label>
+                            &nbsp;<span>借卖方</span>
+                        </label>
                     </li>
 
                     <li>
-                        <a href="bvo-shops.html" target="menuFrame">
+                        <a th:href="@{'/shop'}" target="menuFrame">
                             <i class="icon-dashboard"></i>
                             <span>商店管理</span>
                         </a>
                     </li>
 
                     <li>
-                        <a th:href="@{'/saleinfo/list/'+${session.userId}}" target="menuFrame">
+                        <a th:href="@{'/saleinfo/list'}" target="menuFrame">
                             <i class="icon-text-width"></i>
                             <span>商品管理</span>
                         </a>
                     </li>
 
                     <li>
-                        <a href="bvo-orderlist.html" class="dropdown-toggle" target="menuFrame">
+                        <a th:href="@{'/orderPage'}" class="dropdown-toggle" target="menuFrame">
                             <i class="icon-file"></i>
                             <span>订单管理</span>
                         </a>
                     </li>
 
                     <li>
-                        <a href="bvo-wallet.html" class="dropdown-toggle" target="menuFrame">
+                        <a th:href="@{'/tran/seller_wallet'}"  class="dropdown-toggle" target="menuFrame">
                             <i class="icon-desktop"></i>
                             <span>我的钱包</span>
                         </a>
                     </li>
                 </ul>
 
-                <ul class="nav nav-list" th:case="2"><!--管理员菜单-->
+                <ul class="nav nav-list" th:case="admin"><!--管理员菜单-->
                     <li>
-                        <a href="@{'/background//'}" target="menuFrame">
+                        <label>
+                            &nbsp;<span>管理员</span>
+                        </label>
+                    </li>
+
+                    <li>
+                        <a th:href="@{'/mg/company'}" target="menuFrame">
                             <i class="icon-dashboard"></i>
                             <span>公司管理</span>
                         </a>
                     </li>
 
                     <li>
-                        <a href="../mng/mng-seller.html" target="menuFrame">
+                        <a th:href="@{'/mg/seller'}" target="menuFrame">
                             <i class="icon-text-width"></i>
                             <span>卖方管理</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="../mng/mng/mng-commodity-sale.html" class="dropdown-toggle" target="menuFrame">
-                            <i class="icon-file"></i>
-                            <span>商品管理</span>
                         </a>
                     </li>
 
@@ -169,20 +160,11 @@
             </div>
 
             <div th:switch="${session.role}" class="col-md-offset-2">
-                <iframe th:case="0" name="menuFrame" src="../mvo/mvo-company.html" frameborder="no" width="100%" height="800px"></iframe>
-                <iframe th:case="1" name="menuFrame" src="../bvo/bvo-myInfo.html" frameborder="no" width="100%" height="800px"></iframe>
-                <iframe th:case="2" name="menuFrame" src="../mng/mng-companies.html" frameborder="no" width="100%" height="800px"></iframe>
+                <iframe th:case="company" name="menuFrame" th:src="@{'/brand'}"  frameborder="no" width="100%" height="1000px"></iframe>
+                <iframe th:case="seller" name="menuFrame" th:src="@{'/shop'}" frameborder="no" width="100%" height="1000px"></iframe>
+                <iframe th:case="admin" name="menuFrame" th:src="@{'/mg/company'}" frameborder="no" width="100%" height="1000px"></iframe>
             </div>
-        </div>
-    </div>
 </div>
 
 </body>
-<script src="/js/jquery-1.9.1.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script>
-    $('.nav-list li ').click(function () {
-        $(this).addClass('green').siblings().removeClass('green');
-    })
-</script>
 </html>

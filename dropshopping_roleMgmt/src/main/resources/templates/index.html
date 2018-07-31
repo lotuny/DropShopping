@@ -11,13 +11,12 @@
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 
-    <title>Index</title>
+    <title>跨境电商</title>
     <script th:inline="javascript">
+        var username = [[${session.username}]];
+        var userId = [[${session.userId}]];
+        var role = [[${session.role}]];
         $(function () {
-            var username = [[${session.username}]];
-            var userId = [[${session.userId}]];
-            var role = [[${session.role}]];
-
             if (username == undefined || username == null || username == "") {
                 $("#funbar").show();
             } else {
@@ -30,12 +29,12 @@
                     cmList.innerHTML +=
                         " <div class='col-lg-3 col-md-4 col-sm-6 col-xs-6'>" +
                         "    <div class='thumbnail'>" +
-                        "    <img src='/images/" + json[i].image +　"'alt='' class='img-responsive'>" +
+                        "    <img src='/images/upload/" + json[i].image +　"' class='img-responsive' style='width: 100%;height: 140px'>" +
                         "    <div class='caption'>" +
                         "        <h4>" + json[i].name + "</h4>" +
-                        "        <p style='color:red;'>" + json[i].description + "</p>" +
+                        "        <p style='color:red;'>" + json[i].description + "<br /></p>" +
                         "<p>当前剩余 " + json[i].quantity + " 件</p>" +
-                        "<p>价格 " + json[i].price + " 元</p>" +
+                        "<p>价格 " + json[i].price/100 + " 元</p>" +
                         "        <button class='btn btn-danger' data-toggle='modal' onclick='showDia(this)'>上架</button>" +
                         "<p style='display: none'>" + json[i].id + "</p>" +
                         "<p style='display: none'>" + json[i].classification + "</p>" +
@@ -49,8 +48,6 @@
             });
 
             $.getJSON("http://localhost:8080/shop.list/" + userId, function (json) {
-                console.log("tetetetetetete")
-                console.log(json);
                 for (var i=0; i < json.length; i++){
                     var optionList = document.getElementById("diShop");
                     optionList.innerHTML +=
@@ -77,13 +74,27 @@
         });
 
         function showDia(button) {
-            var nodes = button.parentNode.childNodes;
-            $("#diName").val(nodes[1].innerHTML.toString());
-            $("#diDesc").val(nodes[3].innerHTML.toString());
-            $("#diCmdtId").val(nodes[8].innerHTML.toString());
-            $("#diCompanyId").val(nodes[12].innerHTML.toString());
-            $("#onsaleModal").modal("show");
+            if (userId==null){
+                $("#loginModal").modal("show");
+            } else if (role=="company"){
+                alert("只有借卖商可以上架商品");
+            } else {
+                var nodes = button.parentNode.childNodes;
+                $("#diName").val(nodes[1].innerHTML.toString());
+                $("#diDesc").val(nodes[3].innerHTML.toString());
+                $("#diCmdtId").val(nodes[8].innerHTML.toString());
+                $("#diCompanyId").val(nodes[12].innerHTML.toString());
+                $("#onsaleModal").modal("show");
+            }
         };
+
+        function register() {
+            $("#registerModal").modal("show");
+        }
+
+        function login() {
+            $("#loginModal").modal("show");
+        }
 
     </script>
 </head>
@@ -122,10 +133,10 @@
                     </div>
 
                     <div class="control-group">
-                        <label class="control-label" for="diImage" >商品图片</label>
-                        <div class="controls">
-                            <input type="file" name="image" class="form-control" id="diImage" placeholder="设置商品图片">
-                        </div>
+                    <label class="control-label" for="diImage" >商品图片</label>
+                    <div class="controls">
+                        <input type="file" name="image" class="form-control" id="diImage" placeholder="设置商品图片">
+                    </div>
                     </div>
 
                     <div class="control-group">
@@ -174,12 +185,131 @@
     </div>
 </div>
 
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="myRegisterLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myRegisterLabel">用户注册</h4>
+            </div>
+            <div class="modal-body" >
+                <form class="form-horizontal" role="form" th:action="@{/user/register}" method="post"
+                      autocomplete="off" >
+
+                    <div class="control-group">
+                        <label for="inputName" class="control-label">用户名</label>
+                        <div class="controls">
+                            <input type="text" name="username" class="form-control" id="inputName" placeholder="设置用户名">
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="inputPwd" class="control-label">密码</label>
+                        <div class="controls">
+                            <input type="password" name="password" class="form-control" id="inputPwd" placeholder="设置你的密码">
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="inputEmail" class="control-label">邮箱</label>
+                        <div class="controls">
+                            <input type="text" name="email" class="form-control" id="inputEmail" placeholder="设置你的邮箱">
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="inputPhone" class="control-label">手机</label>
+                        <div class="controls">
+                            <input type="text" name="telephone" class="form-control" id="inputPhone" placeholder="设置你的手机">
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">角色</label>
+                        <div class="controls">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="role" id="inlineRadio1" value="品牌商">
+                                <label class="form-check-label" for="inlineRadio1">品牌商</label>
+
+                                <input class="form-check-input" type="radio" name="role" id="inlineRadio2" value="借卖商">
+                                <label class="form-check-label" for="inlineRadio2">借卖商</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                            <div class="checkbox ">
+                                <label>
+                                    <input type="checkbox">创建网站账号的同时，我同意遵守：《服务条款》及《隐私声明》
+                                </label>
+                            </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-danger" >注册</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myLoginLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myLoginLabel">用户登录</h4>
+            </div>
+            <div class="modal-body" >
+                <form class="form-horizontal" role="form" th:action="@{/user/login}" method="post"
+                      autocomplete="off" >
+
+                    <div class="control-group">
+                        <label for="loginName" class="control-label">用户名</label>
+                        <div class="controls">
+                            <input type="text" name="username" class="form-control" id="loginName" placeholder="输入用户名">
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="loginPwd" class="control-label">密码</label>
+                        <div class="controls">
+                            <input type="password" name="password" class="form-control" id="loginPwd" placeholder="输入的密码">
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">角色</label>
+                        <div class="controls">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="role" id="loginRadio1" value="品牌商">
+                                <label class="form-check-label" for="inlineRadio1">品牌商</label>
+                                <input class="form-check-input" type="radio" name="role" id="loginRadio2" value="借卖商">
+                                <label class="form-check-label" for="inlineRadio2">借卖商</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-danger" >登录</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     $(window).scroll(function () {
         if ($(".navbar").offset().top > 50) {
             $(".navbar-fixed-top").addClass("top-nav");
+            $("#infobarDown").css("background-color","orangered");
         } else {
             $(".navbar-fixed-top").removeClass("top-nav");
+            $("#infobarDown").css("background-color","");
         }
     });
 

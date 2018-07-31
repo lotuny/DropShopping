@@ -44,13 +44,14 @@ public class SaleInfoServiceImpl implements SaleInfoService {
 
     @Override
     public void updateSaleInfo(SaleInfo saleInfo) {
+        saleInfoRepository.reduceCommodityQuantity(saleInfo.getQuantity(), saleInfo.getId());
         saleInfoRepository.saveAndFlush(saleInfo);
     }
 
-    @Override
-    public void updateSaleInfo(String name, String descripition, Integer price, Integer id) {
-        saleInfoRepository.updateSaleInfo(name,descripition,price,id);
-    }
+//    @Override
+//    public void updateSaleInfo(String name, String descrpition, Integer price, Integer id, Integer commodityId) {
+//        saleInfoRepository.updateSaleInfo(name,descrpition,price,id, commodityId);
+//    }
 
     @Override
     public void onsaleSaleInfoAgain(int id) {
@@ -59,6 +60,11 @@ public class SaleInfoServiceImpl implements SaleInfoService {
 
     @Override
     public List<Map<String, Object>> getShopList(Integer sellerId) {
-        return saleInfoRepository.query(sellerId);
+        return saleInfoRepository.queryShopList(sellerId);
+    }
+
+    @Override
+    public void delete(int id) {
+        saleInfoRepository.deleteById(id);
     }
 }

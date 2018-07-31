@@ -1,4 +1,4 @@
-package com.jnucst2015.dropshopping_rolemgmt.controller;
+package com.jnucst2015.dropshopping_roleMgmt.controller;
 
 import com.jnucst2015.dropshopping.entity.SaleInfo;
 import com.jnucst2015.dropshopping.service.SaleInfoService;
@@ -19,13 +19,13 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
-@Controller("saleInfo")
+@Controller
 public class SaleInfoController {
 
     @Autowired
     private SaleInfoService saleInfoService;
 
-    @PostMapping(value = "commodity/onsale")
+    @PostMapping(value = "/onsale/commodity/onsale")
     public String onSale(@RequestParam("mvoCmdtId") Integer mvoCmdtId,
                       @RequestParam("image") MultipartFile image,
                       @RequestParam("name") String name,
@@ -38,48 +38,62 @@ public class SaleInfoController {
                       @RequestParam("state") Integer state
     ) {
         Path path = Paths.get("blank.jpg");
+        String img = "";
         try {
             byte[] imageByte = image.getBytes();
-            path = Paths.get("src\\main\\resources\\upload\\" + System.currentTimeMillis() + "_" + Integer.toHexString(Arrays.hashCode(imageByte)) + "." + image.getOriginalFilename().replaceAll("(\\S+)\\.",""));
+            img = System.currentTimeMillis() + "_" + Integer.toHexString(Arrays.hashCode(imageByte)) + "." + image.getOriginalFilename().replaceAll("(\\S+)\\.","");
+            path = Paths.get("E:\\images\\" + img);
             Files.write(path, imageByte);
         }
         catch (IOException e) {
             e.printStackTrace();
         }
 
-        SaleInfo saleInfo = new SaleInfo(mvoCmdtId, shopId, sellerId, name, path.toString(), price, quantity, description, state, companyId);
+        SaleInfo saleInfo = new SaleInfo(mvoCmdtId, shopId, sellerId, name, img, price*100, quantity, description, state, companyId);
         saleInfoService.updateSaleInfo(saleInfo);
         return "redirect:/";
 
     }
 
-    @PostMapping("saleinfo/update")
+    @PostMapping("/saleinfo/update")
     public String update(@RequestParam("name") String name,
                          @RequestParam("description") String description,
                          @RequestParam("price") Integer price,
-                         @RequestParam("saleInfoId") Integer id,
+                         @RequestParam("saleInfoId") Integer saleInfoId,
                          HttpSession session
     ) {
-        saleInfoService.updateSaleInfo(name,description,price,id);
-        return "redirect:/rolemgmt/saleinfo/list/" + session.getAttribute("userId");
+//        saleInfoService.updateSaleInfo(name,description,price,saleInfoId);
+        return "redirect:/saleinfo/list/" + session.getAttribute("userId");
     }
 
-    @GetMapping("saleinfo/list/{sellerId}")
+    @GetMapping("/saleinfo/list")
+    public String list(HttpSession session){
+        return "redirect:/saleinfo/list/" + session.getAttribute("userId");
+    }
+
+    @GetMapping("/saleinfo/list/{sellerId}")
     public String list(@PathVariable("sellerId") Integer sellerId, Model model){
         List<SaleInfo> saleInfoList = saleInfoService.listSaleInfo(sellerId);
         model.addAttribute(saleInfoList);
         return "saleinfolist";
     }
 
-    @GetMapping("saleinfo/desale/{saleInfoId}")
+    @GetMapping("/saleinfo/desale/{saleInfoId}")
     public String deSale(@PathVariable("saleInfoId") Integer saleInfoId, HttpSession session){
         saleInfoService.desaleSaleInfo(saleInfoId);
-        return "redirect:/rolemgmt/saleinfo/list/" + session.getAttribute("userId");
+        return "redirect:/saleinfo/list/" + session.getAttribute("userId");
     }
 
-    @GetMapping("saleinfo/onsaleAgain/{saleInfoId}")
+    @GetMapping("/saleinfo/onsaleAgain/{saleInfoId}")
     public String onSaleAgain(@PathVariable("saleInfoId") Integer saleInfoId, HttpSession session){
         saleInfoService.onsaleSaleInfoAgain(saleInfoId);
-        return "redirect:/rolemgmt/saleinfo/list/" + session.getAttribute("userId");
+        return "redirect:/saleinfo/list/" + session.getAttribute("userId");
     }
+
+    @GetMapping("/saleinfo/delete/{saleInfoId}")
+    public String delete(@PathVariable("saleInfoId") Integer saleInfoId, HttpSession session){
+        saleInfoService.delete(saleInfoId);
+        return "redirect:/saleinfo/list/" + session.getAttribute("userId");
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.jnucst2015.dropshopping.service;
 
 import com.jnucst2015.dropshopping.entity.Transaction;
+import com.jnucst2015.dropshopping.vo.TranVo;
 
 import java.util.List;
 
@@ -16,7 +17,21 @@ public interface TransactionService {
 
     Transaction addTransaction(Transaction transaction);
 
-    Transaction addTransaction(Integer payer_id, Integer recipient_id, Integer price);
+    List<TranVo> showAllTranVo();
 
-    Transaction addTransaction();
+    List<Transaction> getAllByPayerIdAndRole(Integer payerId, Integer payerRole);
+
+    List<Transaction> getAllByRecipientIdAndRole(Integer recipientId, Integer recipientRole);
+
+    List<TranVo> showAllVoByPayerIdAndRole(Integer payerId, Integer payerRole);
+
+    List<TranVo> showAllVoByRecipientIdAndRole(Integer recipientId, Integer recipientRole);
+
+    List<TranVo> showAllVoByUserIdAndRole(Integer userId, Integer userRole);
+
+    TranVo fromTranToVo(Transaction tran);
+
+    void topup(Integer topup_num, Integer userId, Integer userRole);
+
+    void withdraw(Integer withdraw_num, Integer userId, Integer userRole);
 }

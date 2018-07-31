@@ -1,4 +1,4 @@
-package com.jnucst2015.dropshopping_rolemgmt.controller;
+package com.jnucst2015.dropshopping_roleMgmt.controller;
 
 import com.jnucst2015.dropshopping.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +22,13 @@ public class AdminController {
         return "admin_login";
     }
 
-    //remains to modify
     @PostMapping("admin_login")
     public String adminLogin(HttpSession session,
-                             @RequestParam("username") String name,
+                             @RequestParam("name") String name,
                              @RequestParam("password") String password) {
-        adminService.adminLogin(name, password, session);
-
-        return "redirect:/rolemgmt/background/2";
+        if (adminService.adminLogin(name, password, session).equals("successfully"))
+            return "redirect:/background/index";
+        else
+            return "redirect:/admin/admin_login";
     }
 }

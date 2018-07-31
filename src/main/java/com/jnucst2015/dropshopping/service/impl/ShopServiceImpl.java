@@ -37,7 +37,6 @@ public class ShopServiceImpl implements ShopService {
         return shopRepository.findByDescriptionLike("%" + description + "%");
     }
 
-
     @Override
     public Shop addShopInfo(Shop shop) {
         return shopRepository.save(shop);

@@ -31,10 +31,12 @@ public interface SaleInfoService {
 
     void updateSaleInfo(SaleInfo saleInfo);
 
-    void updateSaleInfo(String name, String descrpition, Integer price, Integer id);
+   // void updateSaleInfo(String name, String descrpition, Integer price, Integer saleInfoId);
 
     void onsaleSaleInfoAgain(int id);
 
     List<Map<String, Object>> getShopList(Integer sellerId);
+
+    void delete(int id);
 
 }

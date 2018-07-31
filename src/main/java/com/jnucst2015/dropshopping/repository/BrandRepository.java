@@ -1,6 +1,5 @@
 package com.jnucst2015.dropshopping.repository;
 
-
 import com.jnucst2015.dropshopping.entity.Brand;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

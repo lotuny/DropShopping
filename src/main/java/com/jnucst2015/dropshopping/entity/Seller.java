@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Seller extends User{
+public class Seller extends User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

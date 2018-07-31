@@ -24,11 +24,12 @@ public interface OrderService {
 
     OrderItem showOrderItem(int orderItemId);
 
-    void deleteOrderItem(int orderItemId);
+    void  changeState(int state, int orderItemId);
 
     List<OrderItemVo> showOrderItems();
 
 
+    List<OrderItemVo> showOrderItemsBySellerId(Integer userId);
 
-
+    List<OrderItemVo> showOrderItemsByCompanyId(Integer userId);
 }

@@ -1,7 +1,5 @@
 package com.jnucst2015.dropshopping.vo;
 
-import com.jnucst2015.dropshopping.entity.SaleInfo;
-
 import java.sql.Timestamp;
 
 

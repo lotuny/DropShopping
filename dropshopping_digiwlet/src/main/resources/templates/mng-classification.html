@@ -17,10 +17,6 @@
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
 
-
-    <script>
-        var classid;
-    </script>
 </head>
 <body>
 <div class="container">
@@ -41,7 +37,7 @@
                                 </h4>
                             </div>
                             <div class="modal-body">
-                                <form id="addform" class="form-horizontal" role="form" method="post" th:action="@{digiwlet/background/addClass}">
+                                <form id="addform" class="form-horizontal" role="form" method="post" th:action="@{/background/addClass}">
                                     <input name="id" type="text" value="0" style="display: none;">
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label">一级分类：</label>

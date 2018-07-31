@@ -1,6 +1,5 @@
 package com.jnucst2015.dropshopping.repository;
 
-import com.jnucst2015.dropshopping.entity.Order;
 import com.jnucst2015.dropshopping.entity.OrderItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -12,11 +11,14 @@ import java.util.List;
 
 public interface OrderItemRepository extends JpaRepository<OrderItem,Integer> {
 
+    @Query(value = "select * from order_item where sale_info_id = ?1 and state < ?2", nativeQuery = true)
+    List<OrderItem> findAllBySale_info_idAndStateBefore(Integer saleInfoId, Integer state);
+
     @Query(value = "select * from order_item where state=?1", nativeQuery = true)
-    public List<OrderItem> selectByState(@Param("state")short state);
+    public List<OrderItem> selectByState(@Param("state") short state);
 
     @Query(value = "select * from order_item join sale_info on order_item.sale_info_id = sale_info.id where order_item.id=?1", nativeQuery = true)
-    public OrderItem selectByOrderItemId(@Param("order_item.id")int orderItemId);
+    public OrderItem selectByOrderItemId(@Param("order_item.id") int orderItemId);
 
     @Query(value = "select * from order_item ", nativeQuery = true)
     public List<OrderItem> selectAllOrderItems();
@@ -25,6 +27,10 @@ public interface OrderItemRepository extends JpaRepository<OrderItem,Integer> {
 
     @Modifying
     @Transactional
-    @Query(value = "update order_item set state = 4 where id = ?1",nativeQuery = true)
-    void setOrderItemDelete(Integer orderItemId);
+    @Query(value = "update order_item set state = ?1 where id = ?2",nativeQuery = true)
+    void setOrderItemState(Integer state, Integer orderItemId);
+
+
+
+
 }

@@ -38,6 +38,7 @@ public class SellerServiceImpl implements SellerService {
     @Override
     public String sellerLogin(String username, String password, HttpSession session) {
         Seller seller = sellerRepository.findSellerByUsername(username);
+
         String pwd = seller.getPassword();
         if (pwd.equals(PasswordUtil.md5Password(password))){
             session.setAttribute("userId",seller.getId());
@@ -58,7 +59,31 @@ public class SellerServiceImpl implements SellerService {
         seller.setPassword(PasswordUtil.md5Password(plainPwd));
         sellerRepository.saveAndFlush(seller);
     }
-//new
+
+    @Override
+    public Seller findById(Integer id) {
+        return sellerRepository.findById(id).get();
+    }
+
+    @Override
+    public void topup(Integer topup_num, Integer userId, String pay_pwd) {
+        Seller seller = findById(userId);
+//        if (seller.getPayPwd().equals(PasswordUtil.md5Password(pay_pwd))) {
+            seller.setBalance(seller.getBalance() + topup_num*100);
+            sellerRepository.save(seller);
+//        }
+    }
+
+    @Override
+    public void withdraw(Integer withdraw_num, Integer userId, String pay_pwd) {
+        Seller seller = findById(userId);
+//        if (seller.getPayPwd().equals(PasswordUtil.md5Password(pay_pwd))) {
+            seller.setBalance(seller.getBalance() - withdraw_num*100);
+            sellerRepository.save(seller);
+//        }
+    }
+
+    //new
     @Override
     public Seller getSellerById(Integer Id) {
         return sellerRepository.findById(Id).get();

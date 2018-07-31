@@ -1,7 +1,6 @@
 package com.jnucst2015.dropshopping.entity;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
 public class OrderItem {//订单中的单项

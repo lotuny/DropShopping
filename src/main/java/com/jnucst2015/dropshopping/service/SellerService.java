@@ -1,7 +1,6 @@
 package com.jnucst2015.dropshopping.service;
 
 import com.jnucst2015.dropshopping.entity.Seller;
-import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -39,6 +38,12 @@ public interface SellerService {
 
 
     void updateSellerInfo(Seller seller);
+
+    Seller findById(Integer id);
+
+    void topup(Integer topup_num, Integer userId, String pay_pwd);
+
+    void withdraw(Integer withdraw_num, Integer userId, String pay_pwd);
 
     //new
     Seller getSellerById(Integer Id);

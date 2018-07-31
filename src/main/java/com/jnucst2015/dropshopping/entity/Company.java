@@ -1,10 +1,12 @@
 package com.jnucst2015.dropshopping.entity;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
-public class Company extends User{
+public class Company extends User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,7 +15,6 @@ public class Company extends User{
     private String name;
     private String description;
     private Integer balance;
-
 
     public Company(){}
 

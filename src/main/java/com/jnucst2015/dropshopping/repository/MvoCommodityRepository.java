@@ -25,4 +25,6 @@ public interface MvoCommodityRepository extends JpaRepository<MvoCommodity, Inte
 
     @Query(value = "SELECT * FROM mvo_commodity WHERE id = ?1 AND company_id = ?2", nativeQuery = true)
     MvoCommodity getMvoCommoditiesByIdIsAndCompany_idIs(Integer id, Integer company_id);
+
+    List<MvoCommodity> getAllByStateEquals(int state);
 }

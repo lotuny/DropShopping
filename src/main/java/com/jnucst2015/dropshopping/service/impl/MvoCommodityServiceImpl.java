@@ -2,7 +2,7 @@ package com.jnucst2015.dropshopping.service.impl;
 
 import com.jnucst2015.dropshopping.entity.MvoCommodity;
 import com.jnucst2015.dropshopping.repository.MvoCommodityRepository;
-import com.jnucst2015.dropshopping.service.MvoCommodityService;
+import com.jnucst2015.dropshopping_test.service.MvoCommodityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -129,5 +129,10 @@ public class MvoCommodityServiceImpl implements MvoCommodityService
     public List<MvoCommodity> getRecent(Integer count)
     {
         return re.getMvoCommoditiesRecently(count);
+    }
+
+    @Override
+    public List<MvoCommodity> getAllOnSale() {
+        return re.getAllByStateEquals(1);
     }
 }
